@@ -1,0 +1,43 @@
+[gd_scene load_steps=6 format=3 uid="uid://uhlblrwdub6m"]
+
+[ext_resource type="Script" uid="uid://tpxm8y2yilj8" path="res://scenes/bron.gd" id="1_mtsbh"]
+[ext_resource type="Texture2D" uid="uid://cegeledh12s0x" path="res://icon.svg" id="2_rfshv"]
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_prtcw"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("2_rfshv")
+}],
+"loop": true,
+"name": &"default",
+"speed": 5.0
+}]
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_4o8iq"]
+radius = 63.0
+height = 192.0
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_mtsbh"]
+radius = 47.0
+height = 156.0
+
+[node name="Bron" type="CharacterBody2D"]
+texture_filter = 1
+texture_repeat = 1
+script = ExtResource("1_mtsbh")
+
+[node name="BronSprite" type="AnimatedSprite2D" parent="."]
+sprite_frames = SubResource("SpriteFrames_prtcw")
+
+[node name="BronArea" type="Area2D" parent="."]
+
+[node name="BronCollision" type="CollisionShape2D" parent="BronArea"]
+shape = SubResource("CapsuleShape2D_4o8iq")
+
+[node name="BronBumpCollisions" type="CollisionShape2D" parent="."]
+shape = SubResource("CapsuleShape2D_mtsbh")
+
+[node name="Camera" type="Camera2D" parent="."]
+zoom = Vector2(1.5, 1.5)
+position_smoothing_speed = 10.0
