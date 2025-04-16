@@ -1,9 +1,10 @@
-[gd_scene load_steps=4 format=3 uid="uid://dfafvjt73d4f0"]
+[gd_scene load_steps=5 format=3 uid="uid://dfafvjt73d4f0"]
 
 [ext_resource type="PackedScene" uid="uid://uhlblrwdub6m" path="res://scenes/characters/bron/bron.tscn" id="2_f0p7x"]
+[ext_resource type="PackedScene" uid="uid://v4rjai458d82" path="res://scenes/assets/campfire.tscn" id="3_a0f05"]
 [ext_resource type="PackedScene" uid="uid://dac8aowpc3jge" path="res://scenes/inventory_screen.tscn" id="3_vtm10"]
 
-[sub_resource type="CompressedTexture2D" id="CompressedTexture2D_f0p7x"]
+[sub_resource type="OccluderPolygon2D" id="OccluderPolygon2D_vtm10"]
 
 [node name="TestArea" type="Control"]
 layout_mode = 3
@@ -13,17 +14,16 @@ anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 
-[node name="TextureRect" type="TextureRect" parent="."]
-layout_mode = 1
-anchors_preset = 15
-anchor_right = 1.0
-anchor_bottom = 1.0
-grow_horizontal = 2
-grow_vertical = 2
-texture = SubResource("CompressedTexture2D_f0p7x")
+[node name="Campfire" parent="." instance=ExtResource("3_a0f05")]
+visibility_layer = 1
+position = Vector2(672, 279)
 
 [node name="Bron" parent="." instance=ExtResource("2_f0p7x")]
-position = Vector2(63, 75)
+position = Vector2(220, 321)
 speed = 300
 
 [node name="InventoryScreen" parent="Bron" instance=ExtResource("3_vtm10")]
+
+[node name="LightOccluder2D" type="LightOccluder2D" parent="."]
+position = Vector2(520, 274)
+occluder = SubResource("OccluderPolygon2D_vtm10")

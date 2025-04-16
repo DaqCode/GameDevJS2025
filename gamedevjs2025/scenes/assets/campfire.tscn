@@ -1,13 +1,78 @@
-[gd_scene format=3 uid="uid://v4rjai458d82"]
+[gd_scene load_steps=9 format=3 uid="uid://v4rjai458d82"]
+
+[ext_resource type="Texture2D" uid="uid://bbaymxyveihos" path="res://art/campfire/testCampfire.png" id="1_vhsok"]
+[ext_resource type="Texture2D" uid="uid://dvv3dkkmdcuf1" path="res://art/campfire/whiteOval.png" id="2_k5uvh"]
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_k5uvh"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("1_vhsok")
+}],
+"loop": true,
+"name": &"default",
+"speed": 5.0
+}]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_iudvd"]
+radius = 350.892
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_oyu63"]
+radius = 450.0
+height = 1650.0
+
+[sub_resource type="Gradient" id="Gradient_vhsok"]
+offsets = PackedFloat32Array(0.0693069, 0.30099, 0.526733, 0.790099, 0.89703, 1)
+colors = PackedColorArray(1, 0, 0, 1, 0.988723, 0.608961, 0.296962, 1, 0.988235, 0.635294, 0.309804, 1, 0.995926, 0.873718, 0.409788, 1, 0.160784, 0.152941, 0, 0.584314, 1, 1, 1, 0)
+
+[sub_resource type="GradientTexture1D" id="GradientTexture1D_k5uvh"]
+gradient = SubResource("Gradient_vhsok")
+
+[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_vhsok"]
+particle_flag_disable_z = true
+emission_shape_scale = Vector3(4, 4, 1)
+emission_shape = 3
+emission_box_extents = Vector3(50, 50, 0)
+inherit_velocity_ratio = 0.5
+direction = Vector3(0, -1, 0)
+initial_velocity_min = 300.0
+initial_velocity_max = 581.75
+gravity = Vector3(0, -10, 0)
+scale_min = 0.5
+scale_over_velocity_max = 221.25
+color_ramp = SubResource("GradientTexture1D_k5uvh")
 
 [node name="Campfire" type="AnimatedSprite2D"]
+modulate = Color(0.695503, 0.695503, 0.695503, 1)
+visibility_layer = 2
+scale = Vector2(0.04, 0.04)
+sprite_frames = SubResource("SpriteFrames_k5uvh")
 
 [node name="CampfireCollision" type="Area2D" parent="."]
 
 [node name="CampfireCollisionShape" type="CollisionShape2D" parent="CampfireCollision"]
+position = Vector2(0, 75)
+shape = SubResource("CircleShape2D_iudvd")
 
 [node name="CampfireInterract" type="Area2D" parent="."]
 
 [node name="CampfireInterracShape" type="CollisionShape2D" parent="CampfireInterract"]
+position = Vector2(0, 125)
+rotation = 1.5708
+shape = SubResource("CapsuleShape2D_oyu63")
+debug_color = Color(0.998383, 0.750268, 0.37792, 0.42)
 
-[node name="Ashes" type="GPUParticles2D" parent="."]
+[node name="CampfireAshes" type="GPUParticles2D" parent="."]
+position = Vector2(0, -250)
+scale = Vector2(2, 2)
+amount = 150
+lifetime = 1.5
+randomness = 0.4
+process_material = SubResource("ParticleProcessMaterial_vhsok")
+
+[node name="PointLight2D" type="PointLight2D" parent="."]
+position = Vector2(0, -1000)
+scale = Vector2(40, 87.5)
+color = Color(0.344076, 0.344076, 0.344076, 1)
+energy = 4.0
+texture = ExtResource("2_k5uvh")

@@ -20,6 +20,10 @@ config/icon="res://icon.svg"
 GlobalPlayerScript="*res://global/globalPlayerScript.gd"
 GlobalEnemySpawnerTimer="*res://global/global_enemy_spawner_timer.gd"
 
+[display]
+
+window/stretch/mode="viewport"
+
 [input]
 
 up={

@@ -1,4 +1,4 @@
-[gd_scene load_steps=2 format=3 uid="uid://fuiiv01mqslp"]
+[gd_scene load_steps=2 format=3 uid="uid://bhsr238nb4e27"]
 
 [ext_resource type="Script" uid="uid://cw2ds56kqxj4f" path="res://global/global_enemy_spawner_timer.gd" id="1_qq87f"]
 

@@ -15,12 +15,12 @@ animations = [{
 }]
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_4o8iq"]
-radius = 63.0
-height = 192.0
+radius = 20.0
+height = 48.0
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_mtsbh"]
-radius = 47.0
-height = 156.0
+radius = 13.0
+height = 28.0
 
 [node name="Bron" type="CharacterBody2D"]
 texture_filter = 1
@@ -28,6 +28,7 @@ texture_repeat = 1
 script = ExtResource("1_mtsbh")
 
 [node name="BronSprite" type="AnimatedSprite2D" parent="."]
+scale = Vector2(0.1875, 0.191406)
 sprite_frames = SubResource("SpriteFrames_prtcw")
 
 [node name="BronArea" type="Area2D" parent="."]
@@ -39,5 +40,5 @@ shape = SubResource("CapsuleShape2D_4o8iq")
 shape = SubResource("CapsuleShape2D_mtsbh")
 
 [node name="Camera" type="Camera2D" parent="."]
-zoom = Vector2(1.5, 1.5)
+zoom = Vector2(4, 4)
 position_smoothing_speed = 10.0
