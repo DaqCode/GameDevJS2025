@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://dvv3dkkmdcuf1"
-path="res://.godot/imported/whiteOval.png-99da5d7343b96e61c04a20e2dc293e7d.ctex"
+uid="uid://grupha1cmku5"
+path="res://.godot/imported/treetest.png-999230c531c8cabc18189214a9783efc.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://art/campfire/whiteOval.png"
-dest_files=["res://.godot/imported/whiteOval.png-99da5d7343b96e61c04a20e2dc293e7d.ctex"]
+source_file="res://art/tree/treetest.png"
+dest_files=["res://.godot/imported/treetest.png-999230c531c8cabc18189214a9783efc.ctex"]
 
 [params]
 

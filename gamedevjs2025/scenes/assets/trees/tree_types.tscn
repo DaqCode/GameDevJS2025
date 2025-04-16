@@ -1,0 +1,38 @@
+[gd_scene load_steps=5 format=3 uid="uid://8g4c38tka1yf"]
+
+[ext_resource type="Script" uid="uid://bchl8r4rhawwu" path="res://scenes/assets/trees/tree_types.gd" id="1_6j25m"]
+[ext_resource type="Texture2D" uid="uid://grupha1cmku5" path="res://art/tree/treetest.png" id="1_7coxb"]
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_7coxb"]
+radius = 7.0
+height = 38.0
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_17iq3"]
+radius = 2.0
+height = 14.0
+
+[node name="TreeTypes" type="StaticBody2D"]
+modulate = Color(0.0588235, 0.0588235, 0.0588235, 1)
+script = ExtResource("1_6j25m")
+
+[node name="TreeTexture" type="Sprite2D" parent="."]
+position = Vector2(-9.53674e-07, 5.96046e-08)
+scale = Vector2(0.065, 0.0825)
+texture = ExtResource("1_7coxb")
+
+[node name="TreeInterraction" type="Area2D" parent="."]
+
+[node name="TreeCollision" type="CollisionShape2D" parent="TreeInterraction"]
+position = Vector2(0, 33)
+rotation = 1.5708
+shape = SubResource("CapsuleShape2D_7coxb")
+
+[node name="TreeCollisionShape" type="CollisionShape2D" parent="."]
+position = Vector2(0, 35)
+rotation = 1.5708
+shape = SubResource("CapsuleShape2D_17iq3")
+
+[node name="RegrowTime" type="Timer" parent="."]
+
+[connection signal="body_entered" from="TreeInterraction" to="." method="_on_tree_interraction_body_entered"]
+[connection signal="body_exited" from="TreeInterraction" to="." method="_on_tree_interraction_body_exited"]
