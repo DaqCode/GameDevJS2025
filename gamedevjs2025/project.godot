@@ -15,6 +15,11 @@ run/main_scene="uid://dfafvjt73d4f0"
 config/features=PackedStringArray("4.4", "Forward Plus")
 config/icon="res://icon.svg"
 
+[autoload]
+
+GlobalPlayerScript="*res://global/globalPlayerScript.gd"
+GlobalEnemySpawnerTimer="*res://global/global_enemy_spawner_timer.gd"
+
 [input]
 
 up={

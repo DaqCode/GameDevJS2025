@@ -1,8 +1,9 @@
 [gd_scene load_steps=4 format=3 uid="uid://dfafvjt73d4f0"]
 
-[ext_resource type="Texture2D" uid="uid://dtk58k8iok7ww" path="res://art/background/test.png" id="1_yldxj"]
-[ext_resource type="PackedScene" uid="uid://uhlblrwdub6m" path="res://scenes/bron.tscn" id="2_f0p7x"]
+[ext_resource type="PackedScene" uid="uid://uhlblrwdub6m" path="res://scenes/characters/bron/bron.tscn" id="2_f0p7x"]
 [ext_resource type="PackedScene" uid="uid://dac8aowpc3jge" path="res://scenes/inventory_screen.tscn" id="3_vtm10"]
+
+[sub_resource type="CompressedTexture2D" id="CompressedTexture2D_f0p7x"]
 
 [node name="TestArea" type="Control"]
 layout_mode = 3
@@ -19,7 +20,7 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
-texture = ExtResource("1_yldxj")
+texture = SubResource("CompressedTexture2D_f0p7x")
 
 [node name="Bron" parent="." instance=ExtResource("2_f0p7x")]
 position = Vector2(63, 75)

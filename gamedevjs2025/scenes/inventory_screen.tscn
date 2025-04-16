@@ -1,11 +1,4 @@
-[gd_scene load_steps=7 format=3 uid="uid://dac8aowpc3jge"]
-
-[ext_resource type="Texture2D" uid="uid://bexyoyty8it8g" path="res://art/background/TestBackground.png" id="1_5m1om"]
-[ext_resource type="Texture2D" uid="uid://im6urk7u6sms" path="res://art/background/Test2.png" id="2_3ner1"]
-[ext_resource type="Texture2D" uid="uid://dur5aacggmvam" path="res://art/background/Test1.png" id="3_v2fb5"]
-[ext_resource type="Texture2D" uid="uid://cablb2iphb721" path="res://art/background/Test3.png" id="4_say0f"]
-[ext_resource type="Texture2D" uid="uid://diorwdn6wn5uj" path="res://art/background/Test4.png" id="5_cd403"]
-[ext_resource type="Texture2D" uid="uid://k1mth1dnmmw4" path="res://art/background/Test5.png" id="6_1wywi"]
+[gd_scene format=3 uid="uid://dac8aowpc3jge"]
 
 [node name="InventoryScreen" type="CanvasLayer"]
 
@@ -43,7 +36,6 @@ columns = 5
 layout_mode = 2
 size_flags_horizontal = 3
 size_flags_vertical = 3
-texture = ExtResource("1_5m1om")
 expand_mode = 1
 
 [node name="Item1" type="TextureRect" parent="InventoryBackground/InventorySlots/ItemSlot1"]
@@ -61,14 +53,12 @@ grow_horizontal = 2
 grow_vertical = 2
 size_flags_horizontal = 3
 size_flags_vertical = 3
-texture = ExtResource("2_3ner1")
 expand_mode = 1
 
 [node name="ItemSlot2" type="TextureRect" parent="InventoryBackground/InventorySlots"]
 layout_mode = 2
 size_flags_horizontal = 3
 size_flags_vertical = 3
-texture = ExtResource("1_5m1om")
 expand_mode = 1
 
 [node name="Item2" type="TextureRect" parent="InventoryBackground/InventorySlots/ItemSlot2"]
@@ -86,14 +76,12 @@ grow_horizontal = 2
 grow_vertical = 2
 size_flags_horizontal = 3
 size_flags_vertical = 3
-texture = ExtResource("3_v2fb5")
 expand_mode = 1
 
 [node name="ItemSlot3" type="TextureRect" parent="InventoryBackground/InventorySlots"]
 layout_mode = 2
 size_flags_horizontal = 3
 size_flags_vertical = 3
-texture = ExtResource("1_5m1om")
 expand_mode = 1
 
 [node name="Item3" type="TextureRect" parent="InventoryBackground/InventorySlots/ItemSlot3"]
@@ -111,14 +99,12 @@ grow_horizontal = 2
 grow_vertical = 2
 size_flags_horizontal = 3
 size_flags_vertical = 3
-texture = ExtResource("4_say0f")
 expand_mode = 1
 
 [node name="ItemSlot4" type="TextureRect" parent="InventoryBackground/InventorySlots"]
 layout_mode = 2
 size_flags_horizontal = 3
 size_flags_vertical = 3
-texture = ExtResource("1_5m1om")
 expand_mode = 1
 
 [node name="Item4" type="TextureRect" parent="InventoryBackground/InventorySlots/ItemSlot4"]
@@ -136,14 +122,12 @@ grow_horizontal = 2
 grow_vertical = 2
 size_flags_horizontal = 3
 size_flags_vertical = 3
-texture = ExtResource("5_cd403")
 expand_mode = 1
 
 [node name="ItemSlot5" type="TextureRect" parent="InventoryBackground/InventorySlots"]
 layout_mode = 2
 size_flags_horizontal = 3
 size_flags_vertical = 3
-texture = ExtResource("1_5m1om")
 expand_mode = 1
 
 [node name="Item5" type="TextureRect" parent="InventoryBackground/InventorySlots/ItemSlot5"]
@@ -161,5 +145,4 @@ grow_horizontal = 2
 grow_vertical = 2
 size_flags_horizontal = 3
 size_flags_vertical = 3
-texture = ExtResource("6_1wywi")
 expand_mode = 1

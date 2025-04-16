@@ -1,6 +1,6 @@
 [gd_scene load_steps=6 format=3 uid="uid://uhlblrwdub6m"]
 
-[ext_resource type="Script" uid="uid://tpxm8y2yilj8" path="res://scenes/bron.gd" id="1_mtsbh"]
+[ext_resource type="Script" uid="uid://tpxm8y2yilj8" path="res://scenes/characters/bron/bron.gd" id="1_mtsbh"]
 [ext_resource type="Texture2D" uid="uid://cegeledh12s0x" path="res://icon.svg" id="2_rfshv"]
 
 [sub_resource type="SpriteFrames" id="SpriteFrames_prtcw"]
