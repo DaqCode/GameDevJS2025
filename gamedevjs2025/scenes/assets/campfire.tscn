@@ -1,0 +1,13 @@
+[gd_scene format=3 uid="uid://v4rjai458d82"]
+
+[node name="Campfire" type="AnimatedSprite2D"]
+
+[node name="CampfireCollision" type="Area2D" parent="."]
+
+[node name="CampfireCollisionShape" type="CollisionShape2D" parent="CampfireCollision"]
+
+[node name="CampfireInterract" type="Area2D" parent="."]
+
+[node name="CampfireInterracShape" type="CollisionShape2D" parent="CampfireInterract"]
+
+[node name="Ashes" type="GPUParticles2D" parent="."]
