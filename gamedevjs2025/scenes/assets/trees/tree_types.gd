@@ -1,6 +1,7 @@
 extends StaticBody2D
 
-var rng := RandomNumberGenerator.new()
+signal ready_to_chop
+signal done_chopping
 
 enum TreeTypes{
 	TREE_1,
@@ -8,7 +9,10 @@ enum TreeTypes{
 	TREE_3
 }
 
+var rng := RandomNumberGenerator.new()
 var tree_type := TreeTypes.TREE_1
+
+var can_be_chopped := true
 
 var tree_data = {
 
@@ -78,7 +82,7 @@ func chop_tree() -> void:
 	# PLANKS
 	var plank_roll = rng.randf()
 	var plank_amount = 0
-	var plank_prob = data["plank_value"]
+	var plank_prob = data["plank_drops"]
 	for i in range(plank_prob.size()):
 		plank_roll -= plank_prob[i]
 		if plank_roll <= 0:
@@ -96,9 +100,11 @@ func chop_tree() -> void:
 
 func _on_tree_interraction_body_entered(body:Node2D) -> void:
 	if body.name == "Bron":
-		chop_tree()
+		if can_be_chopped:
+			chop_tree()
+			emit_signal("ready_to_chop", self)
 		print("Assume tree progress got killed, unless it is chopped down and queue_free is called...")
 
 func _on_tree_interraction_body_exited(body:Node2D) -> void:
 	if body.name == "Bron":
-		print("Begin chopping tree")
+		emit_signal("done_chopping", self)

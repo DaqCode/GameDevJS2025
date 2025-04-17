@@ -47,3 +47,6 @@ zoom = Vector2(4, 4)
 position_smoothing_speed = 10.0
 
 [node name="AxeChopping" type="Timer" parent="."]
+wait_time = 5.0
+
+[connection signal="timeout" from="AxeChopping" to="." method="_on_axe_chopping_timeout"]
