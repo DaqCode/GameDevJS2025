@@ -1,0 +1,8 @@
+[gd_scene load_steps=2 format=3 uid="uid://bm15w32u8fyki"]
+
+[ext_resource type="Texture2D" uid="uid://dxp2xf1n14rjm" path="res://art/weapons/axe.png" id="1_sxbk6"]
+
+[node name="Axe" type="Sprite2D"]
+texture = ExtResource("1_sxbk6")
+region_enabled = true
+region_rect = Rect2(0, 0, 32, 32)

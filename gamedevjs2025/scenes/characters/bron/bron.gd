@@ -4,7 +4,6 @@ extends CharacterBody2D
 var default_speed := 200
 
 @onready var chopping_tree_timer := $AxeChopping
-
 var near_tree: Node = null
 var chopping := false
 
@@ -34,11 +33,14 @@ func _physics_process(_delta: float) -> void:
 	velocity = input_direction * speed	
 	move_and_slide()
 
+# This is called when entering tree area
 func _on_tree_ready_to_chop(tree: Node) -> void:
 	near_tree = tree
 
+# This is called when leaving tree area
 func _on_tree_done_chopping() -> void:
 	near_tree = null
+
 
 func _on_axe_chopping_timeout() -> void:
 	chopping = false

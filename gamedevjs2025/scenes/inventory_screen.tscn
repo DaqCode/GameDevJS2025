@@ -1,4 +1,10 @@
-[gd_scene format=3 uid="uid://dac8aowpc3jge"]
+[gd_scene load_steps=5 format=3 uid="uid://dac8aowpc3jge"]
+
+[ext_resource type="Texture2D" uid="uid://dkl0ukn25e812" path="res://art/ui/inventoryScreen.png" id="1_246dg"]
+[ext_resource type="Texture2D" uid="uid://cmux3t1w3h8ny" path="res://art/ui/itemSlot.png" id="2_bt7as"]
+[ext_resource type="Texture2D" uid="uid://dxp2xf1n14rjm" path="res://art/weapons/axe.png" id="3_qji5t"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_bt7as"]
 
 [node name="InventoryScreen" type="CanvasLayer"]
 
@@ -15,63 +21,53 @@ offset_bottom = 289.0
 grow_horizontal = 2
 grow_vertical = 2
 scale = Vector2(1.2, 1.2)
+theme_override_styles/panel = SubResource("StyleBoxEmpty_bt7as")
+
+[node name="InventoryBackgroundImage" type="TextureRect" parent="InventoryBackground"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = ExtResource("1_246dg")
 
 [node name="InventorySlots" type="GridContainer" parent="InventoryBackground"]
 layout_mode = 1
-anchors_preset = 8
-anchor_left = 0.5
-anchor_top = 0.5
-anchor_right = 0.5
-anchor_bottom = 0.5
-offset_left = -205.5
-offset_top = -37.0
-offset_right = 205.5
-offset_bottom = 37.0
-grow_horizontal = 2
-grow_vertical = 2
-theme_override_constants/h_separation = 15
+offset_left = 78.75
+offset_top = 14.1667
+offset_right = 262.75
+offset_bottom = 46.1667
+scale = Vector2(1.62, 1.62)
+theme_override_constants/h_separation = 6
 columns = 5
 
 [node name="ItemSlot1" type="TextureRect" parent="InventoryBackground/InventorySlots"]
 layout_mode = 2
 size_flags_horizontal = 3
 size_flags_vertical = 3
+texture = ExtResource("2_bt7as")
 expand_mode = 1
 
-[node name="Item1" type="TextureRect" parent="InventoryBackground/InventorySlots/ItemSlot1"]
-layout_mode = 1
-anchors_preset = 8
-anchor_left = 0.5
-anchor_top = 0.5
-anchor_right = 0.5
-anchor_bottom = 0.5
-offset_left = -35.5
-offset_top = -39.5
-offset_right = 35.5
-offset_bottom = 30.5
-grow_horizontal = 2
-grow_vertical = 2
-size_flags_horizontal = 3
-size_flags_vertical = 3
-expand_mode = 1
+[node name="Item1" type="Sprite2D" parent="InventoryBackground/InventorySlots/ItemSlot1"]
+position = Vector2(16.4609, 15.4321)
+scale = Vector2(0.78, 0.78)
+texture = ExtResource("3_qji5t")
+region_enabled = true
+region_rect = Rect2(0, 0, 32, 32)
 
 [node name="ItemSlot2" type="TextureRect" parent="InventoryBackground/InventorySlots"]
 layout_mode = 2
 size_flags_horizontal = 3
 size_flags_vertical = 3
+texture = ExtResource("2_bt7as")
 expand_mode = 1
 
-[node name="Item2" type="TextureRect" parent="InventoryBackground/InventorySlots/ItemSlot2"]
+[node name="Item1" type="TextureRect" parent="InventoryBackground/InventorySlots/ItemSlot2"]
 layout_mode = 1
-anchors_preset = 8
-anchor_left = 0.5
-anchor_top = 0.5
-anchor_right = 0.5
-anchor_bottom = 0.5
-offset_left = -35.5
-offset_top = -39.5
-offset_right = 35.5
-offset_bottom = 30.5
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 size_flags_horizontal = 3
@@ -82,19 +78,14 @@ expand_mode = 1
 layout_mode = 2
 size_flags_horizontal = 3
 size_flags_vertical = 3
+texture = ExtResource("2_bt7as")
 expand_mode = 1
 
-[node name="Item3" type="TextureRect" parent="InventoryBackground/InventorySlots/ItemSlot3"]
+[node name="Item1" type="TextureRect" parent="InventoryBackground/InventorySlots/ItemSlot3"]
 layout_mode = 1
-anchors_preset = 8
-anchor_left = 0.5
-anchor_top = 0.5
-anchor_right = 0.5
-anchor_bottom = 0.5
-offset_left = -35.5
-offset_top = -39.5
-offset_right = 35.5
-offset_bottom = 30.5
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 size_flags_horizontal = 3
@@ -105,19 +96,14 @@ expand_mode = 1
 layout_mode = 2
 size_flags_horizontal = 3
 size_flags_vertical = 3
+texture = ExtResource("2_bt7as")
 expand_mode = 1
 
-[node name="Item4" type="TextureRect" parent="InventoryBackground/InventorySlots/ItemSlot4"]
+[node name="Item1" type="TextureRect" parent="InventoryBackground/InventorySlots/ItemSlot4"]
 layout_mode = 1
-anchors_preset = 8
-anchor_left = 0.5
-anchor_top = 0.5
-anchor_right = 0.5
-anchor_bottom = 0.5
-offset_left = -35.5
-offset_top = -39.5
-offset_right = 35.5
-offset_bottom = 30.5
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 size_flags_horizontal = 3
@@ -128,19 +114,14 @@ expand_mode = 1
 layout_mode = 2
 size_flags_horizontal = 3
 size_flags_vertical = 3
+texture = ExtResource("2_bt7as")
 expand_mode = 1
 
-[node name="Item5" type="TextureRect" parent="InventoryBackground/InventorySlots/ItemSlot5"]
+[node name="Item1" type="TextureRect" parent="InventoryBackground/InventorySlots/ItemSlot5"]
 layout_mode = 1
-anchors_preset = 8
-anchor_left = 0.5
-anchor_top = 0.5
-anchor_right = 0.5
-anchor_bottom = 0.5
-offset_left = -35.5
-offset_top = -39.5
-offset_right = 35.5
-offset_bottom = 30.5
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 size_flags_horizontal = 3

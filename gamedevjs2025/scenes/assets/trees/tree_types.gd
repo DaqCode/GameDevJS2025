@@ -3,6 +3,8 @@ extends StaticBody2D
 signal ready_to_chop
 signal done_chopping
 
+@onready var tree_texture := $TreeTexture
+
 enum TreeTypes{
 	TREE_1,
 	TREE_2,
@@ -17,6 +19,7 @@ var can_be_chopped := true
 var tree_data = {
 
 	TreeTypes.TREE_1: {
+		"tree_sprite": preload("res://art/tree/stage-1-tree.png"),
 		"seed_drops": [0.15,0.85],
 		"seed_value": [0,1],
 		"plank_drops": [0.35,0.35,0.30],
@@ -26,6 +29,7 @@ var tree_data = {
 	},
 
 	TreeTypes.TREE_2: {
+		"tree_sprite": preload("res://art/tree/stage-2-tree.png"),
 		"seed_drops": [0.10,0.90],
 		"seed_value": [1,2],
 		"plank_drops": [0.40, 0.50,0.10],
@@ -36,6 +40,7 @@ var tree_data = {
 	},
 
 	TreeTypes.TREE_3: {
+		"tree_sprite": preload("res://art/tree/stage-3-tree.png"),
 		"seed_drops": [0.50, 0.35, 0.15],
 		"seed_value": [3, 2, 1],
 		"plank_drops": [1.0],
@@ -46,14 +51,20 @@ var tree_data = {
 }
 
 func _ready() -> void:	
+
 	rng.randomize()
 	var roll = rng.randf()
 	if roll < 0.6:
 		tree_type = TreeTypes.TREE_1
+		
 	elif roll < 0.9:
 		tree_type = TreeTypes.TREE_2
 	else:
 		tree_type = TreeTypes.TREE_3
+
+	# Set the modulated crops.
+	tree_texture.texture = tree_data[tree_type]["tree_sprite"]
+	tree_texture.region_rect = Rect2(192, 0, 64, 64)
 
 func get_tree_name(tree_enum: int) -> String:
 	match tree_enum:
@@ -98,13 +109,11 @@ func chop_tree() -> void:
 # 	var wait_time = rng.randf_range(data["regrow_min"], data["regrow_max"])
 
 
-func _on_tree_interraction_body_entered(body:Node2D) -> void:
+func _on_tree_interaction_body_entered(body: Node2D) -> void:
 	if body.name == "Bron":
-		if can_be_chopped:
-			chop_tree()
-			emit_signal("ready_to_chop", self)
-		print("Assume tree progress got killed, unless it is chopped down and queue_free is called...")
+		emit_signal("ready_to_chop", self)
 
-func _on_tree_interraction_body_exited(body:Node2D) -> void:
+func _on_tree_interaction_body_exited(body: Node2D) -> void:
 	if body.name == "Bron":
 		emit_signal("done_chopping", self)
+		queue_free()
