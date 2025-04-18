@@ -36,11 +36,23 @@ func _physics_process(_delta: float) -> void:
 # This is called when entering tree area
 func _on_tree_ready_to_chop(tree: Node) -> void:
 	near_tree = tree
+	if not tree.is_connected("begin_waiting_until_chop", Callable(self, "tree_chopped")):
+		tree.connect("begin_waiting_until_chop", Callable(self, "tree_chopped"))
+
 
 # This is called when leaving tree area
 func _on_tree_done_chopping() -> void:
-	near_tree = null
+	near_tree = null	
+	queue_free()
 
 
 func _on_axe_chopping_timeout() -> void:
+	chopping = false
+
+func tree_chopped() -> void:
+	print("He started cutting, now i will wait for the timer to expire and then hit the queu free.")
+	await chopping_tree_timer.timeout
+	if near_tree:
+		near_tree.tree_chopped()
+		near_tree = null
 	chopping = false

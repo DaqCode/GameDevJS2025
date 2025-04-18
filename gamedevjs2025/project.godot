@@ -24,6 +24,10 @@ GlobalEnemySpawnerTimer="*res://global/global_enemy_spawner_timer.gd"
 
 window/stretch/mode="viewport"
 
+[global_group]
+
+Tree=""
+
 [input]
 
 up={

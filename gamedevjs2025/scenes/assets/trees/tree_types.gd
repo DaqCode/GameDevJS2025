@@ -1,9 +1,13 @@
 extends StaticBody2D
 
+@onready var tree_texture := $TreeTexture
+@onready var tree_area_collision : Area2D = $TreeSpacingArea
+
+
 signal ready_to_chop
+signal begin_waiting_until_chop
 signal done_chopping
 
-@onready var tree_texture := $TreeTexture
 
 enum TreeTypes{
 	TREE_1,
@@ -86,7 +90,7 @@ func chop_tree() -> void:
 	var seed_probs = data["seed_drops"]
 	for i in range(seed_probs.size()):
 		seed_roll -= seed_probs[i]
-		if seed_roll <=0:
+		if seed_roll <= 0:
 			seed_amount = i
 			break
 
@@ -100,20 +104,22 @@ func chop_tree() -> void:
 			plank_amount = i
 			break
 
-	# FOR DEBUGGING PURPOSES
 	var seed_value = data["seed_value"][seed_amount]
 	var plank_value = data["plank_value"][plank_amount]
 
 	print("CHOPPING: %s" % get_tree_name(tree_type))
 	print("Dropped Seeds: %d, Planks: %d" % [seed_value, plank_value])
-# 	var wait_time = rng.randf_range(data["regrow_min"], data["regrow_max"])
+
+	emit_signal("begin_waiting_until_chop")
 
 
-func _on_tree_interaction_body_entered(body: Node2D) -> void:
+func on_tree_interaction_body_entered(body: Node2D) -> void:
 	if body.name == "Bron":
 		emit_signal("ready_to_chop", self)
 
 func _on_tree_interaction_body_exited(body: Node2D) -> void:
 	if body.name == "Bron":
-		emit_signal("done_chopping", self)
-		queue_free()
+		print ("Bron exited...")
+
+func tree_chopped() -> void:
+	queue_free()
