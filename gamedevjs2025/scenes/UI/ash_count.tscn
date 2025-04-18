@@ -1,0 +1,76 @@
+[gd_scene load_steps=5 format=3 uid="uid://bp7m2f686niqc"]
+
+[ext_resource type="Texture2D" uid="uid://d1fyft2segesq" path="res://art/ui/AshesBackground.png" id="1_8r1nk"]
+[ext_resource type="Script" uid="uid://csg8y50jj77ou" path="res://scenes/UI/ash_count.gd" id="1_643x6"]
+[ext_resource type="Texture2D" uid="uid://jmhcst8okpsj" path="res://art/misc/AshesIcon.png" id="1_l5hsx"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_8r1nk"]
+
+[node name="AshCount" type="CanvasLayer"]
+script = ExtResource("1_643x6")
+
+[node name="Panel" type="Panel" parent="."]
+anchors_preset = 1
+anchor_left = 1.0
+anchor_right = 1.0
+offset_left = -332.0
+offset_top = 15.0
+offset_right = -140.0
+offset_bottom = 79.0
+grow_horizontal = 0
+theme_override_styles/panel = SubResource("StyleBoxEmpty_8r1nk")
+
+[node name="Background" type="TextureRect" parent="Panel"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+scale = Vector2(1.5, 1.5)
+texture = ExtResource("1_8r1nk")
+
+[node name="AmountOfAshes" type="Label" parent="Panel"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = 29.0
+offset_top = 4.0
+offset_right = 112.0
+offset_bottom = 27.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_colors/font_color = Color(1, 0, 0, 1)
+theme_override_colors/font_shadow_color = Color(0, 0, 0, 1)
+theme_override_colors/font_outline_color = Color(0.987707, 0.773521, 0, 1)
+theme_override_constants/shadow_offset_x = 1
+theme_override_constants/shadow_offset_y = 1
+theme_override_constants/shadow_outline_size = 2
+theme_override_font_sizes/font_size = 36
+text = "1"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="AshesIcon" type="TextureRect" parent="Panel"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -67.0
+offset_top = -26.0
+offset_right = -27.0
+offset_bottom = 14.0
+grow_horizontal = 2
+grow_vertical = 2
+scale = Vector2(2, 2)
+texture = ExtResource("1_l5hsx")
+
+[node name="AshCountTimer" type="Timer" parent="."]
+autostart = true
+
+[connection signal="timeout" from="AshCountTimer" to="." method="_on_ash_count_timeout"]

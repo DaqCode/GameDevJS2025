@@ -1,10 +1,11 @@
-[gd_scene load_steps=6 format=3 uid="uid://dfafvjt73d4f0"]
+[gd_scene load_steps=7 format=3 uid="uid://dfafvjt73d4f0"]
 
 [ext_resource type="Script" uid="uid://bwtr47tu3e04o" path="res://scenes/mainPlayArea/main_scene.gd" id="1_rt2n2"]
 [ext_resource type="Texture2D" uid="uid://j0kj4m454kja" path="res://art/background/backgroundthinggy.png" id="2_c16ls"]
 [ext_resource type="PackedScene" uid="uid://v4rjai458d82" path="res://scenes/assets/campfire/campfire.tscn" id="4_c1pb6"]
 [ext_resource type="PackedScene" uid="uid://uhlblrwdub6m" path="res://scenes/characters/bron/bron.tscn" id="5_6wevv"]
-[ext_resource type="PackedScene" uid="uid://dac8aowpc3jge" path="res://scenes/inventory_screen.tscn" id="6_e1cbu"]
+[ext_resource type="PackedScene" uid="uid://dac8aowpc3jge" path="res://scenes/UI/inventory_screen.tscn" id="6_e1cbu"]
+[ext_resource type="PackedScene" uid="uid://bp7m2f686niqc" path="res://scenes/UI/ash_count.tscn" id="6_sd3fe"]
 
 [node name="MainScene" type="Node2D"]
 script = ExtResource("1_rt2n2")
@@ -33,3 +34,5 @@ position = Vector2(672, 279)
 position = Vector2(627, 300)
 
 [node name="InventoryScreen" parent="Bron" instance=ExtResource("6_e1cbu")]
+
+[node name="AshCount" parent="Bron" instance=ExtResource("6_sd3fe")]
