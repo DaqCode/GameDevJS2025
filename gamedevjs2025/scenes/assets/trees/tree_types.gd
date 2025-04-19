@@ -2,6 +2,7 @@ extends StaticBody2D
 
 @onready var tree_texture := $TreeTexture
 @onready var tree_area_collision : Area2D = $TreeSpacingArea
+@onready var regrow_time: Timer = %RegrowTime
 
 
 signal ready_to_chop
@@ -18,7 +19,10 @@ enum TreeTypes{
 var rng := RandomNumberGenerator.new()
 var tree_type := TreeTypes.TREE_1
 
-var can_be_chopped := true
+var can_be_chopped := false
+var tree_already_chopped := false
+
+var current_stage := 1
 
 var tree_data = {
 
@@ -54,8 +58,17 @@ var tree_data = {
 	},
 }
 
-func _ready() -> void:	
+var tree_sprite_offset := {
+	"stage_1": Rect2(0, 0, 64, 64),
+	"stage_2": Rect2(64, 0, 64, 64),
+	"stage_3": Rect2(128, 0, 64, 64),
+	"stage_4": Rect2(192, 0, 64, 64),
+	"chopped": Rect2(256, 0, 64, 64)
+}
 
+func _ready() -> void:	
+	regrow_time.wait_time = randf_range(5.0, 15.0)
+	regrow_time.start()
 	rng.randomize()
 	var roll = rng.randf()
 	if roll < 0.6:
@@ -68,7 +81,7 @@ func _ready() -> void:
 
 	# Set the modulated crops.
 	tree_texture.texture = tree_data[tree_type]["tree_sprite"]
-	tree_texture.region_rect = Rect2(192, 0, 64, 64)
+	tree_texture.region_rect = tree_sprite_offset["stage_1"]
 
 func get_tree_name(tree_enum: int) -> String:
 	match tree_enum:
@@ -82,6 +95,9 @@ func get_tree_name(tree_enum: int) -> String:
 			return "What the heck is this"
 
 func chop_tree() -> void:
+	if tree_already_chopped or not can_be_chopped:
+		return
+		
 	var data = tree_data[tree_type]
 
 	# SEEDS
@@ -111,15 +127,35 @@ func chop_tree() -> void:
 	print("Dropped Seeds: %d, Planks: %d" % [seed_value, plank_value])
 
 	emit_signal("begin_waiting_until_chop")
+	tree_texture.region_rect = tree_sprite_offset["chopped"]
 
 
-func on_tree_interaction_body_entered(body: Node2D) -> void:
-	if body.name == "Bron":
+func _on_tree_interaction_body_entered(body: Node2D) -> void:
+	if body.is_in_group("player"):
+		print("Ready to chop")
 		emit_signal("ready_to_chop", self)
 
+
 func _on_tree_interaction_body_exited(body: Node2D) -> void:
-	if body.name == "Bron":
+	if body.is_in_group("player"):
 		print ("Bron exited...")
 
 func tree_chopped() -> void:
 	queue_free()
+
+
+func _on_tree_interaction_area_entered(area: Area2D) -> void:
+	if area.is_in_group("axe"):
+		chop_tree()
+
+
+func _on_regrow_time_timeout() -> void:
+	if tree_already_chopped or current_stage >= 4:
+		return
+	
+	current_stage += 1
+	
+	if current_stage == 4:
+		can_be_chopped = true
+	
+	tree_texture.region_rect = tree_sprite_offset["stage_%s" % current_stage]

@@ -3,9 +3,20 @@ extends CharacterBody2D
 @export var speed := 200
 var default_speed := 200
 
+@onready var axe_damage_area: Area2D = %AxeDamageArea
 @onready var chopping_tree_timer := $AxeChopping
+@onready var collision_shape_2d: CollisionShape2D = $AxeDamageArea/CollisionShape2D
+
 var near_tree: Node = null
 var chopping := false
+
+
+func _input(input: InputEvent) -> void:
+	if input.is_action_pressed("interact"):
+		chop_tree()
+	if input.is_action_released("interact"):
+		stop_chopping_tree()
+		
 
 func _physics_process(_delta: float) -> void:
 	if chopping:
@@ -33,11 +44,13 @@ func _physics_process(_delta: float) -> void:
 	velocity = input_direction * speed	
 	move_and_slide()
 
-# This is called when entering tree area
-func _on_tree_ready_to_chop(tree: Node) -> void:
-	near_tree = tree
-	if not tree.is_connected("begin_waiting_until_chop", Callable(self, "tree_chopped")):
-		tree.connect("begin_waiting_until_chop", Callable(self, "tree_chopped"))
+
+func chop_tree() -> void:
+	collision_shape_2d.disabled = false
+
+
+func stop_chopping_tree() -> void:
+	collision_shape_2d.disabled = true
 
 
 # This is called when leaving tree area
@@ -56,3 +69,12 @@ func tree_chopped() -> void:
 		near_tree.tree_chopped()
 		near_tree = null
 	chopping = false
+
+
+func _on_bron_area_area_entered(area: Area2D) -> void:
+	if area.is_in_group("Tree"):
+		print("Can trop tree now")
+
+
+func _on_bron_area_area_exited(area: Area2D) -> void:
+	pass # Replace with function body.

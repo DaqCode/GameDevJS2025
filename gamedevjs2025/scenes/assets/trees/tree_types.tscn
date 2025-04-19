@@ -25,7 +25,7 @@ texture = ExtResource("2_6j25m")
 region_enabled = true
 region_rect = Rect2(192, 0, 64, 64)
 
-[node name="TreeInteraction" type="Area2D" parent="."]
+[node name="TreeInteraction" type="Area2D" parent="." groups=["Tree"]]
 
 [node name="TreeCollision" type="CollisionShape2D" parent="TreeInteraction"]
 position = Vector2(0, 33)
@@ -44,6 +44,10 @@ position = Vector2(-0.5, 24.5)
 shape = SubResource("RectangleShape2D_6j25m")
 
 [node name="RegrowTime" type="Timer" parent="."]
+unique_name_in_owner = true
+wait_time = 3.0
 
-[connection signal="body_entered" from="TreeInteraction" to="." method="on_tree_interaction_body_entered"]
+[connection signal="area_entered" from="TreeInteraction" to="." method="_on_tree_interaction_area_entered"]
+[connection signal="body_entered" from="TreeInteraction" to="." method="_on_tree_interaction_body_entered"]
 [connection signal="body_exited" from="TreeInteraction" to="." method="_on_tree_interaction_body_exited"]
+[connection signal="timeout" from="RegrowTime" to="." method="_on_regrow_time_timeout"]

@@ -30,7 +30,7 @@ visibility_layer = 1
 z_index = 1
 position = Vector2(672, 279)
 
-[node name="Bron" parent="." instance=ExtResource("5_6wevv")]
+[node name="Bron" parent="." groups=["player"] instance=ExtResource("5_6wevv")]
 position = Vector2(627, 300)
 
 [node name="InventoryScreen" parent="Bron" instance=ExtResource("6_e1cbu")]
