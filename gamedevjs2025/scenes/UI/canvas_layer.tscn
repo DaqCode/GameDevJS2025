@@ -1,6 +1,7 @@
-[gd_scene load_steps=3 format=3 uid="uid://wa17hdnw3w6d"]
+[gd_scene load_steps=4 format=3 uid="uid://wa17hdnw3w6d"]
 
 [ext_resource type="Texture2D" uid="uid://ckggew7hte2pw" path="res://art/ui/upgradingPanel.png" id="1_13lb3"]
+[ext_resource type="Script" uid="uid://b7i72lixinqpl" path="res://scenes/UI/canvas_layer.gd" id="1_dgo5u"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_13lb3"]
 bg_color = Color(0.721544, 0.467531, 0, 0.423529)
@@ -18,7 +19,8 @@ shadow_size = 4
 shadow_offset = Vector2(-10, 10)
 anti_aliasing = false
 
-[node name="CanvasLayer" type="CanvasLayer"]
+[node name="UpgradeStation" type="CanvasLayer"]
+script = ExtResource("1_dgo5u")
 
 [node name="Panel" type="Panel" parent="."]
 anchors_preset = 8
@@ -51,9 +53,69 @@ grow_vertical = 2
 scale = Vector2(1.75, 1.75)
 texture = ExtResource("1_13lb3")
 
-[node name="Label" type="Label" parent="Panel"]
+[node name="Panel" type="Panel" parent="Panel/InventoryBackground"]
 layout_mode = 0
-offset_left = 150.0
-offset_top = 108.0
-offset_right = 312.0
-offset_bottom = 410.0
+offset_left = 64.0
+offset_top = 37.0
+offset_right = 165.0
+offset_bottom = 219.0
+
+[node name="Description" type="Label" parent="Panel/InventoryBackground/Panel"]
+layout_mode = 0
+offset_left = 5.0
+offset_top = 4.0
+offset_right = 98.0
+offset_bottom = 73.0
+
+[node name="StatDescription" type="Label" parent="Panel/InventoryBackground/Panel"]
+layout_mode = 0
+offset_left = 6.0
+offset_top = 88.1429
+offset_right = 96.0
+offset_bottom = 177.143
+
+[node name="UpgradeContainer" type="Control" parent="Panel"]
+anchors_preset = 0
+offset_top = 0.5
+offset_right = 1069.0
+offset_bottom = 521.5
+
+[node name="Upgrade1" type="Button" parent="Panel/UpgradeContainer"]
+layout_mode = 2
+offset_left = 371.0
+offset_top = 113.0
+offset_right = 533.0
+offset_bottom = 240.0
+pivot_offset = Vector2(81, 63.5)
+
+[node name="Upgrade2" type="Button" parent="Panel/UpgradeContainer"]
+layout_mode = 2
+offset_left = 595.0
+offset_top = 113.0
+offset_right = 757.0
+offset_bottom = 240.0
+pivot_offset = Vector2(81, 63.5)
+
+[node name="Upgrade3" type="Button" parent="Panel/UpgradeContainer"]
+layout_mode = 2
+offset_left = 371.0
+offset_top = 277.0
+offset_right = 533.0
+offset_bottom = 404.0
+pivot_offset = Vector2(81, 63.5)
+
+[node name="Upgrade4" type="Button" parent="Panel/UpgradeContainer"]
+layout_mode = 2
+offset_left = 595.0
+offset_top = 277.0
+offset_right = 757.0
+offset_bottom = 404.0
+pivot_offset = Vector2(81, 63.5)
+
+[node name="Upgrade5" type="Button" parent="Panel/UpgradeContainer"]
+layout_mode = 2
+offset_left = 794.0
+offset_top = 190.0
+offset_right = 956.0
+offset_bottom = 317.0
+pivot_offset = Vector2(81, 63.5)
