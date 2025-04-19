@@ -4,8 +4,8 @@ extends CharacterBody2D
 var default_speed := 200
 
 @onready var axe_damage_area: Area2D = %AxeDamageArea
-@onready var chopping_tree_timer := $AxeChopping
 @onready var collision_shape_2d: CollisionShape2D = $AxeDamageArea/CollisionShape2D
+@onready var animation_player: AnimationPlayer = $AnimationPlayer
 
 var near_tree: Node = null
 var chopping := false
@@ -13,7 +13,10 @@ var chopping := false
 
 func _input(input: InputEvent) -> void:
 	if input.is_action_pressed("interact"):
-		chop_tree()
+		if not animation_player.is_playing():
+			print("playing.....")
+			chop_tree()
+	
 	if input.is_action_released("interact"):
 		stop_chopping_tree()
 		
@@ -34,11 +37,7 @@ func _physics_process(_delta: float) -> void:
 		input_direction.y += 1
 	if Input.is_action_pressed("up"):
 		input_direction.y -= 1
-
-	if Input.is_action_just_pressed("interact") and near_tree != null:
-		chopping = true
-		near_tree.chop_tree()
-		chopping_tree_timer.start()
+		
 
 	input_direction = input_direction.normalized()
 	velocity = input_direction * speed	
@@ -46,11 +45,11 @@ func _physics_process(_delta: float) -> void:
 
 
 func chop_tree() -> void:
-	collision_shape_2d.disabled = false
+	animation_player.play("chop")
 
 
 func stop_chopping_tree() -> void:
-	collision_shape_2d.disabled = true
+	animation_player.play("idle")
 
 
 # This is called when leaving tree area
@@ -59,12 +58,8 @@ func _on_tree_done_chopping() -> void:
 	queue_free()
 
 
-func _on_axe_chopping_timeout() -> void:
-	chopping = false
-
 func tree_chopped() -> void:
 	print("He started cutting, now i will wait for the timer to expire and then hit the queu free.")
-	await chopping_tree_timer.timeout
 	if near_tree:
 		near_tree.tree_chopped()
 		near_tree = null

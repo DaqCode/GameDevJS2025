@@ -3,6 +3,9 @@ extends StaticBody2D
 @onready var tree_texture := $TreeTexture
 @onready var tree_area_collision : Area2D = $TreeSpacingArea
 @onready var regrow_time: Timer = %RegrowTime
+@onready var interact_button: TextureRect = $InteractButton
+@onready var health_bar: TextureProgressBar = $HealthBar
+
 
 
 signal ready_to_chop
@@ -23,6 +26,7 @@ var can_be_chopped := false
 var tree_already_chopped := false
 
 var current_stage := 1
+var tree_health := 3
 
 var tree_data = {
 
@@ -67,7 +71,7 @@ var tree_sprite_offset := {
 }
 
 func _ready() -> void:	
-	regrow_time.wait_time = randf_range(5.0, 15.0)
+	regrow_time.wait_time = randf_range(1.0, 5.0)
 	regrow_time.start()
 	rng.randomize()
 	var roll = rng.randf()
@@ -78,6 +82,8 @@ func _ready() -> void:
 		tree_type = TreeTypes.TREE_2
 	else:
 		tree_type = TreeTypes.TREE_3
+	
+	_update_health_bar()
 
 	# Set the modulated crops.
 	tree_texture.texture = tree_data[tree_type]["tree_sprite"]
@@ -96,6 +102,11 @@ func get_tree_name(tree_enum: int) -> String:
 
 func chop_tree() -> void:
 	if tree_already_chopped or not can_be_chopped:
+		return
+		
+	if tree_health > 1:
+		tree_health -= 1
+		_update_health_bar()
 		return
 		
 	var data = tree_data[tree_type]
@@ -127,18 +138,29 @@ func chop_tree() -> void:
 	print("Dropped Seeds: %d, Planks: %d" % [seed_value, plank_value])
 
 	emit_signal("begin_waiting_until_chop")
+	interact_button.visible = false
+	health_bar.visible = false
+	can_be_chopped = false
+	tree_already_chopped = true
 	tree_texture.region_rect = tree_sprite_offset["chopped"]
+
+
+func _update_health_bar() -> void:
+	health_bar.value = tree_health
 
 
 func _on_tree_interaction_body_entered(body: Node2D) -> void:
 	if body.is_in_group("player"):
-		print("Ready to chop")
+		if not tree_already_chopped and can_be_chopped:
+			interact_button.visible = true
+			health_bar.visible = true
 		emit_signal("ready_to_chop", self)
 
 
 func _on_tree_interaction_body_exited(body: Node2D) -> void:
 	if body.is_in_group("player"):
-		print ("Bron exited...")
+		interact_button.visible = false
+		health_bar.visible = false
 
 func tree_chopped() -> void:
 	queue_free()

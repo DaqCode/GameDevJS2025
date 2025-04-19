@@ -1,7 +1,10 @@
-[gd_scene load_steps=6 format=3 uid="uid://8g4c38tka1yf"]
+[gd_scene load_steps=9 format=3 uid="uid://8g4c38tka1yf"]
 
 [ext_resource type="Script" uid="uid://bchl8r4rhawwu" path="res://scenes/assets/trees/tree_types.gd" id="1_6j25m"]
 [ext_resource type="Texture2D" uid="uid://brfrjygal55eo" path="res://art/tree/stage-1-tree.png" id="2_6j25m"]
+[ext_resource type="Texture2D" uid="uid://ppeybl4am48u" path="res://art/ui/interact-button-e.png" id="3_k8p6u"]
+[ext_resource type="Texture2D" uid="uid://dgni23wj4cf4r" path="res://art/ui/progress-bar-back.png" id="4_3hn1c"]
+[ext_resource type="Texture2D" uid="uid://dhwapxe8ehgd" path="res://art/ui/progress-bar-fill-red.png" id="5_5kvdk"]
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_7coxb"]
 radius = 15.0
@@ -46,6 +49,28 @@ shape = SubResource("RectangleShape2D_6j25m")
 [node name="RegrowTime" type="Timer" parent="."]
 unique_name_in_owner = true
 wait_time = 3.0
+
+[node name="InteractButton" type="TextureRect" parent="."]
+visible = false
+custom_minimum_size = Vector2(16, 16)
+offset_left = -6.0
+offset_top = -9.0
+offset_right = 10.0
+offset_bottom = 7.0
+texture = ExtResource("3_k8p6u")
+expand_mode = 1
+stretch_mode = 5
+
+[node name="HealthBar" type="TextureProgressBar" parent="."]
+visible = false
+offset_left = -11.0
+offset_top = 32.0
+offset_right = 53.0
+offset_bottom = 48.0
+scale = Vector2(0.4, 0.4)
+max_value = 3.0
+texture_under = ExtResource("4_3hn1c")
+texture_progress = ExtResource("5_5kvdk")
 
 [connection signal="area_entered" from="TreeInteraction" to="." method="_on_tree_interaction_area_entered"]
 [connection signal="body_entered" from="TreeInteraction" to="." method="_on_tree_interaction_body_entered"]
