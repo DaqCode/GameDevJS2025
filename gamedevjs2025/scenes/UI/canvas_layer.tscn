@@ -1,0 +1,59 @@
+[gd_scene load_steps=3 format=3 uid="uid://wa17hdnw3w6d"]
+
+[ext_resource type="Texture2D" uid="uid://ckggew7hte2pw" path="res://art/ui/upgradingPanel.png" id="1_13lb3"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_13lb3"]
+bg_color = Color(0.721544, 0.467531, 0, 0.423529)
+border_width_left = 15
+border_width_top = 15
+border_width_right = 15
+border_width_bottom = 15
+border_color = Color(0.909719, 8.84643e-05, 0.435205, 1)
+corner_radius_top_left = 30
+corner_radius_top_right = 30
+corner_radius_bottom_right = 30
+corner_radius_bottom_left = 30
+shadow_color = Color(0, 0, 0, 0.513726)
+shadow_size = 4
+shadow_offset = Vector2(-10, 10)
+anti_aliasing = false
+
+[node name="CanvasLayer" type="CanvasLayer"]
+
+[node name="Panel" type="Panel" parent="."]
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -534.0
+offset_top = -259.5
+offset_right = 534.0
+offset_bottom = 259.5
+grow_horizontal = 2
+grow_vertical = 2
+pivot_offset = Vector2(566, 260.5)
+theme_override_styles/panel = SubResource("StyleBoxFlat_13lb3")
+
+[node name="InventoryBackground" type="TextureRect" parent="Panel"]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.0842697
+anchor_top = 0.101156
+anchor_right = 0.931011
+anchor_bottom = 0.875568
+offset_left = -60.0
+offset_top = -17.0
+offset_right = -388.32
+offset_bottom = -162.92
+grow_horizontal = 2
+grow_vertical = 2
+scale = Vector2(1.75, 1.75)
+texture = ExtResource("1_13lb3")
+
+[node name="Label" type="Label" parent="Panel"]
+layout_mode = 0
+offset_left = 150.0
+offset_top = 108.0
+offset_right = 312.0
+offset_bottom = 410.0
