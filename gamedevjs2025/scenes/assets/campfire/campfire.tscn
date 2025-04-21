@@ -1,8 +1,9 @@
-[gd_scene load_steps=9 format=3 uid="uid://v4rjai458d82"]
+[gd_scene load_steps=10 format=3 uid="uid://v4rjai458d82"]
 
 [ext_resource type="Texture2D" uid="uid://bbaymxyveihos" path="res://art/campfire/testCampfire.png" id="1_vhsok"]
 [ext_resource type="Script" uid="uid://dfn21imcakt7m" path="res://scenes/assets/campfire/campfire.gd" id="2_iudvd"]
 [ext_resource type="Texture2D" uid="uid://u0p3scasmocm" path="res://art/campfire/randomOval.png" id="2_k5uvh"]
+[ext_resource type="Texture2D" uid="uid://ppeybl4am48u" path="res://art/ui/interact-button-e.png" id="5_0g0qi"]
 
 [sub_resource type="Gradient" id="Gradient_vhsok"]
 offsets = PackedFloat32Array(0.0693069, 0.30099, 0.526733, 0.790099, 0.89703, 1)
@@ -67,6 +68,16 @@ position = Vector2(0, 475)
 rotation = 1.5708
 shape = SubResource("CapsuleShape2D_oyu63")
 debug_color = Color(0.998383, 0.750268, 0.37792, 0.42)
+
+[node name="InteractButton" type="TextureRect" parent="."]
+offset_left = -300.0
+offset_top = -1500.0
+offset_right = -268.0
+offset_bottom = -1468.0
+scale = Vector2(20, 20)
+texture = ExtResource("5_0g0qi")
+expand_mode = 1
+stretch_mode = 5
 
 [connection signal="body_entered" from="CampfireInterract" to="." method="_on_campfire_interract_body_entered"]
 [connection signal="body_exited" from="CampfireInterract" to="." method="_on_campfire_interract_body_exited"]

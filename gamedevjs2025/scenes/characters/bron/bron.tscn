@@ -1,8 +1,9 @@
-[gd_scene load_steps=17 format=3 uid="uid://uhlblrwdub6m"]
+[gd_scene load_steps=18 format=3 uid="uid://uhlblrwdub6m"]
 
 [ext_resource type="Script" uid="uid://tpxm8y2yilj8" path="res://scenes/characters/bron/bron.gd" id="1_mtsbh"]
 [ext_resource type="Texture2D" uid="uid://dqjgdp8iy85qt" path="res://art/player/player.png" id="2_ld6eo"]
 [ext_resource type="Texture2D" uid="uid://dxp2xf1n14rjm" path="res://art/weapons/axe.png" id="3_evcjp"]
+[ext_resource type="PackedScene" uid="uid://wa17hdnw3w6d" path="res://scenes/UI/upgrade_station.tscn" id="4_5l0un"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_evcjp"]
 atlas = ExtResource("2_ld6eo")
@@ -179,12 +180,13 @@ region_rect = Rect2(0, 0, 30, 32)
 
 [node name="AxeDamageArea" type="Area2D" parent="Axe" groups=["axe"]]
 unique_name_in_owner = true
-scale = Vector2(1, 1)
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Axe/AxeDamageArea"]
 rotation = 1.5708
 shape = SubResource("CapsuleShape2D_ld6eo")
 disabled = true
+
+[node name="UpgradeStation" parent="." instance=ExtResource("4_5l0un")]
 
 [connection signal="area_entered" from="BronArea" to="." method="_on_bron_area_area_entered"]
 [connection signal="area_exited" from="BronArea" to="." method="_on_bron_area_area_exited"]

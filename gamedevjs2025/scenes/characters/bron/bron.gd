@@ -13,6 +13,8 @@ var default_speed := 200
 var near_tree: Node = null
 var chopping := false
 
+func _ready() -> void:
+	Events.connect("open_upgrade", Callable(self, "_open_upgrade_menu"))
 
 func _input(input: InputEvent) -> void:
 	if input.is_action_pressed("interact"):
@@ -89,3 +91,6 @@ func _on_bron_area_area_entered(area: Area2D) -> void:
 
 func _on_bron_area_area_exited(area: Area2D) -> void:
 	pass # Replace with function body.
+
+func _open_upgrade_menu() -> void:
+	$UpgradeStation.visible = true

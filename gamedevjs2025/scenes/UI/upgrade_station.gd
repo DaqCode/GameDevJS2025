@@ -8,14 +8,18 @@ extends CanvasLayer
 @onready var upgrade_4 := %Upgrade4
 @onready var upgrade_5 := %Upgrade5
 
+@onready var exit := %Exit
+
 @onready var upgrade_description := %Description
 @onready var upgrade_stat_upgrade := %StatDescription
 @onready var ash_cost := %AshCost
 
 
 var this_is_dumb := 1
+var is_checking_stats : bool = false
 
 func _ready() -> void:
+	self.visible = false
 	# Upgrade 1-5 exists
 	for i in button_container.get_children():
 		if i is Button:
@@ -27,6 +31,10 @@ func _ready() -> void:
 		else:
 			print("You're not a button, ignored...")
 
+func _process(_delta: float) -> void:
+	if InputEventMouseMotion:
+		pass
+		
 
 func _on_upgrade_pressed_1() -> void:
 	print("This is button 1 i swear to god dude.")	
@@ -44,9 +52,10 @@ func _on_upgrade_pressed_5() -> void:
 	print("This is button 5 i swear to god dude.")
 
 func _on_upgrade_mouse_entered(button: Button) -> void:
+	is_checking_stats = true
 	match button:
 		upgrade_1:
-			upgrade_description.text = "Embed with checkered shirts, you now chop trees faster."
+			upgrade_description.text = "You can chop trees faster."
 			match GlobalPlayerScript.lumb_mus_upgrade:
 				1:
 					upgrade_stat_upgrade.text = "3 Hits -> 2 Hits"
@@ -61,7 +70,7 @@ func _on_upgrade_mouse_entered(button: Button) -> void:
 					upgrade_stat_upgrade.text = "MAX"
 					ash_cost.text = "———"
 		upgrade_2:
-			upgrade_description.text = "You told the soil to grow up. Now the trees grow faster."
+			upgrade_description.text = "Trees grow faster."
 			match GlobalPlayerScript.loc_eco_upgrade:
 				1:
 					upgrade_stat_upgrade.text = "0 Second Delay -> 2.5 Second Delay"
@@ -109,16 +118,16 @@ func _on_upgrade_mouse_entered(button: Button) -> void:
 					upgrade_stat_upgrade.text = "MAX"
 					ash_cost.text = "———"
 		upgrade_5:
-			upgrade_description.text = "Increase light radius, but reduce burn time. More light, more adventure."
+			upgrade_description.text = "Increase light radius and burn time."
 			match GlobalPlayerScript.fur_fire_upgrade:
 				1:
-					upgrade_stat_upgrade.text = "3:00 death -> 2:30 death."
+					upgrade_stat_upgrade.text = "1:00 death -> 1:45 death"
 					ash_cost.text =  "Ash cost: 100"
 				2:
-					upgrade_stat_upgrade.text = "2:30 death -> 2:15 death"
+					upgrade_stat_upgrade.text = "1:45 death -> 2:15 death"
 					ash_cost.text = "Ash cost: 250"
 				3:
-					upgrade_stat_upgrade.text = "2:15 death -> 2:00 death"
+					upgrade_stat_upgrade.text = "2:15 death -> 2:30 death"
 					ash_cost.text = "Ash cost: 600"
 				_:
 					upgrade_stat_upgrade.text = "You reached the end..."
@@ -129,5 +138,12 @@ func _on_upgrade_mouse_entered(button: Button) -> void:
 	tween.tween_property(button, "scale", Vector2(1.1,1.1), 0.15).set_trans(Tween.TRANS_QUART).set_ease(Tween.EASE_OUT)
 
 func _on_upgrade_mouse_exited(button: Button) -> void:
+	is_checking_stats = false
 	var tween = create_tween()
 	tween.tween_property(button, "scale", Vector2(1.0, 1.0), 0.1).set_trans(Tween.TRANS_QUART).set_ease(Tween.EASE_OUT)
+	upgrade_description.text = "Hover over the upgrades to get a description"
+	upgrade_stat_upgrade.text = "Hover to get stat upgrade"
+	ash_cost.text = "Hover to get ash cost"
+
+func _on_exit_pressed() -> void:
+	self.visible = false

@@ -11,6 +11,7 @@ func _ready() -> void:
 func _process(_delta):
 	#820.0, 15.0
 	$Panel.position = Vector2(randf_range(819.25, 820.75), randf_range(14.25,15.75))
+	GlobalPlayerScript.current_total_ashes = ash_count
 
 func _on_ash_count_timeout() -> void:
 	ash_count+=1

@@ -1,0 +1,38 @@
+[gd_scene load_steps=7 format=3 uid="uid://dfafvjt73d4f0"]
+
+[ext_resource type="Script" uid="uid://bwtr47tu3e04o" path="res://scenes/mainPlayArea/main_scene.gd" id="1_64uqr"]
+[ext_resource type="Texture2D" uid="uid://j0kj4m454kja" path="res://art/background/backgroundthinggy.png" id="2_4jxuj"]
+[ext_resource type="PackedScene" uid="uid://v4rjai458d82" path="res://scenes/assets/campfire/campfire.tscn" id="3_bagx7"]
+[ext_resource type="PackedScene" uid="uid://uhlblrwdub6m" path="res://scenes/characters/bron/bron.tscn" id="4_7rv43"]
+[ext_resource type="PackedScene" uid="uid://dac8aowpc3jge" path="res://scenes/UI/inventory_screen.tscn" id="5_igrk7"]
+[ext_resource type="PackedScene" uid="uid://bp7m2f686niqc" path="res://scenes/UI/ash_count.tscn" id="6_r7yxp"]
+
+[node name="MainScene" type="Node2D"]
+script = ExtResource("1_64uqr")
+
+[node name="TextureRect" type="TextureRect" parent="."]
+modulate = Color(0.0338533, 0.0338533, 0.0338533, 1)
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = -166.0
+offset_top = -218.0
+offset_right = 1497.0
+offset_bottom = 813.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = ExtResource("2_4jxuj")
+
+[node name="Trees" type="Node" parent="."]
+
+[node name="Campfire" parent="." instance=ExtResource("3_bagx7")]
+visibility_layer = 1
+z_index = 1
+position = Vector2(672, 279)
+
+[node name="Bron" parent="." groups=["player"] instance=ExtResource("4_7rv43")]
+position = Vector2(627, 300)
+
+[node name="InventoryScreen" parent="Bron" instance=ExtResource("5_igrk7")]
+
+[node name="AshCount" parent="Bron" instance=ExtResource("6_r7yxp")]
