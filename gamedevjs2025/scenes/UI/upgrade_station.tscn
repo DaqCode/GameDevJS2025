@@ -1,0 +1,254 @@
+[gd_scene load_steps=12 format=3 uid="uid://wa17hdnw3w6d"]
+
+[ext_resource type="Script" uid="uid://b7i72lixinqpl" path="res://scenes/UI/upgrade_station.gd" id="1_3vi4m"]
+[ext_resource type="Texture2D" uid="uid://dn4wo3npn755a" path="res://art/ui/upgradingPanel.png" id="2_d36bm"]
+[ext_resource type="Theme" uid="uid://csir51rbw7mqs" path="res://themes/UpgradeThemes.tres" id="3_d36bm"]
+[ext_resource type="Texture2D" uid="uid://d2qqiyerkgr2q" path="res://art/upgrades/angry-muscles.png" id="3_gg505"]
+[ext_resource type="Texture2D" uid="uid://cmux3t1w3h8ny" path="res://art/ui/itemSlot.png" id="3_nj4hm"]
+[ext_resource type="Texture2D" uid="uid://byrtchw8shtjo" path="res://art/upgrades/eco-upgrade.png" id="4_nj4hm"]
+[ext_resource type="Texture2D" uid="uid://cdcjf8rtnqotb" path="res://art/upgrades/muscle.png" id="5_1f2d5"]
+[ext_resource type="Texture2D" uid="uid://ck0af7cyib75h" path="res://art/upgrades/speedy-leggings.png" id="6_hkaga"]
+[ext_resource type="Texture2D" uid="uid://bfra3gxdoga2a" path="res://art/upgrades/fire-upgrade.png" id="7_t1avj"]
+[ext_resource type="Texture2D" uid="uid://bcrjynvckpi1r" path="res://art/ui/progress-bar.png" id="10_nj4hm"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_13lb3"]
+bg_color = Color(0.721544, 0.467531, 0, 0.423529)
+border_width_left = 15
+border_width_top = 15
+border_width_right = 15
+border_width_bottom = 15
+border_color = Color(0.862745, 0.423529, 0.243137, 1)
+corner_radius_top_left = 30
+corner_radius_top_right = 30
+corner_radius_bottom_right = 30
+corner_radius_bottom_left = 30
+shadow_color = Color(0, 0, 0, 0.513726)
+shadow_size = 4
+shadow_offset = Vector2(-10, 10)
+anti_aliasing = false
+
+[node name="UpgradeStation" type="CanvasLayer"]
+script = ExtResource("1_3vi4m")
+
+[node name="Panel" type="Panel" parent="."]
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -534.0
+offset_top = -259.5
+offset_right = 534.0
+offset_bottom = 259.5
+grow_horizontal = 2
+grow_vertical = 2
+pivot_offset = Vector2(566, 260.5)
+theme_override_styles/panel = SubResource("StyleBoxFlat_13lb3")
+
+[node name="InventoryBackground" type="TextureRect" parent="Panel"]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.0842697
+anchor_top = 0.101156
+anchor_right = 0.931011
+anchor_bottom = 0.875568
+offset_left = -60.0
+offset_top = -17.0
+offset_right = -388.32
+offset_bottom = -162.92
+grow_horizontal = 2
+grow_vertical = 2
+scale = Vector2(1.75, 1.75)
+texture = ExtResource("2_d36bm")
+
+[node name="TwoDescriptions" type="Panel" parent="Panel/InventoryBackground"]
+layout_mode = 0
+offset_left = 64.0
+offset_top = 37.0
+offset_right = 165.0
+offset_bottom = 219.0
+
+[node name="Description" type="Label" parent="Panel/InventoryBackground/TwoDescriptions"]
+layout_mode = 0
+offset_left = 5.0
+offset_top = 4.0
+offset_right = 98.0
+offset_bottom = 73.0
+theme_override_font_sizes/font_size = 10
+text = "Hover over the upgrades to get a description"
+vertical_alignment = 1
+autowrap_mode = 2
+
+[node name="StatDescription" type="Label" parent="Panel/InventoryBackground/TwoDescriptions"]
+layout_mode = 0
+offset_left = 6.0
+offset_top = 80.1429
+offset_right = 96.0
+offset_bottom = 126.143
+theme_override_font_sizes/font_size = 10
+text = "Stat Upgrade"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="AshCost" type="Label" parent="Panel/InventoryBackground/TwoDescriptions"]
+layout_mode = 0
+offset_left = 5.14292
+offset_top = 124.143
+offset_right = 98.1429
+offset_bottom = 172.143
+theme_override_font_sizes/font_size = 10
+text = "Hover to get ash cost"
+horizontal_alignment = 1
+vertical_alignment = 1
+autowrap_mode = 2
+
+[node name="UpgradeContainer" type="Control" parent="Panel"]
+anchors_preset = 0
+offset_top = 0.5
+offset_right = 1069.0
+offset_bottom = 521.5
+
+[node name="UpgradeTextureUpgrades" type="Control" parent="Panel/UpgradeContainer"]
+unique_name_in_owner = true
+anchors_preset = 0
+offset_right = 1068.0
+offset_bottom = 519.0
+
+[node name="Upgrade1BoxTexture" type="TextureRect" parent="Panel/UpgradeContainer/UpgradeTextureUpgrades"]
+offset_left = 371.0
+offset_top = 113.0
+offset_right = 485.0
+offset_bottom = 240.0
+texture = ExtResource("3_nj4hm")
+
+[node name="Upgrade2BoxTexture" type="TextureRect" parent="Panel/UpgradeContainer/UpgradeTextureUpgrades"]
+offset_left = 371.0
+offset_top = 277.0
+offset_right = 485.0
+offset_bottom = 404.0
+texture = ExtResource("3_nj4hm")
+
+[node name="Upgrade3BoxTexture" type="TextureRect" parent="Panel/UpgradeContainer/UpgradeTextureUpgrades"]
+offset_left = 595.0
+offset_top = 113.0
+offset_right = 709.0
+offset_bottom = 240.0
+texture = ExtResource("3_nj4hm")
+
+[node name="Upgrade4BoxTexture" type="TextureRect" parent="Panel/UpgradeContainer/UpgradeTextureUpgrades"]
+offset_left = 595.0
+offset_top = 277.0
+offset_right = 709.0
+offset_bottom = 404.0
+texture = ExtResource("3_nj4hm")
+
+[node name="Upgrade5BoxTexture" type="TextureRect" parent="Panel/UpgradeContainer/UpgradeTextureUpgrades"]
+offset_left = 794.0
+offset_top = 190.0
+offset_right = 908.0
+offset_bottom = 317.0
+texture = ExtResource("3_nj4hm")
+
+[node name="Upgrade1" type="Button" parent="Panel/UpgradeContainer"]
+unique_name_in_owner = true
+offset_left = 371.0
+offset_top = 113.0
+offset_right = 484.545
+offset_bottom = 240.0
+pivot_offset = Vector2(81, 63.5)
+theme = ExtResource("3_d36bm")
+icon = ExtResource("3_gg505")
+icon_alignment = 1
+expand_icon = true
+
+[node name="Progress-bar" type="Sprite2D" parent="Panel/UpgradeContainer/Upgrade1"]
+position = Vector2(140, 65)
+rotation = -1.57079
+scale = Vector2(2.035, 2.035)
+texture = ExtResource("10_nj4hm")
+region_enabled = true
+region_rect = Rect2(0, 0, 64, 16)
+
+[node name="Upgrade2" type="Button" parent="Panel/UpgradeContainer"]
+unique_name_in_owner = true
+layout_mode = 2
+offset_left = 595.0
+offset_top = 113.0
+offset_right = 708.545
+offset_bottom = 240.0
+pivot_offset = Vector2(81, 63.5)
+theme = ExtResource("3_d36bm")
+icon = ExtResource("4_nj4hm")
+icon_alignment = 1
+expand_icon = true
+
+[node name="Progress-bar" type="Sprite2D" parent="Panel/UpgradeContainer/Upgrade2"]
+position = Vector2(139, 65)
+rotation = -1.57079
+scale = Vector2(2.035, 2.035)
+texture = ExtResource("10_nj4hm")
+region_enabled = true
+region_rect = Rect2(0, 0, 64, 16)
+
+[node name="Upgrade3" type="Button" parent="Panel/UpgradeContainer"]
+unique_name_in_owner = true
+layout_mode = 2
+offset_left = 372.0
+offset_top = 277.0
+offset_right = 485.545
+offset_bottom = 404.0
+pivot_offset = Vector2(81, 63.5)
+theme = ExtResource("3_d36bm")
+icon = ExtResource("5_1f2d5")
+icon_alignment = 1
+expand_icon = true
+
+[node name="Progress-bar" type="Sprite2D" parent="Panel/UpgradeContainer/Upgrade3"]
+position = Vector2(139, 65)
+rotation = -1.57079
+scale = Vector2(2.035, 2.035)
+texture = ExtResource("10_nj4hm")
+region_enabled = true
+region_rect = Rect2(0, 0, 64, 16)
+
+[node name="Upgrade4" type="Button" parent="Panel/UpgradeContainer"]
+unique_name_in_owner = true
+layout_mode = 2
+offset_left = 595.0
+offset_top = 277.0
+offset_right = 708.545
+offset_bottom = 404.0
+pivot_offset = Vector2(81, 63.5)
+theme = ExtResource("3_d36bm")
+icon = ExtResource("6_hkaga")
+icon_alignment = 1
+expand_icon = true
+
+[node name="Progress-bar" type="Sprite2D" parent="Panel/UpgradeContainer/Upgrade4"]
+position = Vector2(139, 65)
+rotation = -1.57079
+scale = Vector2(2.035, 2.035)
+texture = ExtResource("10_nj4hm")
+region_enabled = true
+region_rect = Rect2(0, 0, 64, 16)
+
+[node name="Upgrade5" type="Button" parent="Panel/UpgradeContainer"]
+unique_name_in_owner = true
+layout_mode = 2
+offset_left = 794.0
+offset_top = 190.0
+offset_right = 907.545
+offset_bottom = 317.0
+pivot_offset = Vector2(81, 63.5)
+theme = ExtResource("3_d36bm")
+icon = ExtResource("7_t1avj")
+icon_alignment = 1
+expand_icon = true
+
+[node name="Progress-bar" type="Sprite2D" parent="Panel/UpgradeContainer/Upgrade5"]
+position = Vector2(139, 64)
+rotation = -1.57079
+scale = Vector2(2.035, 2.035)
+texture = ExtResource("10_nj4hm")
+region_enabled = true
+region_rect = Rect2(0, 0, 64, 16)
