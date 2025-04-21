@@ -17,6 +17,40 @@ extends CanvasLayer
 
 var this_is_dumb := 1
 var is_checking_stats : bool = false
+var can_afford : bool = false
+
+var current_ash_cost: int = 0
+
+enum PlayerUpgrades{
+	LUMBERJACKMUSCLES,
+	LOCALECOLOGIST,
+	ANGRYMUSCLES,
+	SPEEDYLEGGINGS,
+	FURIOUSFIRE
+}
+
+var upgrade_cost_data{
+	PlayerUpgrades.LUMBERJACKMUSCLES{
+		"cost": [25, 55, 80]
+	},
+
+	PlayerUpgrades.LOCALECOLOGIST{
+		"cost": [30,70, 100]
+	},
+
+	PlayerUpgrades.ANGRYMUSCLES{
+		"cost": [45, 90, 165]
+	},
+
+	PlayerUpgrades.SPEEDYLEGGINGS{
+		"cost": [50, 100, 175]
+	},
+
+	PlayerUpgrades.FURIOUSFIRE{
+		"cost": [100, 250, 600]
+	}
+
+}
 
 func _ready() -> void:
 	self.visible = false
@@ -26,17 +60,35 @@ func _ready() -> void:
 			i.connect("pressed", Callable(self, ("_on_upgrade_pressed_%d" %this_is_dumb)))
 			i.connect("mouse_entered", Callable(self, "_on_upgrade_mouse_entered").bind(i))
 			i.connect("mouse_exited", Callable(self, "_on_upgrade_mouse_exited").bind(i))
-			this_is_dumb+=1  # Connect to speciifc... wait why didnt i just connect it from godot......
+			this_is_dumb+=1
 			
 		else:
 			print("You're not a button, ignored...")
 
+	# Attemptin to make some data grabs to detect if player can afford update
+	match PlayerUpgrades:
+		LUMBERJACKMUSCLES:
+			pass
+		LOCALECOLOGIST:
+			pass
+		ANGRYMUSCLES:
+			pass
+		SPEEDYLEGGINGS:
+			pass
+		FURIOUSFIRE:
+			pass
+	
+
 func _process(_delta: float) -> void:
 	if InputEventMouseMotion:
-		pass
+		
+		# Check every time if player can afford an upgrade in the first place. Need to compare globla variable with this current variable.
 		
 
 func _on_upgrade_pressed_1() -> void:
+	if can_afford:
+		GlobalPlayerScript.current_total_ashes -= 
+
 	print("This is button 1 i swear to god dude.")	
 
 func _on_upgrade_pressed_2() -> void:
