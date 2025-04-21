@@ -69,6 +69,7 @@ offset_right = 165.0
 offset_bottom = 219.0
 
 [node name="Description" type="Label" parent="Panel/InventoryBackground/TwoDescriptions"]
+unique_name_in_owner = true
 layout_mode = 0
 offset_left = 5.0
 offset_top = 4.0
@@ -80,22 +81,25 @@ vertical_alignment = 1
 autowrap_mode = 2
 
 [node name="StatDescription" type="Label" parent="Panel/InventoryBackground/TwoDescriptions"]
+unique_name_in_owner = true
 layout_mode = 0
-offset_left = 6.0
-offset_top = 80.1429
-offset_right = 96.0
-offset_bottom = 126.143
+offset_left = 5.14292
+offset_top = 88.1429
+offset_right = 95.1429
+offset_bottom = 134.143
 theme_override_font_sizes/font_size = 10
 text = "Stat Upgrade"
 horizontal_alignment = 1
 vertical_alignment = 1
+autowrap_mode = 2
 
 [node name="AshCost" type="Label" parent="Panel/InventoryBackground/TwoDescriptions"]
+unique_name_in_owner = true
 layout_mode = 0
 offset_left = 5.14292
-offset_top = 124.143
+offset_top = 129.286
 offset_right = 98.1429
-offset_bottom = 172.143
+offset_bottom = 177.286
 theme_override_font_sizes/font_size = 10
 text = "Hover to get ash cost"
 horizontal_alignment = 1
@@ -115,6 +119,7 @@ offset_right = 1068.0
 offset_bottom = 519.0
 
 [node name="Upgrade1BoxTexture" type="TextureRect" parent="Panel/UpgradeContainer/UpgradeTextureUpgrades"]
+layout_mode = 0
 offset_left = 371.0
 offset_top = 113.0
 offset_right = 485.0
@@ -122,6 +127,7 @@ offset_bottom = 240.0
 texture = ExtResource("3_nj4hm")
 
 [node name="Upgrade2BoxTexture" type="TextureRect" parent="Panel/UpgradeContainer/UpgradeTextureUpgrades"]
+layout_mode = 0
 offset_left = 371.0
 offset_top = 277.0
 offset_right = 485.0
@@ -129,6 +135,7 @@ offset_bottom = 404.0
 texture = ExtResource("3_nj4hm")
 
 [node name="Upgrade3BoxTexture" type="TextureRect" parent="Panel/UpgradeContainer/UpgradeTextureUpgrades"]
+layout_mode = 0
 offset_left = 595.0
 offset_top = 113.0
 offset_right = 709.0
@@ -136,6 +143,7 @@ offset_bottom = 240.0
 texture = ExtResource("3_nj4hm")
 
 [node name="Upgrade4BoxTexture" type="TextureRect" parent="Panel/UpgradeContainer/UpgradeTextureUpgrades"]
+layout_mode = 0
 offset_left = 595.0
 offset_top = 277.0
 offset_right = 709.0
@@ -143,6 +151,7 @@ offset_bottom = 404.0
 texture = ExtResource("3_nj4hm")
 
 [node name="Upgrade5BoxTexture" type="TextureRect" parent="Panel/UpgradeContainer/UpgradeTextureUpgrades"]
+layout_mode = 0
 offset_left = 794.0
 offset_top = 190.0
 offset_right = 908.0
@@ -151,6 +160,7 @@ texture = ExtResource("3_nj4hm")
 
 [node name="Upgrade1" type="Button" parent="Panel/UpgradeContainer"]
 unique_name_in_owner = true
+layout_mode = 0
 offset_left = 371.0
 offset_top = 113.0
 offset_right = 484.545
