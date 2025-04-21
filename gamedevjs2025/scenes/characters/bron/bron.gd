@@ -3,9 +3,12 @@ extends CharacterBody2D
 @export var speed := 200
 var default_speed := 200
 
+@onready var animated_sprite_2d: AnimatedSprite2D = $AnimatedSprite2D
 @onready var axe_damage_area: Area2D = %AxeDamageArea
-@onready var collision_shape_2d: CollisionShape2D = $AxeDamageArea/CollisionShape2D
+@onready var collision_shape_2d: CollisionShape2D = $Axe/AxeDamageArea/CollisionShape2D
 @onready var animation_player: AnimationPlayer = $AnimationPlayer
+@onready var axe_sprite: Sprite2D = $Axe/AxeSprite
+@onready var axe: Node2D = $Axe
 
 var near_tree: Node = null
 var chopping := false
@@ -40,7 +43,20 @@ func _physics_process(_delta: float) -> void:
 		
 
 	input_direction = input_direction.normalized()
-	velocity = input_direction * speed	
+	velocity = input_direction * speed
+
+	if input_direction.x > 0:
+		animated_sprite_2d.flip_h = false
+		axe.scale.x = 1
+	elif input_direction.x < 0:
+		animated_sprite_2d.flip_h = true
+		axe.scale.x = -1
+	
+	if input_direction == Vector2.ZERO:
+		animated_sprite_2d.play("idle")
+	else:
+		animated_sprite_2d.play("walk")
+	
 	move_and_slide()
 
 

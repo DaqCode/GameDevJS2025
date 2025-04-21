@@ -1,16 +1,54 @@
-[gd_scene load_steps=11 format=3 uid="uid://uhlblrwdub6m"]
+[gd_scene load_steps=17 format=3 uid="uid://uhlblrwdub6m"]
 
 [ext_resource type="Script" uid="uid://tpxm8y2yilj8" path="res://scenes/characters/bron/bron.gd" id="1_mtsbh"]
-[ext_resource type="Texture2D" uid="uid://cegeledh12s0x" path="res://icon.svg" id="2_rfshv"]
+[ext_resource type="Texture2D" uid="uid://dqjgdp8iy85qt" path="res://art/player/player.png" id="2_ld6eo"]
+[ext_resource type="Texture2D" uid="uid://dxp2xf1n14rjm" path="res://art/weapons/axe.png" id="3_evcjp"]
 
-[sub_resource type="SpriteFrames" id="SpriteFrames_prtcw"]
+[sub_resource type="AtlasTexture" id="AtlasTexture_evcjp"]
+atlas = ExtResource("2_ld6eo")
+region = Rect2(0, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_5l0un"]
+atlas = ExtResource("2_ld6eo")
+region = Rect2(32, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_4uy21"]
+atlas = ExtResource("2_ld6eo")
+region = Rect2(64, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_lu8vu"]
+atlas = ExtResource("2_ld6eo")
+region = Rect2(96, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_agv3g"]
+atlas = ExtResource("2_ld6eo")
+region = Rect2(128, 0, 32, 32)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_0bv6g"]
 animations = [{
 "frames": [{
 "duration": 1.0,
-"texture": ExtResource("2_rfshv")
+"texture": SubResource("AtlasTexture_evcjp")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_5l0un")
 }],
 "loop": true,
-"name": &"default",
+"name": &"idle",
+"speed": 1.5
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_4uy21")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_lu8vu")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_agv3g")
+}],
+"loop": true,
+"name": &"walk",
 "speed": 5.0
 }]
 
@@ -22,15 +60,12 @@ height = 48.0
 radius = 13.0
 height = 28.0
 
-[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_ld6eo"]
-height = 85.7143
-
 [sub_resource type="Animation" id="Animation_evcjp"]
 length = 0.001
 tracks/0/type = "value"
 tracks/0/imported = false
 tracks/0/enabled = true
-tracks/0/path = NodePath("AxeDamageArea/CollisionShape2D:disabled")
+tracks/0/path = NodePath("Axe/AxeDamageArea/CollisionShape2D:disabled")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/keys = {
@@ -45,7 +80,7 @@ resource_name = "chop"
 tracks/0/type = "value"
 tracks/0/imported = false
 tracks/0/enabled = true
-tracks/0/path = NodePath("AxeDamageArea/CollisionShape2D:disabled")
+tracks/0/path = NodePath("Axe/AxeDamageArea/CollisionShape2D:disabled")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/keys = {
@@ -74,7 +109,7 @@ resource_name = "idle"
 tracks/0/type = "value"
 tracks/0/imported = false
 tracks/0/enabled = true
-tracks/0/path = NodePath("AxeDamageArea/CollisionShape2D:disabled")
+tracks/0/path = NodePath("Axe/AxeDamageArea/CollisionShape2D:disabled")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/keys = {
@@ -91,6 +126,9 @@ _data = {
 &"idle": SubResource("Animation_5l0un")
 }
 
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_ld6eo"]
+height = 85.7143
+
 [node name="Bron" type="CharacterBody2D"]
 modulate = Color(0.0214346, 0.0214346, 0.0214346, 1)
 texture_filter = 1
@@ -99,9 +137,13 @@ scale = Vector2(0.35, 0.35)
 script = ExtResource("1_mtsbh")
 speed = 75
 
-[node name="BronSprite" type="AnimatedSprite2D" parent="."]
-scale = Vector2(0.1875, 0.191406)
-sprite_frames = SubResource("SpriteFrames_prtcw")
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+scale = Vector2(2.5, 2.5)
+sprite_frames = SubResource("SpriteFrames_0bv6g")
+animation = &"walk"
+autoplay = "idle"
+frame = 2
+frame_progress = 0.921889
 
 [node name="BronArea" type="Area2D" parent="."]
 
@@ -118,18 +160,31 @@ position_smoothing_speed = 10.0
 [node name="AxeChopping" type="Timer" parent="."]
 one_shot = true
 
-[node name="AxeDamageArea" type="Area2D" parent="." groups=["axe"]]
-unique_name_in_owner = true
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="AxeDamageArea"]
-rotation = 1.5708
-shape = SubResource("CapsuleShape2D_ld6eo")
-disabled = true
-
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]
 libraries = {
 &"": SubResource("AnimationLibrary_5l0un")
 }
+
+[node name="Axe" type="Node2D" parent="."]
+position = Vector2(14.2857, 5.71429)
+
+[node name="AxeSprite" type="Sprite2D" parent="Axe"]
+position = Vector2(2.85714, 11.4286)
+rotation = 0.322886
+scale = Vector2(1.5, 1.5)
+texture = ExtResource("3_evcjp")
+offset = Vector2(0, -8)
+region_enabled = true
+region_rect = Rect2(0, 0, 30, 32)
+
+[node name="AxeDamageArea" type="Area2D" parent="Axe" groups=["axe"]]
+unique_name_in_owner = true
+scale = Vector2(1, 1)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Axe/AxeDamageArea"]
+rotation = 1.5708
+shape = SubResource("CapsuleShape2D_ld6eo")
+disabled = true
 
 [connection signal="area_entered" from="BronArea" to="." method="_on_bron_area_area_entered"]
 [connection signal="area_exited" from="BronArea" to="." method="_on_bron_area_area_exited"]
