@@ -29,28 +29,28 @@ enum PlayerUpgrades{
 	FURIOUSFIRE
 }
 
-var upgrade_cost_data{
-	PlayerUpgrades.LUMBERJACKMUSCLES{
-		"cost": [25, 55, 80]
-	},
-
-	PlayerUpgrades.LOCALECOLOGIST{
-		"cost": [30,70, 100]
-	},
-
-	PlayerUpgrades.ANGRYMUSCLES{
-		"cost": [45, 90, 165]
-	},
-
-	PlayerUpgrades.SPEEDYLEGGINGS{
-		"cost": [50, 100, 175]
-	},
-
-	PlayerUpgrades.FURIOUSFIRE{
-		"cost": [100, 250, 600]
-	}
-
-}
+#var upgrade_cost_data{
+	#PlayerUpgrades.LUMBERJACKMUSCLES{
+		#"cost": [25, 55, 80]
+	#},
+#
+	#PlayerUpgrades.LOCALECOLOGIST{
+		#"cost": [30,70, 100]
+	#},
+#
+	#PlayerUpgrades.ANGRYMUSCLES{
+		#"cost": [45, 90, 165]
+	#},
+#
+	#PlayerUpgrades.SPEEDYLEGGINGS{
+		#"cost": [50, 100, 175]
+	#},
+#
+	#PlayerUpgrades.FURIOUSFIRE{
+		#"cost": [100, 250, 600]
+	#}
+#
+#}
 
 func _ready() -> void:
 	self.visible = false
@@ -66,28 +66,28 @@ func _ready() -> void:
 			print("You're not a button, ignored...")
 
 	# Attemptin to make some data grabs to detect if player can afford update
-	match PlayerUpgrades:
-		LUMBERJACKMUSCLES:
-			pass
-		LOCALECOLOGIST:
-			pass
-		ANGRYMUSCLES:
-			pass
-		SPEEDYLEGGINGS:
-			pass
-		FURIOUSFIRE:
-			pass
-	
+	#match PlayerUpgrades:
+		#LUMBERJACKMUSCLES:
+			#pass
+		#LOCALECOLOGIST:
+			#pass
+		#ANGRYMUSCLES:
+			#pass
+		#SPEEDYLEGGINGS:
+			#pass
+		#FURIOUSFIRE:
+			#pass
+	#
 
-func _process(_delta: float) -> void:
-	if InputEventMouseMotion:
-		
-		# Check every time if player can afford an upgrade in the first place. Need to compare globla variable with this current variable.
-		
-
-func _on_upgrade_pressed_1() -> void:
-	if can_afford:
-		GlobalPlayerScript.current_total_ashes -= 
+#func _process(_delta: float) -> void:
+	#if InputEventMouseMotion:
+		#
+		## Check every time if player can afford an upgrade in the first place. Need to compare globla variable with this current variable.
+		#
+#
+#func _on_upgrade_pressed_1() -> void:
+	#if can_afford:
+		#GlobalPlayerScript.current_total_ashes -= 
 
 	print("This is button 1 i swear to god dude.")	
 

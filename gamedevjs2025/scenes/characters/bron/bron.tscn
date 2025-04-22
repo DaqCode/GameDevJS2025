@@ -130,7 +130,7 @@ _data = {
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_ld6eo"]
 height = 85.7143
 
-[node name="Bron" type="CharacterBody2D"]
+[node name="Bron" type="CharacterBody2D" groups=["player"]]
 modulate = Color(0.0214346, 0.0214346, 0.0214346, 1)
 texture_filter = 1
 texture_repeat = 1

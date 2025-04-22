@@ -5,8 +5,9 @@ extends StaticBody2D
 @onready var regrow_time: Timer = %RegrowTime
 @onready var interact_button: TextureRect = $InteractButton
 @onready var health_bar: TextureProgressBar = $HealthBar
-
-
+@onready var dropped_plank_preload = preload("res://scenes/droppedPlank/dropped_plank.tscn")
+@onready var dropped_seed_preload = preload("res://scenes/droppedSeed/dropped_seeds.tscn")
+@onready var tree_col_shape = $TreeCollisionShape
 
 signal ready_to_chop
 signal begin_waiting_until_chop
@@ -27,6 +28,8 @@ var tree_already_chopped := false
 
 var current_stage := 1
 var tree_health := 3
+
+var drop_range = 5
 
 var tree_data = {
 
@@ -136,7 +139,10 @@ func chop_tree() -> void:
 
 	print("CHOPPING: %s" % get_tree_name(tree_type))
 	print("Dropped Seeds: %d, Planks: %d" % [seed_value, plank_value])
-
+	# loop to spawn in the dropped planksas
+	dropItems(dropped_plank_preload,plank_value,"plank")
+	dropItems(dropped_seed_preload,seed_value,"seed")
+	
 	emit_signal("begin_waiting_until_chop")
 	interact_button.visible = false
 	health_bar.visible = false
@@ -148,6 +154,13 @@ func chop_tree() -> void:
 func _update_health_bar() -> void:
 	health_bar.value = tree_health
 
+func dropItems(itemPreload,count,type):
+	for i in range(count):
+		var dropped_item = itemPreload.instantiate()
+		dropped_item.tree_type = tree_type
+		dropped_item.item_type = type
+		dropped_item.position = tree_col_shape.global_position + Vector2(randf_range(-drop_range,drop_range),randf_range(-drop_range,drop_range)) # get rand pos to drop
+		get_tree().current_scene.add_child(dropped_item)
 
 func _on_tree_interaction_body_entered(body: Node2D) -> void:
 	if body.is_in_group("player"):
