@@ -2617,7 +2617,7 @@ expand_margin_bottom = 5.0
 anti_aliasing = false
 
 [resource]
-Button/colors/icon_disabled_color = Color(0.999998, 0.571559, 0.504968, 1)
+Button/colors/icon_disabled_color = Color(0.394467, 0.0098602, 1.92764e-05, 1)
 Button/colors/icon_hover_color = Color(0.975366, 0.968736, 0, 1)
 Button/colors/icon_hover_pressed_color = Color(0.695503, 0.695503, 0.695503, 1)
 Button/colors/icon_normal_color = Color(1, 1, 1, 1)

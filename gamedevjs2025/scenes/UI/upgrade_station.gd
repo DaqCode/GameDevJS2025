@@ -19,41 +19,27 @@ var this_is_dumb := 1
 var is_checking_stats : bool = false
 var can_afford : bool = false
 
-var current_ash_cost: int = 0
+var current_ash_cost := GlobalPlayerScript.current_total_ashes
 
-enum PlayerUpgrades{
-	LUMBERJACKMUSCLES,
-	LOCALECOLOGIST,
-	ANGRYMUSCLES,
-	SPEEDYLEGGINGS,
-	FURIOUSFIRE
+# Dictionary for costs for eeach upgrade
+var upgrade_cost_dict = {
+	"upgrade_1": [25, 55, 80],
+	"upgrade_2": [30, 70, 100],
+	"upgrade_3": [45, 90, 165],
+	"upgrade_4": [50, 100, 175,],
+	"upgrade_5": [100, 250, 600]
 }
 
-#var upgrade_cost_data{
-	#PlayerUpgrades.LUMBERJACKMUSCLES{
-		#"cost": [25, 55, 80]
-	#},
-#
-	#PlayerUpgrades.LOCALECOLOGIST{
-		#"cost": [30,70, 100]
-	#},
-#
-	#PlayerUpgrades.ANGRYMUSCLES{
-		#"cost": [45, 90, 165]
-	#},
-#
-	#PlayerUpgrades.SPEEDYLEGGINGS{
-		#"cost": [50, 100, 175]
-	#},
-#
-	#PlayerUpgrades.FURIOUSFIRE{
-		#"cost": [100, 250, 600]
-	#}
-#
-#}
+var upgrade_var_map = {
+	"upgrade_1": "lumb_mus_upgrade",
+	"upgrade_2": "loc_eco_upgrade",
+	"upgrade_3": "angry_mus_upgrade",
+	"upgrade_4": "speed_leg_upgrade",
+	"upgrade_5": "fur_fire_upgrade"
+}
 
 func _ready() -> void:
-	self.visible = false
+	# self.visible = false
 	# Upgrade 1-5 exists
 	for i in button_container.get_children():
 		if i is Button:
@@ -65,46 +51,26 @@ func _ready() -> void:
 		else:
 			print("You're not a button, ignored...")
 
-	# Attemptin to make some data grabs to detect if player can afford update
-	#match PlayerUpgrades:
-		#LUMBERJACKMUSCLES:
-			#pass
-		#LOCALECOLOGIST:
-			#pass
-		#ANGRYMUSCLES:
-			#pass
-		#SPEEDYLEGGINGS:
-			#pass
-		#FURIOUSFIRE:
-			#pass
-	#
+	check_affordability()
 
-#func _process(_delta: float) -> void:
-	#if InputEventMouseMotion:
-		#
-		## Check every time if player can afford an upgrade in the first place. Need to compare globla variable with this current variable.
-		#
-#
-#func _on_upgrade_pressed_1() -> void:
-	#if can_afford:
-		#GlobalPlayerScript.current_total_ashes -= 
-
-	print("This is button 1 i swear to god dude.")	
+func _on_upgrade_pressed_1() -> void:
+	_handle_upgrade_press("lumb_mus_upgrade", %Upgrade1)
 
 func _on_upgrade_pressed_2() -> void:
-	print("This is button 2 i swear to god dude.")
+	_handle_upgrade_press("loc_eco_upgrade", %Upgrade2)
 
 func _on_upgrade_pressed_3() -> void:
-	print("This is button 3 i swear to god dude.")
+	_handle_upgrade_press("angry_mus_upgrade", %Upgrade3)
 
 func _on_upgrade_pressed_4() -> void:
-	print("This is button 4 i swear to god dude.")
+	_handle_upgrade_press("speed_leg_upgrade", %Upgrade4)
 
 func _on_upgrade_pressed_5() -> void:
-	print("This is button 5 i swear to god dude.")
+	_handle_upgrade_press("fur_fire_upgrade", %Upgrade5)
 
 func _on_upgrade_mouse_entered(button: Button) -> void:
 	is_checking_stats = true
+	print_upgrade_for_debug()
 	match button:
 		upgrade_1:
 			upgrade_description.text = "You can chop trees faster."
@@ -199,3 +165,50 @@ func _on_upgrade_mouse_exited(button: Button) -> void:
 
 func _on_exit_pressed() -> void:
 	self.visible = false
+
+func get_upgrade_cost(upgrade_name: String, current_level: int) -> int:
+	if upgrade_name in upgrade_cost_dict:
+		var costs = upgrade_cost_dict[upgrade_name]
+		if current_level <costs.size():
+			return costs[current_level]
+	return -1 # Only should realisticlly return if it's maxed out...
+
+func check_affordability() -> void:
+	var current_ash = GlobalPlayerScript.current_total_ashes
+	for button in button_container.get_children():
+		if button is Button:
+			var upgrade_name = button.name.to_lower()
+			var upgrade_id = upgrade_name.replace("upgrade", "upgrade_")
+			# var level = get_player_upgrade_level(upgrade_id)
+			# Need to write the function for getting player upgrade levels.
+			
+			var current_level = get_player_upgrade_level(upgrade_id)
+			var next_cost = get_upgrade_cost(upgrade_id, current_level)
+			button.disabled = next_cost == -1 or current_ash < next_cost
+
+
+
+func get_player_upgrade_level(upgrade_id: String) -> int:
+	if upgrade_id in upgrade_var_map:
+		var var_name = upgrade_var_map[upgrade_id]
+		return GlobalPlayerScript.get(var_name)
+	return -1
+
+func _handle_upgrade_press(upgrade_var_name: String, button: Button) -> void:
+	if GlobalPlayerScript.get(upgrade_var_name) < 4:
+		GlobalPlayerScript.set(upgrade_var_name, GlobalPlayerScript.get(upgrade_var_name)+1)
+		_on_upgrade_mouse_entered(button)
+		check_affordability()
+
+func print_upgrade_for_debug() -> void:
+	for upgrades in upgrade_cost_dict:
+		var current_upgrade = get_player_upgrade_level(upgrades)
+		print ("--------------------------------")
+		print( str(upgrades) + " | Level " + str(get_player_upgrade_level(upgrades))+ " | Next Cost: " + str(get_upgrade_cost(upgrades, current_upgrade)))
+	print (" ----- ")
+	print (" ----- ")
+	print (" ----- ")
+	print (" ----- ")
+	print (" ----- ")
+
+	## func get_upgrade_cost(upgrade_name: String, current_level: int) -> int:

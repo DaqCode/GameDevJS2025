@@ -482,7 +482,7 @@ texture = ExtResource("10_nj4hm")
 region_enabled = true
 region_rect = Rect2(0, 0, 64, 16)
 
-[node name="Progress-bar-fill-red" type="Sprite2D" parent="Panel/UpgradeContainer/Upgrade1"]
+[node name="Progress-bar-fill-red1" type="Sprite2D" parent="Panel/UpgradeContainer/Upgrade1"]
 position = Vector2(140.333, 17.6667)
 rotation = -1.5708
 scale = Vector2(2.03758, 2)
@@ -512,6 +512,15 @@ texture = ExtResource("10_nj4hm")
 region_enabled = true
 region_rect = Rect2(0, 0, 64, 16)
 
+[node name="Progress-bar-fill-red2" type="Sprite2D" parent="Panel/UpgradeContainer/Upgrade2"]
+position = Vector2(139.36, 17.667)
+rotation = -1.5708
+scale = Vector2(2.03758, 2)
+texture = ExtResource("11_1f2d5")
+offset = Vector2(-25, 0)
+region_enabled = true
+region_rect = Rect2(0, 0.16, 61, 16)
+
 [node name="Upgrade3" type="Button" parent="Panel/UpgradeContainer"]
 unique_name_in_owner = true
 layout_mode = 2
@@ -532,6 +541,15 @@ scale = Vector2(2.035, 2.035)
 texture = ExtResource("10_nj4hm")
 region_enabled = true
 region_rect = Rect2(0, 0, 64, 16)
+
+[node name="Progress-bar-fill-red3" type="Sprite2D" parent="Panel/UpgradeContainer/Upgrade3"]
+position = Vector2(139.333, 17)
+rotation = -1.5708
+scale = Vector2(2.03758, 2)
+texture = ExtResource("11_1f2d5")
+offset = Vector2(-25, 0)
+region_enabled = true
+region_rect = Rect2(0, 0.16, 61, 16)
 
 [node name="Upgrade4" type="Button" parent="Panel/UpgradeContainer"]
 unique_name_in_owner = true
@@ -554,6 +572,15 @@ texture = ExtResource("10_nj4hm")
 region_enabled = true
 region_rect = Rect2(0, 0, 64, 16)
 
+[node name="Progress-bar-fill-red4" type="Sprite2D" parent="Panel/UpgradeContainer/Upgrade4"]
+position = Vector2(139.335, 17)
+rotation = -1.5708
+scale = Vector2(2.03758, 2)
+texture = ExtResource("11_1f2d5")
+offset = Vector2(-25, 0)
+region_enabled = true
+region_rect = Rect2(0, 0.16, 61, 16)
+
 [node name="Upgrade5" type="Button" parent="Panel/UpgradeContainer"]
 unique_name_in_owner = true
 layout_mode = 2
@@ -574,6 +601,15 @@ scale = Vector2(2.035, 2.035)
 texture = ExtResource("10_nj4hm")
 region_enabled = true
 region_rect = Rect2(0, 0, 64, 16)
+
+[node name="Progress-bar-fill-red5" type="Sprite2D" parent="Panel/UpgradeContainer/Upgrade5"]
+position = Vector2(139.34, 16.18)
+rotation = -1.5708
+scale = Vector2(2.03758, 2)
+texture = ExtResource("11_1f2d5")
+offset = Vector2(-25, 0)
+region_enabled = true
+region_rect = Rect2(0, 0.16, 61, 16)
 
 [node name="Exit" type="Button" parent="Panel"]
 unique_name_in_owner = true
