@@ -15,13 +15,12 @@ extends CanvasLayer
 @onready var ash_cost := %AshCost
 
 
-var this_is_dumb := 1
 var is_checking_stats : bool = false
 var can_afford : bool = false
 
 var current_ash_cost := GlobalPlayerScript.current_total_ashes
 
-# Dictionary for costs for eeach upgrade
+# Dictionary for costs for eeach upgrade3
 var upgrade_cost_dict = {
 	"upgrade_1": [25, 55, 80],
 	"upgrade_2": [30, 70, 100],
@@ -43,30 +42,30 @@ func _ready() -> void:
 	# Upgrade 1-5 exists
 	for i in button_container.get_children():
 		if i is Button:
-			i.connect("pressed", Callable(self, ("_on_upgrade_pressed_%d" %this_is_dumb)))
+			i.connect("pressed", Callable(self, ("_on_upgrade_pressed")).bind(i))
 			i.connect("mouse_entered", Callable(self, "_on_upgrade_mouse_entered").bind(i))
 			i.connect("mouse_exited", Callable(self, "_on_upgrade_mouse_exited").bind(i))
-			this_is_dumb+=1
-			
 		else:
 			print("You're not a button, ignored...")
 
 	check_affordability()
 
-func _on_upgrade_pressed_1() -> void:
-	_handle_upgrade_press("lumb_mus_upgrade", %Upgrade1)
+func _process(_delta: float) -> void:
+	check_affordability()
 
-func _on_upgrade_pressed_2() -> void:
-	_handle_upgrade_press("loc_eco_upgrade", %Upgrade2)
-
-func _on_upgrade_pressed_3() -> void:
-	_handle_upgrade_press("angry_mus_upgrade", %Upgrade3)
-
-func _on_upgrade_pressed_4() -> void:
-	_handle_upgrade_press("speed_leg_upgrade", %Upgrade4)
-
-func _on_upgrade_pressed_5() -> void:
-	_handle_upgrade_press("fur_fire_upgrade", %Upgrade5)
+# stat_var: String, cost_var: String, button: Button
+func _on_upgrade_pressed(button: Button) -> void:
+	match button:
+		upgrade_1:
+			_handle_upgrade_press("lumb_mus_upgrade", %Upgrade1)
+		upgrade_2:
+			_handle_upgrade_press("loc_eco_upgrade", %Upgrade2)
+		upgrade_3:
+			_handle_upgrade_press("angry_mus_upgrade", %Upgrade3)
+		upgrade_4:
+			_handle_upgrade_press("speed_leg_upgrade", %Upgrade4)
+		upgrade_5:
+			_handle_upgrade_press("fur_fire_upgrade", %Upgrade5)
 
 func _on_upgrade_mouse_entered(button: Button) -> void:
 	is_checking_stats = true
@@ -75,13 +74,13 @@ func _on_upgrade_mouse_entered(button: Button) -> void:
 		upgrade_1:
 			upgrade_description.text = "You can chop trees faster."
 			match GlobalPlayerScript.lumb_mus_upgrade:
-				1:
+				0:
 					upgrade_stat_upgrade.text = "3 Hits -> 2 Hits"
 					ash_cost.text =  "Ash cost: 25"
-				2:
+				1:
 					upgrade_stat_upgrade.text = "2 Hits -> 1 Hit"
 					ash_cost.text = "Ash cost: 55"
-				3:
+				2:
 					upgrade_stat_upgrade.text = "1 Hit -> 1 Hit + 2+ Extra planks"
 					ash_cost.text = "Ash cost: 80"
 				_:
@@ -90,13 +89,13 @@ func _on_upgrade_mouse_entered(button: Button) -> void:
 		upgrade_2:
 			upgrade_description.text = "Trees grow faster."
 			match GlobalPlayerScript.loc_eco_upgrade:
-				1:
+				0:
 					upgrade_stat_upgrade.text = "0 Second Delay -> 2.5 Second Delay"
 					ash_cost.text =  "Ash cost: 30"
-				2:
+				1:
 					upgrade_stat_upgrade.text = "2.5 Second Delay -> 4 Second Delay"
 					ash_cost.text = "Ash cost: 70"
-				3:
+				2:
 					upgrade_stat_upgrade.text = "4 Second Delay -> 5 Second Delay"
 					ash_cost.text = "Ash cost: 100"
 				_:
@@ -105,13 +104,13 @@ func _on_upgrade_mouse_entered(button: Button) -> void:
 		upgrade_3:
 			upgrade_description.text = "Become stronger against enemies that disturb your fire."
 			match GlobalPlayerScript.angry_mus_upgrade:
-				1:
+				0:
 					upgrade_stat_upgrade.text = "6 Hits to Kill -> 5 Hits to Kill"
 					ash_cost.text =  "Ash cost: 45"
-				2:
+				1:
 					upgrade_stat_upgrade.text = "5 Hits to Kill -> 3 Hits to Kill"
 					ash_cost.text = "Ash cost: 90"
-				3:
+				2:
 					upgrade_stat_upgrade.text = "3 Hits to Kill -> 2 Hits to Kill"
 					ash_cost.text = "Ash cost: 165"
 				_:
@@ -120,15 +119,15 @@ func _on_upgrade_mouse_entered(button: Button) -> void:
 		upgrade_4:
 			upgrade_description.text = "You become faster by becoming featherweight."
 			match GlobalPlayerScript.speed_leg_upgrade:
-				1:
+				0:
 					# Speed to 75 -> 90
 					upgrade_stat_upgrade.text = "0% speed increase -> 20% speed increase"
 					ash_cost.text =  "Ash cost: 50"
-				2:
+				1:
 					# Speed to 109
 					upgrade_stat_upgrade.text = "20% speed increase -> 45% speed increase"
 					ash_cost.text = "Ash cost: 100"
-				3:
+				2:
 					# Speed to 131
 					upgrade_stat_upgrade.text = "45% speed increase -> 75% speed increase"
 					ash_cost.text = "Ash cost: 175"
@@ -138,13 +137,13 @@ func _on_upgrade_mouse_entered(button: Button) -> void:
 		upgrade_5:
 			upgrade_description.text = "Increase light radius and burn time."
 			match GlobalPlayerScript.fur_fire_upgrade:
-				1:
+				0:
 					upgrade_stat_upgrade.text = "1:00 death -> 1:45 death"
 					ash_cost.text =  "Ash cost: 100"
-				2:
+				1:
 					upgrade_stat_upgrade.text = "1:45 death -> 2:15 death"
 					ash_cost.text = "Ash cost: 250"
-				3:
+				2:
 					upgrade_stat_upgrade.text = "2:15 death -> 2:30 death"
 					ash_cost.text = "Ash cost: 600"
 				_:
@@ -195,10 +194,13 @@ func get_player_upgrade_level(upgrade_id: String) -> int:
 	return -1
 
 func _handle_upgrade_press(upgrade_var_name: String, button: Button) -> void:
-	if GlobalPlayerScript.get(upgrade_var_name) < 4:
+	if GlobalPlayerScript.get(upgrade_var_name) < 3:
+		GlobalPlayerScript.current_total_ashes -= get_upgrade_cost(upgrade_var_name, GlobalPlayerScript.get(upgrade_var_name))
+		Events.update_ash_count.emit()
 		GlobalPlayerScript.set(upgrade_var_name, GlobalPlayerScript.get(upgrade_var_name)+1)
 		_on_upgrade_mouse_entered(button)
-		check_affordability()
+
+		check_affordability()	
 
 func print_upgrade_for_debug() -> void:
 	for upgrades in upgrade_cost_dict:
@@ -210,5 +212,3 @@ func print_upgrade_for_debug() -> void:
 	print (" ----- ")
 	print (" ----- ")
 	print (" ----- ")
-
-	## func get_upgrade_cost(upgrade_name: String, current_level: int) -> int:

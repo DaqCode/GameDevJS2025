@@ -3,6 +3,8 @@ extends Node
 signal chop_tree
 signal open_upgrade
 
+signal update_ash_count
+
 signal add_inventory_item(name)
 # HI! heres how my signal works. This is emitted every time the player picks up and item
 # the name value:

@@ -294,6 +294,7 @@ anti_aliasing = false
 anti_aliasing_size = 0.01
 
 [node name="UpgradeStation" type="CanvasLayer"]
+visible = false
 script = ExtResource("1_3vi4m")
 
 [node name="Panel" type="Panel" parent="."]
