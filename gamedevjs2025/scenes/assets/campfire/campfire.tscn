@@ -1,9 +1,10 @@
-[gd_scene load_steps=10 format=3 uid="uid://v4rjai458d82"]
+[gd_scene load_steps=11 format=3 uid="uid://v4rjai458d82"]
 
 [ext_resource type="Texture2D" uid="uid://bbaymxyveihos" path="res://art/campfire/testCampfire.png" id="1_vhsok"]
 [ext_resource type="Script" uid="uid://dfn21imcakt7m" path="res://scenes/assets/campfire/campfire.gd" id="2_iudvd"]
 [ext_resource type="Texture2D" uid="uid://u0p3scasmocm" path="res://art/campfire/randomOval.png" id="2_k5uvh"]
 [ext_resource type="Texture2D" uid="uid://ppeybl4am48u" path="res://art/ui/interact-button-e.png" id="5_0g0qi"]
+[ext_resource type="FontFile" uid="uid://c0c1tspy4wjh1" path="res://art/fonts/ThaleahFat.ttf" id="5_l2mf0"]
 
 [sub_resource type="Gradient" id="Gradient_vhsok"]
 offsets = PackedFloat32Array(0.0693069, 0.30099, 0.526733, 0.790099, 0.89703, 1)
@@ -27,8 +28,9 @@ scale_max = 4.0
 scale_over_velocity_max = 221.25
 color_ramp = SubResource("GradientTexture1D_k5uvh")
 
-[sub_resource type="CircleShape2D" id="CircleShape2D_iudvd"]
-radius = 400.0
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_6j6n6"]
+radius = 425.0
+height = 1250.0
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_oyu63"]
 radius = 650.0
@@ -46,11 +48,12 @@ texture = ExtResource("2_k5uvh")
 
 [node name="CampfireOverlay" type="Sprite2D" parent="."]
 light_mask = 0
+position = Vector2(-17, -92)
 texture = ExtResource("1_vhsok")
 
 [node name="CampfireAshes" type="GPUParticles2D" parent="."]
 light_mask = 0
-position = Vector2(0, -250)
+position = Vector2(-17, -342)
 scale = Vector2(2, 2)
 amount = 150
 lifetime = 1.5
@@ -58,13 +61,14 @@ randomness = 0.4
 process_material = SubResource("ParticleProcessMaterial_vhsok")
 
 [node name="CampfireCollisionShape" type="CollisionShape2D" parent="."]
-position = Vector2(0, 50)
-shape = SubResource("CircleShape2D_iudvd")
+position = Vector2(0, 75)
+rotation = 1.5708
+shape = SubResource("CapsuleShape2D_6j6n6")
 
 [node name="CampfireInterract" type="Area2D" parent="."]
 
 [node name="CampfireInterracShape" type="CollisionShape2D" parent="CampfireInterract"]
-position = Vector2(0, 475)
+position = Vector2(0, 100)
 rotation = 1.5708
 shape = SubResource("CapsuleShape2D_oyu63")
 debug_color = Color(0.998383, 0.750268, 0.37792, 0.42)
@@ -79,6 +83,60 @@ scale = Vector2(20, 20)
 texture = ExtResource("5_0g0qi")
 expand_mode = 1
 stretch_mode = 5
+
+[node name="CampfireDeathTimer" type="Control" parent="."]
+layout_mode = 3
+anchors_preset = 0
+offset_right = 40.0
+offset_bottom = 40.0
+
+[node name="ProgressBar" type="ProgressBar" parent="CampfireDeathTimer"]
+unique_name_in_owner = true
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -995.0
+offset_top = 780.0
+offset_right = 955.0
+offset_bottom = 955.0
+grow_horizontal = 2
+grow_vertical = 2
+step = 1.0
+value = 83.0
+show_percentage = false
+
+[node name="LiveTimer" type="Label" parent="CampfireDeathTimer/ProgressBar"]
+unique_name_in_owner = true
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -507.5
+offset_top = 87.5
+offset_right = 507.5
+offset_bottom = 312.5
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_colors/font_color = Color(0.817969, 0.812352, 0, 1)
+theme_override_colors/font_shadow_color = Color(1, 0, 0, 1)
+theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
+theme_override_constants/shadow_offset_x = -3
+theme_override_constants/shadow_offset_y = 3
+theme_override_constants/outline_size = 1
+theme_override_constants/shadow_outline_size = 4
+theme_override_fonts/font = ExtResource("5_l2mf0")
+theme_override_font_sizes/font_size = 228
+text = "1:00/1:00"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="FireburnTimer" type="Timer" parent="CampfireDeathTimer"]
+wait_time = 60.0
 
 [connection signal="body_entered" from="CampfireInterract" to="." method="_on_campfire_interract_body_entered"]
 [connection signal="body_exited" from="CampfireInterract" to="." method="_on_campfire_interract_body_exited"]

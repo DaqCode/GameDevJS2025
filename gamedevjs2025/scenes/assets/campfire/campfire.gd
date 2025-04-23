@@ -1,6 +1,15 @@
 extends StaticBody2D
 
+@onready var progress_bar := %ProgressBar
+@onready var label := %LiveTimer
+
+var fire_duration : float = 60.0
+var fire_remaining : float = 60.0
+
 var can_interact : bool = false
+
+func _ready() -> void:
+	progress_bar.max_value = fire_duration
 
 func _process(_delta) -> void:
 	# The middle is 25
@@ -10,6 +19,19 @@ func _process(_delta) -> void:
 
 	if Input.is_action_just_pressed("interact") and can_interact:
 		Events.emit_signal("open_upgrade")
+
+	if fire_remaining > 0:
+		fire_remaining -= _delta
+		fire_remaining = max(fire_remaining, 0.0)
+
+	progress_bar.value = fire_remaining
+	label.text = "%d:%02d / %d:%02d" % [
+		int(fire_remaining) / 60,
+		int(fire_remaining) % 60,
+		int(fire_duration) / 60,
+		int(fire_duration) % 60
+	]
+
 
 
 func _on_campfire_interract_body_entered(body:Node2D) -> void:
