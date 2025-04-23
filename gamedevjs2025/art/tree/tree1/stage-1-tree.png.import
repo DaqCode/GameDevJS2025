@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://cbwrli1yl3nkf"
-path="res://.godot/imported/plank.png-df74d1dceef817696f855aeb049db437.ctex"
+uid="uid://brfrjygal55eo"
+path="res://.godot/imported/stage-1-tree.png-82ef555c90c0d6038ab6e8f851501fca.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://art/tree/plank.png"
-dest_files=["res://.godot/imported/plank.png-df74d1dceef817696f855aeb049db437.ctex"]
+source_file="res://art/tree/tree1/stage-1-tree.png"
+dest_files=["res://.godot/imported/stage-1-tree.png-82ef555c90c0d6038ab6e8f851501fca.ctex"]
 
 [params]
 

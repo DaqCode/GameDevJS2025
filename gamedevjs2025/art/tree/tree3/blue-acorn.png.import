@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://78lg0lg6asvx"
-path="res://.godot/imported/stage-2-tree.png-db15365f0387a31be1a9c7525dc4e309.ctex"
+uid="uid://dxb4ivwdo87ni"
+path="res://.godot/imported/blue-acorn.png-25a55280e68aeb337147acc314e6a92e.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://art/tree/stage-2-tree.png"
-dest_files=["res://.godot/imported/stage-2-tree.png-db15365f0387a31be1a9c7525dc4e309.ctex"]
+source_file="res://art/tree/tree3/blue-acorn.png"
+dest_files=["res://.godot/imported/blue-acorn.png-25a55280e68aeb337147acc314e6a92e.ctex"]
 
 [params]
 

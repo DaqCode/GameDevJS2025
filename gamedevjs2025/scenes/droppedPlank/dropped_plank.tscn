@@ -1,6 +1,7 @@
-[gd_scene load_steps=3 format=3 uid="uid://cbgk1uaomb4xh"]
+[gd_scene load_steps=4 format=3 uid="uid://cbgk1uaomb4xh"]
 
 [ext_resource type="Script" uid="uid://pho5qbiirwry" path="res://scenes/droppedPlank/droppedItem.gd" id="1_k65c1"]
+[ext_resource type="Texture2D" uid="uid://hiubxtkc5cj6" path="res://art/tree/tree3/blue-plank.png" id="2_kb20k"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_omk34"]
 radius = 24.0
@@ -14,6 +15,12 @@ offset_top = -4.0
 offset_right = 1.0
 offset_bottom = 6.0
 color = Color(0.283043, 0.203327, 0.0147991, 1)
+
+[node name="PlankSprite" type="Sprite2D" parent="."]
+unique_name_in_owner = true
+modulate = Color(0.0885599, 0.0885599, 0.0885599, 1)
+scale = Vector2(0.45, 0.45)
+texture = ExtResource("2_kb20k")
 
 [node name="PickupArea" type="CollisionShape2D" parent="."]
 shape = SubResource("CircleShape2D_omk34")

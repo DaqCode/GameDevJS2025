@@ -20,6 +20,7 @@ enum TreeTypes{
 	TREE_3
 }
 
+ 
 var rng := RandomNumberGenerator.new()
 var tree_type := TreeTypes.TREE_1
 
@@ -34,7 +35,7 @@ var drop_range = 5
 var tree_data = {
 
 	TreeTypes.TREE_1: {
-		"tree_sprite": preload("res://art/tree/stage-1-tree.png"),
+		"tree_sprite": preload("res://art/tree/tree1/stage-1-tree.png"),
 		"seed_drops": [0.15,0.85],
 		"seed_value": [0,1],
 		"plank_drops": [0.35,0.35,0.30],
@@ -44,7 +45,7 @@ var tree_data = {
 	},
 
 	TreeTypes.TREE_2: {
-		"tree_sprite": preload("res://art/tree/stage-2-tree.png"),
+		"tree_sprite": preload("res://art/tree/tree2/stage-2-tree.png"),
 		"seed_drops": [0.10,0.90],
 		"seed_value": [1,2],
 		"plank_drops": [0.40, 0.50,0.10],
@@ -55,7 +56,7 @@ var tree_data = {
 	},
 
 	TreeTypes.TREE_3: {
-		"tree_sprite": preload("res://art/tree/stage-3-tree.png"),
+		"tree_sprite": preload("res://art/tree/tree3/stage-3-tree.png"),
 		"seed_drops": [0.50, 0.35, 0.15],
 		"seed_value": [3, 2, 1],
 		"plank_drops": [1.0],
@@ -139,10 +140,13 @@ func chop_tree() -> void:
 
 	print("CHOPPING: %s" % get_tree_name(tree_type))
 	print("Dropped Seeds: %d, Planks: %d" % [seed_value, plank_value])
+	
 	# loop to spawn in the dropped planksas
 	dropItems(dropped_plank_preload,plank_value,"plank")
 	dropItems(dropped_seed_preload,seed_value,"seed")
 	
+	Events.get_tree_and_seed_type.emit(get_tree_name(tree_type))
+
 	emit_signal("begin_waiting_until_chop")
 	interact_button.visible = false
 	health_bar.visible = false
