@@ -1,7 +1,11 @@
-[gd_scene load_steps=9 format=3 uid="uid://d3objfw2to154"]
+[gd_scene load_steps=13 format=3 uid="uid://d3objfw2to154"]
 
 [ext_resource type="Texture2D" uid="uid://buqg7mfyyn25j" path="res://art/misc/Menu.png" id="1_bod56"]
+[ext_resource type="Script" uid="uid://dawdagrcao2vu" path="res://scenes/UI/menu/menu.gd" id="1_lakgf"]
 [ext_resource type="Texture2D" uid="uid://bh8dmsqrxod" path="res://art/background/background_menu.png" id="1_u7r3n"]
+[ext_resource type="Theme" uid="uid://bwfsa4p1kj52m" path="res://themes/MenuTheme.tres" id="3_3gbhm"]
+[ext_resource type="Texture2D" uid="uid://dlfisxli4isc8" path="res://art/misc/Start.png" id="3_sty8r"]
+[ext_resource type="Texture2D" uid="uid://ujokv0vam4m4" path="res://art/misc/setting.png" id="4_3gbhm"]
 
 [sub_resource type="Gradient" id="Gradient_u7r3n"]
 offsets = PackedFloat32Array(0.265347, 0.592079, 0.845545, 0.962376, 1)
@@ -213,6 +217,8 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
+theme = ExtResource("3_3gbhm")
+script = ExtResource("1_lakgf")
 
 [node name="MenuBackground" type="TextureRect" parent="."]
 modulate = Color(0, 0, 0, 1)
@@ -244,6 +250,7 @@ scale = Vector2(0.95, 0.95)
 texture = ExtResource("1_bod56")
 
 [node name="ButtonContainer" type="GridContainer" parent="."]
+unique_name_in_owner = true
 layout_mode = 1
 anchors_preset = 8
 anchor_left = 0.5
@@ -256,19 +263,116 @@ offset_right = 127.0
 offset_bottom = -366.0
 grow_horizontal = 2
 grow_vertical = 2
-pivot_offset = Vector2(169, 66)
+pivot_offset = Vector2(174, 60)
 
 [node name="Play" type="Button" parent="ButtonContainer"]
 layout_mode = 2
 size_flags_horizontal = 3
 size_flags_vertical = 3
+theme = ExtResource("3_3gbhm")
+icon = ExtResource("3_sty8r")
+icon_alignment = 1
+vertical_icon_alignment = 0
+expand_icon = true
 
 [node name="Settings" type="Button" parent="ButtonContainer"]
 layout_mode = 2
 size_flags_horizontal = 3
 size_flags_vertical = 3
+theme = ExtResource("3_3gbhm")
+icon = ExtResource("4_3gbhm")
+icon_alignment = 1
+expand_icon = true
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]
 libraries = {
 &"": SubResource("AnimationLibrary_b5shq")
 }
+autoplay = "IntroSequence"
+
+[node name="Settings" type="Control" parent="."]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -541.0
+offset_top = -299.0
+offset_right = -187.0
+offset_bottom = 97.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="SettingPanel" type="Panel" parent="Settings"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="SettingContainer" type="GridContainer" parent="Settings/SettingPanel"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -164.5
+offset_top = -77.0
+offset_right = 164.5
+offset_bottom = 244.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="MasterSlider" type="HSlider" parent="Settings/SettingPanel/SettingContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 2
+
+[node name="Master" type="Label" parent="Settings/SettingPanel/SettingContainer/MasterSlider"]
+layout_mode = 0
+offset_top = -28.0
+offset_right = 82.0
+offset_bottom = -2.0
+theme_override_font_sizes/font_size = 28
+text = "Master"
+
+[node name="MusicSlider" type="HSlider" parent="Settings/SettingPanel/SettingContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 2
+
+[node name="Music" type="Label" parent="Settings/SettingPanel/SettingContainer/MusicSlider"]
+layout_mode = 0
+offset_top = -28.0
+offset_right = 82.0
+offset_bottom = -2.0
+theme_override_font_sizes/font_size = 28
+text = "Music"
+
+[node name="SFXSlider" type="HSlider" parent="Settings/SettingPanel/SettingContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 2
+
+[node name="SFX" type="Label" parent="Settings/SettingPanel/SettingContainer/SFXSlider"]
+layout_mode = 0
+offset_top = -28.0
+offset_right = 82.0
+offset_bottom = -2.0
+theme_override_font_sizes/font_size = 28
+text = "SFX"
+
+[node name="SettingLabel" type="Label" parent="Settings/SettingPanel"]
+layout_mode = 1
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -85.5
+offset_top = 21.0
+offset_right = 85.5
+offset_bottom = 65.0
+grow_horizontal = 2
+text = "Settings"
