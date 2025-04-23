@@ -144,8 +144,6 @@ func chop_tree() -> void:
 	# loop to spawn in the dropped planksas
 	dropItems(dropped_plank_preload,plank_value,"plank")
 	dropItems(dropped_seed_preload,seed_value,"seed")
-	
-	Events.get_tree_and_seed_type.emit(get_tree_name(tree_type))
 
 	emit_signal("begin_waiting_until_chop")
 	interact_button.visible = false
