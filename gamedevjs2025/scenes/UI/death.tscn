@@ -1,0 +1,277 @@
+[gd_scene load_steps=11 format=3 uid="uid://nw11rnx6hcuq"]
+
+[ext_resource type="Texture2D" uid="uid://j0kj4m454kja" path="res://art/background/backgroundthinggy.png" id="1_howet"]
+[ext_resource type="Texture2D" uid="uid://u0p3scasmocm" path="res://art/campfire/randomOval.png" id="2_328fe"]
+[ext_resource type="Texture2D" uid="uid://bbaymxyveihos" path="res://art/campfire/testCampfire.png" id="3_sx3sl"]
+[ext_resource type="Theme" uid="uid://ds0tw2n8b3ylm" path="res://themes/DeathTheme.tres" id="4_sx3sl"]
+
+[sub_resource type="Gradient" id="Gradient_np18m"]
+offsets = PackedFloat32Array(0.0693069, 0.30099, 0.526733, 0.790099, 0.89703, 1)
+colors = PackedColorArray(1, 0, 0, 1, 0.988723, 0.608961, 0.296962, 1, 0.988235, 0.635294, 0.309804, 1, 0.995926, 0.873718, 0.409788, 1, 0.160784, 0.152941, 0, 0.584314, 1, 1, 1, 0)
+
+[sub_resource type="GradientTexture1D" id="GradientTexture1D_0g0qi"]
+gradient = SubResource("Gradient_np18m")
+
+[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_qy7aj"]
+particle_flag_disable_z = true
+emission_shape_scale = Vector3(4, 4, 1)
+emission_shape = 3
+emission_box_extents = Vector3(50, 50, 0)
+inherit_velocity_ratio = 0.5
+direction = Vector3(0, -1, 0)
+initial_velocity_min = 500.0
+initial_velocity_max = 581.75
+gravity = Vector3(0, -10, 0)
+scale_min = 2.0
+scale_max = 8.0
+scale_over_velocity_max = 221.25
+color_ramp = SubResource("GradientTexture1D_0g0qi")
+
+[sub_resource type="Animation" id="Animation_4k2fk"]
+resource_name = "death animation"
+length = 10.0
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("PointLight2D:texture_scale")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 1, 1.40147, 1.63573, 1.68419, 1.73266, 1.77305, 1.80605, 1.82016, 1.86789, 1.88851, 1.9, 1.94275, 2.0073, 2.2052, 2.97258, 3.2),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 0.554785, 1, 1, 1, 1, 1),
+"update": 0,
+"values": [6.0, 3.73, 3.73, 8.0, 8.5, 8.82, 8.18, 9.3, 7.53, 9.0, 7.6, 6.88, 8.5, 8.5, 8.0, 8.0, 0.01]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("CampfireAshes:emitting")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 2.98066),
+"transitions": PackedFloat32Array(1, 1),
+"update": 1,
+"values": [true, false]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("CampfireOverlay:modulate")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0, 5, 6.03539),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 0,
+"values": [Color(1, 1, 1, 1), Color(1, 1, 1, 1), Color(0, 0, 0, 1)]
+}
+tracks/3/type = "value"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("CampfireOverlay:scale")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(4.84473, 5.00896, 6.03539),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 0,
+"values": [Vector2(0.115, 0.087), Vector2(0.165, 0.125), Vector2(1e-05, 1e-05)]
+}
+
+[sub_resource type="Animation" id="Animation_328fe"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("PointLight2D:texture_scale")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [6.0]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("CampfireAshes:emitting")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [true]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("CampfireOverlay:modulate")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Color(1, 1, 1, 1)]
+}
+tracks/3/type = "value"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("CampfireOverlay:scale")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(0.115, 0.087)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_g5w0a"]
+_data = {
+&"RESET": SubResource("Animation_328fe"),
+&"death animation": SubResource("Animation_4k2fk")
+}
+
+[node name="Death" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="TextureRect" type="TextureRect" parent="."]
+modulate = Color(0.0338533, 0.0338533, 0.0338533, 1)
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = ExtResource("1_howet")
+
+[node name="PointLight2D" type="PointLight2D" parent="."]
+position = Vector2(567, 394)
+scale = Vector2(0.115, 0.087)
+energy = 25.0
+texture = ExtResource("2_328fe")
+texture_scale = 6.0
+
+[node name="CampfireAshes" type="GPUParticles2D" parent="."]
+light_mask = 0
+position = Vector2(574, 369)
+scale = Vector2(0.115, 0.087)
+amount = 150
+lifetime = 1.5
+randomness = 0.4
+process_material = SubResource("ParticleProcessMaterial_qy7aj")
+
+[node name="CampfireOverlay" type="Sprite2D" parent="."]
+light_mask = 0
+position = Vector2(567.92, 382)
+scale = Vector2(0.115, 0.087)
+texture = ExtResource("3_sx3sl")
+
+[node name="GameOverScreen" type="Panel" parent="."]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -411.0
+offset_top = -167.0
+offset_right = 411.0
+offset_bottom = 167.0
+grow_horizontal = 2
+grow_vertical = 2
+theme = ExtResource("4_sx3sl")
+
+[node name="GameOver" type="Label" parent="GameOverScreen"]
+layout_mode = 1
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -215.0
+offset_top = 22.0
+offset_right = 216.0
+offset_bottom = 81.0
+grow_horizontal = 2
+text = "Game Over"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="TotalAshes" type="Label" parent="GameOverScreen"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -336.5
+offset_top = -94.0
+offset_right = 336.5
+offset_bottom = -22.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_colors/font_color = Color(0.869328, 0.548077, 3.85046e-07, 1)
+theme_override_font_sizes/font_size = 48
+text = "You got a total of: "
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="PersonalWords" type="Label" parent="GameOverScreen"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -283.0
+offset_top = -43.0
+offset_right = 283.0
+offset_bottom = 29.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_colors/font_color = Color(0.943251, 0.88017, 0, 1)
+theme_override_font_sizes/font_size = 48
+text = "\"Seriously... How\""
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="ButtonRetry" type="GridContainer" parent="GameOverScreen"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -255.5
+offset_top = 32.0
+offset_right = 255.5
+offset_bottom = 149.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/h_separation = 25
+columns = 2
+
+[node name="RetryGame" type="Button" parent="GameOverScreen/ButtonRetry"]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+text = "Retry"
+
+[node name="BackToMenu" type="Button" parent="GameOverScreen/ButtonRetry"]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+text = "Back To Menu"
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+libraries = {
+&"": SubResource("AnimationLibrary_g5w0a")
+}

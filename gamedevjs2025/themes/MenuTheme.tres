@@ -813,7 +813,7 @@ cache/0/36/0/glyphs/20/texture_idx = 0
 
 [sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_ishxb"]
 
-[sub_resource type="Image" id="Image_qanup"]
+[sub_resource type="Image" id="Image_3gwyc"]
 data = {
 "data": PackedByteArray("////AP///0D///9A////AP///wD///9A////QP///wD///8A////QP///0D///8A////AP///0D///9A////AP///wD///9A////QP///wD///8A////QP///0D///8A////AP///0D///9A////AP///wD///9A////QP///wD///8A////QP///0D///8A////AP///0D///9A////AP///wD///9A////QP///wD///8A////QP///0D///8A////AP///0D///9A////AP///wD///9A////QP///wD///8A////QP///0D///8A////AP///0D///9A////AA=="),
 "format": "RGBA8",
@@ -823,7 +823,7 @@ data = {
 }
 
 [sub_resource type="ImageTexture" id="ImageTexture_15hpc"]
-image = SubResource("Image_qanup")
+image = SubResource("Image_3gwyc")
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_v2b6s"]
 content_margin_left = 4.0
