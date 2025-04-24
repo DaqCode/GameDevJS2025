@@ -13,6 +13,7 @@ const MIN_TREE_SEPARATION := 60
 # - Each of these trees need to be instantiated, and connected to a signal for the player to chop down.
 
 func _ready() -> void:
+	$AshCountForLater.start()
 	for i in range(randi_range(3, 7)):
 		var tree = TreeScene.instantiate()
 		add_child(tree)
@@ -39,3 +40,7 @@ func _ready() -> void:
 
 func is_in_campfire_zone(pos: Vector2) -> bool:
 	return pos.x >= 631.0 and pos.x <= 719.0 and pos.y >= 265.0 and pos.y <= 322.0
+
+func _on_ash_count_for_later_timeout() -> void:
+	GlobalPlayerScript.total_ashes_throughout += 1
+	$AshCountForLater.start()

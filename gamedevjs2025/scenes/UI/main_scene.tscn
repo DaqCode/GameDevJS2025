@@ -36,3 +36,7 @@ position = Vector2(627, 300)
 [node name="InventoryScreen" parent="Bron" instance=ExtResource("5_igrk7")]
 
 [node name="AshCount" parent="Bron" instance=ExtResource("6_r7yxp")]
+
+[node name="AshCountForLater" type="Timer" parent="."]
+
+[connection signal="timeout" from="AshCountForLater" to="." method="_on_ash_count_for_later_timeout"]

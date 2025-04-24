@@ -20,7 +20,7 @@ func on_button_entered(button: Button) -> void:
 
 
 func on_button_exited(button: Button) -> void:
-	button.pivot_offset = Vector2(194, 32)
+	b	utton.pivot_offset = Vector2(194, 32)
 	var tween = create_tween()
 	tween.tween_property(button, "scale", Vector2(1.0, 1.0), 0.1).set_trans(Tween.TRANS_QUART).set_ease(Tween.EASE_OUT)
 	

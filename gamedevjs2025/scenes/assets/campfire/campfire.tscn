@@ -140,3 +140,4 @@ wait_time = 60.0
 
 [connection signal="body_entered" from="CampfireInterract" to="." method="_on_campfire_interract_body_entered"]
 [connection signal="body_exited" from="CampfireInterract" to="." method="_on_campfire_interract_body_exited"]
+[connection signal="timeout" from="CampfireDeathTimer/FireburnTimer" to="." method="_on_fireburn_timer_timeout"]
