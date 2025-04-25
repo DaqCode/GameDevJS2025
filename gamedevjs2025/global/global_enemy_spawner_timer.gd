@@ -6,8 +6,13 @@ var peace_duration := 240.0 # 4 minutes
 var enemy_duration := 60.0  # 1 minute
 
 func _ready() -> void:
-	print(">>> Peace begins.")
-	start_peace_timer()
+	var current_scene = get_tree().current_scene
+	var expected_script = load("res://scenes/mainPlayArea/main_scene.gd")
+	if current_scene.get_script() == expected_script:
+		print(">>> Peace begins.")
+		start_peace_timer()
+	else:
+		print("No, its not the main scene.")
 
 func start_peace_timer() -> void:
 	GlobalPlayerScript.is_peace_time = true
