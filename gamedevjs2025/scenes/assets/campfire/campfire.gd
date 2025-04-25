@@ -4,8 +4,8 @@ extends StaticBody2D
 @onready var label := %LiveTimer
 @onready var timer:= $CampfireDeathTimer/FireburnTimer
 
-var fire_duration : float = 10.0
-var fire_remaining : float = 10.0
+var fire_duration : float = 60.0
+var fire_remaining : float = 60.0
 
 var can_interact : bool = false
 

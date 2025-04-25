@@ -13,7 +13,8 @@ const MIN_TREE_SEPARATION := 60
 # - Each of these trees need to be instantiated, and connected to a signal for the player to chop down.
 
 func _ready() -> void:
-
+	reset_game()
+	
 	$AshCountForLater.start()
 	for i in range(randi_range(3, 7)):
 		var tree = TreeScene.instantiate()

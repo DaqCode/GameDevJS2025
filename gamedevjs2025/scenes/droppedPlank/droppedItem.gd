@@ -1,8 +1,5 @@
 extends Area2D
 
-@onready var plank_texture := %PlankSprite
-@onready var seed_texture := %SeedSprite
-
 @export var spritePath : NodePath
 var sprite : Node
 

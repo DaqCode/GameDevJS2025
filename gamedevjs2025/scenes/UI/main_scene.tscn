@@ -1,4 +1,4 @@
-[gd_scene load_steps=11 format=3 uid="uid://dfafvjt73d4f0"]
+[gd_scene load_steps=13 format=3 uid="uid://dfafvjt73d4f0"]
 
 [ext_resource type="Script" uid="uid://bwtr47tu3e04o" path="res://scenes/mainPlayArea/main_scene.gd" id="1_64uqr"]
 [ext_resource type="Texture2D" uid="uid://j0kj4m454kja" path="res://art/background/backgroundthinggy.png" id="2_4jxuj"]
@@ -8,10 +8,15 @@
 [ext_resource type="PackedScene" uid="uid://bp7m2f686niqc" path="res://scenes/UI/ash_count.tscn" id="6_r7yxp"]
 [ext_resource type="PackedScene" uid="uid://djd8rkntt51cb" path="res://scenes/enemies/enemy_controller.tscn" id="7_7rv43"]
 [ext_resource type="Texture2D" uid="uid://dgni23wj4cf4r" path="res://art/ui/progress-bar-back.png" id="8_igrk7"]
+[ext_resource type="FontFile" uid="uid://dy7x4dcgnp2ql" path="res://art/enemies/Pixel.ttf" id="8_r7yxp"]
+[ext_resource type="FontFile" uid="uid://bi4j1fsd62mrj" path="res://art/fonts/EXEPixelPerfect.ttf" id="9_oakt4"]
 [ext_resource type="Texture2D" uid="uid://quhc36hct0mt" path="res://art/ui/progress-bar-purple.png" id="9_r7yxp"]
 
 [sub_resource type="LabelSettings" id="LabelSettings_7rv43"]
-font_size = 22
+line_spacing = 0.0
+font = ExtResource("9_oakt4")
+font_size = 32
+shadow_size = 0
 
 [node name="MainScene" type="Node2D"]
 script = ExtResource("1_64uqr")
@@ -46,29 +51,39 @@ position = Vector2(627, 300)
 [node name="AshCountForLater" type="Timer" parent="."]
 
 [node name="EnemyController" parent="." node_paths=PackedStringArray("spawn_progress_bar") instance=ExtResource("7_7rv43")]
-spawn_progress_bar = NodePath("../EnemySpawnUI/VBoxContainer/EnemySpawnTimeRemaining")
+spawn_progress_bar = NodePath("../EnemySpawnUI/EnemySpawnTimeRemaining")
 
 [node name="EnemySpawnUI" type="CanvasLayer" parent="."]
 
-[node name="VBoxContainer" type="VBoxContainer" parent="EnemySpawnUI"]
-anchors_preset = 5
-anchor_left = 0.5
-anchor_right = 0.5
-offset_left = -81.5
-offset_top = 27.0
-offset_right = 81.5
-offset_bottom = 81.0
-grow_horizontal = 2
-alignment = 1
-
-[node name="EnemySpawnLabel" type="Label" parent="EnemySpawnUI/VBoxContainer"]
-layout_mode = 2
+[node name="EnemySpawnLabel" type="Label" parent="EnemySpawnUI"]
+offset_left = 427.5
+offset_top = 16.0
+offset_right = 724.5
+offset_bottom = 44.0
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_fonts/font = ExtResource("8_r7yxp")
+theme_override_font_sizes/font_size = 22
 text = "Next Enemy Wave in:"
 label_settings = SubResource("LabelSettings_7rv43")
+horizontal_alignment = 1
+vertical_alignment = 1
+autowrap_mode = 2
+metadata/_edit_lock_ = true
 
-[node name="EnemySpawnTimeRemaining" type="TextureProgressBar" parent="EnemySpawnUI/VBoxContainer"]
+[node name="EnemySpawnTimeRemaining" type="TextureProgressBar" parent="EnemySpawnUI"]
 custom_minimum_size = Vector2(40, 20)
-layout_mode = 2
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -72.0
+offset_top = -273.0
+offset_right = 28.0
+offset_bottom = -253.0
+grow_horizontal = 2
+grow_vertical = 2
+scale = Vector2(1.5, 1.5)
 size_flags_vertical = 3
 value = 50.0
 nine_patch_stretch = true

@@ -88,9 +88,9 @@ func _on_bron_area_area_entered(area: Area2D) -> void:
 	if area.is_in_group("Tree"):
 		print("Can trop tree now")
 
-
 func _on_bron_area_area_exited(area: Area2D) -> void:
-	pass # Replace with function body.
+	print("Shouldn't be important, leave it as it is")
+	# Not sure why this was put, but i suppose this shoould be put in for now.	
 
 func _open_upgrade_menu() -> void:
 	$UpgradeStation.visible = true

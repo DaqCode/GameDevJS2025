@@ -162,7 +162,10 @@ func dropItems(itemPreload,count,type):
 		dropped_item.tree_type = tree_type
 		dropped_item.item_type = type
 		dropped_item.position = tree_col_shape.global_position + Vector2(randf_range(-drop_range,drop_range),randf_range(-drop_range,drop_range)) # get rand pos to drop
-		get_tree().current_scene.add_child(dropped_item)
+		
+		# Removed the get_tree().current_scene.add_child(dropped_item)
+		# Recommended to use Call_defered due to physics blowing up...
+		call_deferred("drop_item", dropped_item)
 
 func _on_tree_interaction_body_entered(body: Node2D) -> void:
 	if body.is_in_group("player"):
@@ -196,3 +199,6 @@ func _on_regrow_time_timeout() -> void:
 		can_be_chopped = true
 	
 	tree_texture.region_rect = tree_sprite_offset["stage_%s" % current_stage]
+
+func drop_item(item: Node) -> void:
+	get_tree().current_scene.add_child(item)
