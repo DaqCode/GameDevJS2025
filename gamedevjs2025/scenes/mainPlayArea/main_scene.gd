@@ -13,31 +13,37 @@ const MIN_TREE_SEPARATION := 60
 # - Each of these trees need to be instantiated, and connected to a signal for the player to chop down.
 
 func _ready() -> void:
+	Events.tree_chopped_down.connect(spawn_tree)
 	reset_game()
 	
 	$AshCountForLater.start()
 	for i in range(randi_range(3, 7)):
-		var tree = TreeScene.instantiate()
-		add_child(tree)
-
-		while true:
-			var pos = Vector2(randf_range(428, 892), randf_range(156, 406))
-			if is_in_campfire_zone(pos):
-				continue
-
-			var safe := true
-			for other_pos in placed_positions:
-				if pos.distance_to(other_pos) < MIN_TREE_SEPARATION:
-					safe = false
-					break
-			if not safe:
-				# too close, pick again
-				continue  
-
-			placed_positions.append(pos)
-			tree.global_position = pos
-			break
+		spawn_tree()
 		# print("Tree %d at %s" % [i, tree.pos])
+
+
+func spawn_tree() -> void:
+	print("Another Tree Spawned")
+	var tree = TreeScene.instantiate()
+	add_child(tree)
+
+	while true:
+		var pos = Vector2(randf_range(428, 892), randf_range(156, 406))
+		if is_in_campfire_zone(pos):
+			continue
+
+		var safe := true
+		for other_pos in placed_positions:
+			if pos.distance_to(other_pos) < MIN_TREE_SEPARATION:
+				safe = false
+				break
+		if not safe:
+			# too close, pick again
+			continue  
+
+		placed_positions.append(pos)
+		tree.global_position = pos
+		break
 
 
 func is_in_campfire_zone(pos: Vector2) -> bool:
