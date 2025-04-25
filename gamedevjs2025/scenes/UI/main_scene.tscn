@@ -1,4 +1,4 @@
-[gd_scene load_steps=7 format=3 uid="uid://dfafvjt73d4f0"]
+[gd_scene load_steps=11 format=3 uid="uid://dfafvjt73d4f0"]
 
 [ext_resource type="Script" uid="uid://bwtr47tu3e04o" path="res://scenes/mainPlayArea/main_scene.gd" id="1_64uqr"]
 [ext_resource type="Texture2D" uid="uid://j0kj4m454kja" path="res://art/background/backgroundthinggy.png" id="2_4jxuj"]
@@ -6,6 +6,12 @@
 [ext_resource type="PackedScene" uid="uid://uhlblrwdub6m" path="res://scenes/characters/bron/bron.tscn" id="4_7rv43"]
 [ext_resource type="PackedScene" uid="uid://dac8aowpc3jge" path="res://scenes/UI/inventory_screen.tscn" id="5_igrk7"]
 [ext_resource type="PackedScene" uid="uid://bp7m2f686niqc" path="res://scenes/UI/ash_count.tscn" id="6_r7yxp"]
+[ext_resource type="PackedScene" uid="uid://djd8rkntt51cb" path="res://scenes/enemies/enemy_controller.tscn" id="7_7rv43"]
+[ext_resource type="Texture2D" uid="uid://dgni23wj4cf4r" path="res://art/ui/progress-bar-back.png" id="8_igrk7"]
+[ext_resource type="Texture2D" uid="uid://quhc36hct0mt" path="res://art/ui/progress-bar-purple.png" id="9_r7yxp"]
+
+[sub_resource type="LabelSettings" id="LabelSettings_7rv43"]
+font_size = 22
 
 [node name="MainScene" type="Node2D"]
 script = ExtResource("1_64uqr")
@@ -38,5 +44,35 @@ position = Vector2(627, 300)
 [node name="AshCount" parent="Bron" instance=ExtResource("6_r7yxp")]
 
 [node name="AshCountForLater" type="Timer" parent="."]
+
+[node name="EnemyController" parent="." node_paths=PackedStringArray("spawn_progress_bar") instance=ExtResource("7_7rv43")]
+spawn_progress_bar = NodePath("../EnemySpawnUI/VBoxContainer/EnemySpawnTimeRemaining")
+
+[node name="EnemySpawnUI" type="CanvasLayer" parent="."]
+
+[node name="VBoxContainer" type="VBoxContainer" parent="EnemySpawnUI"]
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -81.5
+offset_top = 27.0
+offset_right = 81.5
+offset_bottom = 81.0
+grow_horizontal = 2
+alignment = 1
+
+[node name="EnemySpawnLabel" type="Label" parent="EnemySpawnUI/VBoxContainer"]
+layout_mode = 2
+text = "Next Enemy Wave in:"
+label_settings = SubResource("LabelSettings_7rv43")
+
+[node name="EnemySpawnTimeRemaining" type="TextureProgressBar" parent="EnemySpawnUI/VBoxContainer"]
+custom_minimum_size = Vector2(40, 20)
+layout_mode = 2
+size_flags_vertical = 3
+value = 50.0
+nine_patch_stretch = true
+texture_under = ExtResource("8_igrk7")
+texture_progress = ExtResource("9_r7yxp")
 
 [connection signal="timeout" from="AshCountForLater" to="." method="_on_ash_count_for_later_timeout"]

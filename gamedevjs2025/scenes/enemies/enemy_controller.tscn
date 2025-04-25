@@ -1,0 +1,8 @@
+[gd_scene load_steps=2 format=3 uid="uid://djd8rkntt51cb"]
+
+[ext_resource type="Script" uid="uid://c1sgubns5yj2p" path="res://scenes/enemies/enemy_controller.gd" id="1_cxpcr"]
+
+[node name="EnemyController" type="Node2D"]
+script = ExtResource("1_cxpcr")
+
+[node name="EnemySpawnTimer" type="Timer" parent="."]
