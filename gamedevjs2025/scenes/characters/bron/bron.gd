@@ -5,24 +5,24 @@ var default_speed := 200
 
 @onready var animated_sprite_2d: AnimatedSprite2D = $AnimatedSprite2D
 @onready var axe_damage_area: Area2D = %AxeDamageArea
-@onready var collision_shape_2d: CollisionShape2D = $Axe/AxeDamageArea/CollisionShape2D
-@onready var animation_player: AnimationPlayer = $AnimationPlayer
-@onready var axe_sprite: Sprite2D = $Axe/AxeSprite
-@onready var axe: Node2D = $Axe
+@onready var collision_shape_2d: CollisionShape2D = $AnimatedSprite2D/Axe/AxeDamageArea/CollisionShape2D
+@onready var animation_player: AnimationPlayer = $AnimatedSprite2D/AnimationPlayer
+@onready var axe_sprite: Sprite2D = $AnimatedSprite2D/Axe/AxeSprite
+@onready var axe: Node2D = $AnimatedSprite2D/Axe
 
 var near_tree: Node = null
 var chopping := false
+var facing_right = true
 
 func _ready() -> void:
 	Events.connect("open_upgrade", Callable(self, "_open_upgrade_menu"))
 
 func _input(input: InputEvent) -> void:
 	if input.is_action_pressed("interact"):
-		if not animation_player.is_playing():
-			print("playing.....")
-			chop_tree()
+		chop_tree()
 	
 	if input.is_action_released("interact"):
+		print("STOP!!!!")
 		stop_chopping_tree()
 		
 
@@ -48,11 +48,11 @@ func _physics_process(_delta: float) -> void:
 	velocity = input_direction * speed
 
 	if input_direction.x > 0:
-		animated_sprite_2d.flip_h = false
-		axe.scale.x = 1
+		#animated_sprite_2d.flip_h = false
+		animated_sprite_2d.scale.x = 2.5
 	elif input_direction.x < 0:
-		animated_sprite_2d.flip_h = true
-		axe.scale.x = -1
+		#animated_sprite_2d.flip_h = true
+		animated_sprite_2d.scale.x = -2.5
 	
 	if input_direction == Vector2.ZERO:
 		animated_sprite_2d.play("idle")

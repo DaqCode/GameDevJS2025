@@ -1,5 +1,6 @@
 extends Node2D
 
+@export var health := 1
 @export var speed := 15.0 # Pixels per second
 @onready var sprite: AnimatedSprite2D = $AnimatedSprite2D 
 
@@ -12,6 +13,7 @@ func _ready():
 
 
 func _process(delta):
+	# Path finding
 	if not is_instance_valid(player):
 		return
 
@@ -24,3 +26,11 @@ func _process(delta):
 	elif player.global_position.x > global_position.x:
 		sprite.flip_h = false
 	
+
+
+func _on_area_2d_area_entered(area: Area2D) -> void:
+	if area.is_in_group("axe"):
+		health -= 1
+
+		if health <= 0:
+			queue_free()

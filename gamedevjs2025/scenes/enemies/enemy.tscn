@@ -1,4 +1,4 @@
-[gd_scene load_steps=7 format=3 uid="uid://bn84f5yqsnufg"]
+[gd_scene load_steps=8 format=3 uid="uid://bn84f5yqsnufg"]
 
 [ext_resource type="Texture2D" uid="uid://dbib58sxrffrm" path="res://art/enemies/enemy.png" id="1_6xk8f"]
 [ext_resource type="Script" uid="uid://ctog6qly1w7hr" path="res://scenes/enemies/enemy.gd" id="1_8e3ao"]
@@ -27,6 +27,9 @@ animations = [{
 "speed": 5.0
 }]
 
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_8e3ao"]
+radius = 7.0
+
 [node name="Enemy" type="Node2D"]
 z_index = 10
 y_sort_enabled = true
@@ -41,3 +44,11 @@ sprite_frames = SubResource("SpriteFrames_fcftc")
 autoplay = "default"
 frame = 1
 frame_progress = 0.272826
+
+[node name="Area2D" type="Area2D" parent="."]
+collision_layer = 8
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]
+shape = SubResource("CapsuleShape2D_8e3ao")
+
+[connection signal="area_entered" from="Area2D" to="." method="_on_area_2d_area_entered"]
