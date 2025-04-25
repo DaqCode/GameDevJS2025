@@ -15,22 +15,15 @@ func _ready() -> void:
 	spawn_progress_bar.max_value = peace_time
 	enemy_spawn_timer.timeout.connect(spawn_enemy)
 	enemy_spawn_timer.start()
-	
 
 
 func _process(_dt: float) -> void:
 	spawn_progress_bar.value = enemy_spawn_timer.time_left
-	
 
 
 func spawn_enemy():
-	print("Player Position: %s" % get_tree().get_first_node_in_group("player").global_position)
 	for i in range(num_enemies_to_spawn): 
 		var temp_enemy = enemy.instantiate()
-		
-		#temp_enemy.global_position = Vector2(600, 300)
-		
-		print("Enemy Position: %s" % temp_enemy.global_position)
 		get_parent().add_child(temp_enemy)
 		temp_enemy.global_position = get_random_offscreen_position()
 
@@ -41,24 +34,11 @@ func get_random_offscreen_position():
 	var camera := get_tree().get_first_node_in_group("bron_camera")
 	if not camera:
 		printerr("Error: Camera node 'bron_camera' not found!")
-		return Vector2.ZERO # Return a default position or handle error
+		return Vector2.ZERO 
 		
-	# --- REMOVE OR COMMENT OUT THE DEBUG LINE ---
-	# print("DEBUG: Spawning at camera position: %s" % camera.global_position)
-	#return camera.global_position + Vector2(randf_range())
-	# --- END REMOVAL ---
-
-	# --- RESTORE ORIGINAL LOGIC ---	
 	var zoom = camera.zoom
 	var half_size = (viewport_size / zoom) * 0.5
 	var cam_pos = camera.global_position
-	
-	# --- Debug Prints ---
-	print("Viewport Size: %s" % viewport_size)
-	print("Camera Zoom: %s" % zoom)
-	print("Camera Position: %s" % cam_pos)
-	print("Half Size: %s" % half_size)
-	# --- End Debug Prints ---
 
 	var x_min = cam_pos.x - half_size.x
 	var x_max = cam_pos.x + half_size.x
@@ -81,12 +61,5 @@ func get_random_offscreen_position():
 		3:  # Right
 			spawn_pos.x = x_max + margin
 			spawn_pos.y = randf_range(y_min, y_max)
-
-	# --- Add final debug print ---
-	print("Final Calculated Spawn Position (off-screen): %s" % spawn_pos)
-	# --- End final debug print ---
-
-	# Uncomment to debug
-	# draw_spawn_debug_marker(spawn_pos)
 
 	return spawn_pos
