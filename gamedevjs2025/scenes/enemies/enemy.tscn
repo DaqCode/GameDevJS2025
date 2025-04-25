@@ -1,7 +1,8 @@
-[gd_scene load_steps=8 format=3 uid="uid://bn84f5yqsnufg"]
+[gd_scene load_steps=9 format=3 uid="uid://bn84f5yqsnufg"]
 
 [ext_resource type="Texture2D" uid="uid://dbib58sxrffrm" path="res://art/enemies/enemy.png" id="1_6xk8f"]
 [ext_resource type="Script" uid="uid://ctog6qly1w7hr" path="res://scenes/enemies/enemy.gd" id="1_8e3ao"]
+[ext_resource type="AudioStream" uid="uid://hgpjw4nfw4jd" path="res://sounds/sfx/zombie_sound_1.mp3" id="3_38ino"]
 
 [sub_resource type="CanvasItemMaterial" id="CanvasItemMaterial_8e3ao"]
 
@@ -51,4 +52,13 @@ collision_layer = 8
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]
 shape = SubResource("CapsuleShape2D_8e3ao")
 
+[node name="Audio" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource("3_38ino")
+volume_db = -10.0
+pitch_scale = 1.5
+max_distance = 500.0
+
+[node name="ZombieSoundCooldown" type="Timer" parent="."]
+
 [connection signal="area_entered" from="Area2D" to="." method="_on_area_2d_area_entered"]
+[connection signal="timeout" from="ZombieSoundCooldown" to="." method="_on_zombie_sound_cooldown_timeout"]

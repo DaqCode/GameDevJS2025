@@ -1,9 +1,10 @@
-[gd_scene load_steps=18 format=3 uid="uid://uhlblrwdub6m"]
+[gd_scene load_steps=19 format=3 uid="uid://uhlblrwdub6m"]
 
 [ext_resource type="Script" uid="uid://tpxm8y2yilj8" path="res://scenes/characters/bron/bron.gd" id="1_mtsbh"]
 [ext_resource type="Texture2D" uid="uid://dqjgdp8iy85qt" path="res://art/player/player.png" id="2_ld6eo"]
 [ext_resource type="Texture2D" uid="uid://dxp2xf1n14rjm" path="res://art/weapons/axe.png" id="3_evcjp"]
 [ext_resource type="PackedScene" uid="uid://wa17hdnw3w6d" path="res://scenes/UI/upgrade_station.tscn" id="4_5l0un"]
+[ext_resource type="AudioStream" uid="uid://chsnne66o2mb7" path="res://sounds/sfx/foot_step_1.mp3" id="5_4uy21"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_evcjp"]
 atlas = ExtResource("2_ld6eo")
@@ -286,6 +287,12 @@ position_smoothing_speed = 10.0
 one_shot = true
 
 [node name="UpgradeStation" parent="." instance=ExtResource("4_5l0un")]
+
+[node name="Audio" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource("5_4uy21")
+volume_db = -6.0
+pitch_scale = 0.9
+max_distance = 500.0
 
 [connection signal="area_entered" from="BronArea" to="." method="_on_bron_area_area_entered"]
 [connection signal="area_exited" from="BronArea" to="." method="_on_bron_area_area_exited"]

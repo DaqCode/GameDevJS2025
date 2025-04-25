@@ -10,6 +10,14 @@ var default_speed := 200
 @onready var axe_sprite: Sprite2D = $AnimatedSprite2D/Axe/AxeSprite
 @onready var axe: Node2D = $AnimatedSprite2D/Axe
 
+@onready var audio: AudioStreamPlayer2D = $Audio
+
+var walk_sfx = [
+	preload("res://sounds/sfx/foot_step_1.mp3"),
+	preload("res://sounds/sfx/foot_step_2.mp3"),
+	preload("res://sounds/sfx/foot_step_3.mp3")
+]
+
 var near_tree: Node = null
 var chopping := false
 var facing_right = true
@@ -33,7 +41,6 @@ func _physics_process(_delta: float) -> void:
 		return
 
 	var input_direction := Vector2.ZERO
-
 	if Input.is_action_pressed("right"):
 		input_direction.x += 1
 	if Input.is_action_pressed("left"):
@@ -42,7 +49,10 @@ func _physics_process(_delta: float) -> void:
 		input_direction.y += 1
 	if Input.is_action_pressed("up"):
 		input_direction.y -= 1
-		
+
+	if audio.is_playing() == false and input_direction != Vector2.ZERO:
+		audio.stream = walk_sfx[randi_range(0,2)]
+		audio.play()
 
 	input_direction = input_direction.normalized()
 	velocity = input_direction * speed
@@ -62,9 +72,9 @@ func _physics_process(_delta: float) -> void:
 	move_and_slide()
 
 
+
 func chop_tree() -> void:
 	animation_player.play("chop")
-
 
 func stop_chopping_tree() -> void:
 	animation_player.play("idle")

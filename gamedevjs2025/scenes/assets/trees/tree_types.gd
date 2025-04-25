@@ -8,10 +8,18 @@ extends StaticBody2D
 @onready var dropped_plank_preload = preload("res://scenes/droppedPlank/dropped_plank.tscn")
 @onready var dropped_seed_preload = preload("res://scenes/droppedSeed/dropped_seeds.tscn")
 @onready var tree_col_shape = $TreeCollisionShape
+@onready var audio = $Audio
 
 signal ready_to_chop
 signal begin_waiting_until_chop
 signal done_chopping
+
+ 
+var axe_sfx = [
+	preload("res://sounds/sfx/axe_hit_1.mp3"),
+	preload("res://sounds/sfx/axe_hit_2.mp3"),
+	preload("res://sounds/sfx/axe_hit_3.mp3")
+]
 
 
 enum TreeTypes{
@@ -106,6 +114,8 @@ func get_tree_name(tree_enum: int) -> String:
 
 func chop_tree() -> void:
 	if tree_already_chopped or not can_be_chopped:
+		audio.stream = axe_sfx[randi_range(0,2)]
+		audio.play()
 		return
 		
 	if tree_health > 1:

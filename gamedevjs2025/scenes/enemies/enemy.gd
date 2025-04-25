@@ -1,12 +1,33 @@
 extends Node2D
 
-@export var health := 1
+
+# Health needs to be updated depending on the muscles upgrade for the 
+# Player
+
+@export var health := 3
 @export var speed := 15.0 # Pixels per second
 @onready var sprite: AnimatedSprite2D = $AnimatedSprite2D 
+@onready var audio : AudioStreamPlayer2D = $Audio
+@onready var timer : Timer = $ZombieSoundCooldown
 
 var player = null
 
+var axe_enemy_hit_sfx =[
+	preload("res://sounds/sfx/sword_hit_1.mp3"),
+	preload("res://sounds/sfx/sword_hit_2.mp3"),
+	preload("res://sounds/sfx/sword_hit_3.mp3")
+]
+
+var zombie_idle_sfx = [
+	preload("res://sounds/sfx/zombie_sound_1.mp3"),
+	preload("res://sounds/sfx/zombie_sound_2.mp3"),
+	preload("res://sounds/sfx/zombie_sound_3.mp3")
+]
+
 func _ready():
+
+	timer.wait_time = randf_range(7, 16)
+	timer.start()
 	player = get_tree().get_first_node_in_group("player")
 	if not player:
 		printerr("Enemy cannot find player node!")
@@ -31,6 +52,17 @@ func _process(delta):
 func _on_area_2d_area_entered(area: Area2D) -> void:
 	if area.is_in_group("axe"):
 		health -= 1
+		audio.stream = axe_enemy_hit_sfx[randi_range(0,2)]
+		audio.play()
 
 		if health <= 0:
+			GlobalPlayerScript.current_total_ashes += randi_range(1,5)
 			queue_free()
+
+func _on_zombie_sound_cooldown_timeout() -> void:
+	audio.stream = zombie_idle_sfx[randi_range(0,2)]
+	audio.play()
+	timer.wait_time = randf_range(7, 16)
+	timer.start()
+
+

@@ -1,5 +1,8 @@
 extends StaticBody2D
 
+# The fire duration and their radius should
+# change according to the upgrades...
+
 @onready var progress_bar := %ProgressBar
 @onready var label := %LiveTimer
 @onready var timer:= $CampfireDeathTimer/FireburnTimer
