@@ -156,6 +156,7 @@ func chop_tree() -> void:
 	dropItems(dropped_seed_preload,seed_value,"seed")
 
 	emit_signal("begin_waiting_until_chop")
+	Events.tree_chopped_down.emit()
 	interact_button.visible = false
 	health_bar.visible = false
 	can_be_chopped = false
