@@ -77,11 +77,13 @@ func tryAddPlnaks(type):
 func _on_campfire_interract_body_entered(body:Node2D) -> void:
 	if body.is_in_group("player"):
 		can_interact = true
+		body.inFire = true
 		$InteractButton.visible = true
 
 func _on_campfire_interract_body_exited(body: Node2D) -> void:
 	if body.is_in_group("player"):
 		can_interact = false
+		body.inFire = false
 		$InteractButton.visible = false
 
 # THE UPGRADE FOR THE FURIOUS FIRE NEED TO UPDATE THE TIMER 

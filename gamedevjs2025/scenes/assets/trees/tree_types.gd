@@ -75,6 +75,8 @@ var tree_data = {
 	},
 }
 
+var forceType = -1
+
 var tree_sprite_offset := {
 	"stage_1": Rect2(0, 0, 64, 64),
 	"stage_2": Rect2(64, 0, 64, 64),
@@ -90,18 +92,21 @@ var maxGrowTime = 5
 # hard limit after upgrades
 var hardMinGrowTime = 0.1
 
-func _ready() -> void:	
+func _ready() -> void:
 	regrow_time.wait_time = get_grow_time()
 	regrow_time.start()
 	rng.randomize()
 	var roll = rng.randf()
-	if roll < 0.6:
-		tree_type = TreeTypes.TREE_1
-		
-	elif roll < 0.9:
-		tree_type = TreeTypes.TREE_2
+	if forceType == -1:
+		if roll < 0.6:
+			tree_type = TreeTypes.TREE_1
+			
+		elif roll < 0.9:
+			tree_type = TreeTypes.TREE_2
+		else:
+			tree_type = TreeTypes.TREE_3
 	else:
-		tree_type = TreeTypes.TREE_3
+		tree_type = forceType
 	
 	_update_health_bar()
 	

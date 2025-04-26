@@ -79,9 +79,9 @@ var inventory = {
 	"type 1 plank": 0,
 	"type 2 plank": 0,
 	
-	"type 0 acorn": 0,
-	"type 1 acorn": 0,
-	"type 2 acorn": 0
+	"type 0 seed": 0,
+	"type 1 seed": 0,
+	"type 2 seed": 0
 }
 
 @export var current_total_ashes: int = 0

@@ -10,13 +10,18 @@ var speed = default_speed
 @onready var axe_sprite: Sprite2D = $AnimatedSprite2D/Axe/AxeSprite
 @onready var axe: Node2D = $AnimatedSprite2D/Axe
 
+
 @onready var audio: AudioStreamPlayer2D = $Audio
+
+@onready var treePrealod = preload("res://scenes/assets/trees/tree_types.tscn")
 
 var walk_sfx = [
 	preload("res://sounds/sfx/foot_step_1.mp3"),
 	preload("res://sounds/sfx/foot_step_2.mp3"),
 	preload("res://sounds/sfx/foot_step_3.mp3")
 ]
+
+var inFire = false
 
 var near_tree: Node = null
 var chopping := false
@@ -77,7 +82,22 @@ func _physics_process(_delta: float) -> void:
 	
 	move_and_slide()
 
+func _process(delta: float) -> void:
+	if !inFire and Input.is_action_just_pressed("equip_inventory_item_2"):
+		tryPlantTree(0,"type 0 seed")
+	elif !inFire and Input.is_action_just_pressed("equip_inventory_item_3"):
+		tryPlantTree(1,"type 1 seed")
+	elif !inFire and Input.is_action_just_pressed("equip_inventory_item_4"):
+		tryPlantTree(2,"type 2 seed")
 
+func tryPlantTree(type,typeName):
+	if GlobalPlayerScript.inventory[typeName] <= 0:
+		return
+	GlobalPlayerScript.inventory[typeName] -= 1
+	var tree = treePrealod.instantiate()
+	tree.global_position = global_position
+	tree.forceType = type
+	add_sibling(tree)
 
 func chop_tree() -> void:
 	animation_player.play("chop")
