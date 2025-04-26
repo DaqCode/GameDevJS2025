@@ -12,15 +12,14 @@ var fire_remaining : float = 60.0
 
 var can_interact : bool = false
 
+var tweenTime = 10
+
 # might be better to do this system as an array but this works and its a jam
 var plankBurnTimes = { # plank type : burn time (seconds)
 	"type 0 plank": 1,
 	"type 2 plank": 2,
 	"type 1 plank": 3
 }
-
-var minEnergy = 0.5
-var maxEnergy = 0.5
 
 @onready var pointLight = $PointLight2D
 
@@ -36,14 +35,11 @@ func _ready() -> void:
 func updateAfterUpgrade():
 	fire_duration = GlobalPlayerScript.fireMaxTimeBuff
 	progress_bar.max_value = fire_duration
-	pointLight.texture_scale = GlobalPlayerScript.fireRaduiusBuff
+	
+	var tween = get_tree().create_tween()
+	tween.tween_property(pointLight,"texture_scale",GlobalPlayerScript.fireRaduiusBuff,tweenTime)
 
 func _process(_delta) -> void:
-	pass
-	# The middle is 25
-	# The middle of the scale is Vector2(18.0, 13.59)
-	#pointLight.energy = randf_range(minEnergy, maxEnergy)
-	#pointLight.texture_scale = GlobalPlayerScript.fireRaduiusBuff
 	
 	if Input.is_action_just_pressed("interact") and can_interact:
 		Events.emit_signal("open_upgrade")
