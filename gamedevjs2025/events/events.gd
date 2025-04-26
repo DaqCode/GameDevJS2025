@@ -19,3 +19,5 @@ signal upgradeBought
 # used when an upgrade is bought, connects to tree type script to update their stats if needed
 # like for example when a upgrade for tree grow time is bought we need to apply to change to all living trees and to do that
 #	we need to call a func on the treee script
+
+signal spawnTrees

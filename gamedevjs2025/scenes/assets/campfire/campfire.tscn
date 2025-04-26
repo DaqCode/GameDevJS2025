@@ -1,10 +1,20 @@
-[gd_scene load_steps=16 format=3 uid="uid://v4rjai458d82"]
+[gd_scene load_steps=17 format=3 uid="uid://v4rjai458d82"]
 
 [ext_resource type="Texture2D" uid="uid://bbaymxyveihos" path="res://art/campfire/testCampfire.png" id="1_vhsok"]
 [ext_resource type="Script" uid="uid://dfn21imcakt7m" path="res://scenes/assets/campfire/campfire.gd" id="2_iudvd"]
-[ext_resource type="Texture2D" uid="uid://u0p3scasmocm" path="res://art/campfire/randomOval.png" id="2_k5uvh"]
 [ext_resource type="Texture2D" uid="uid://ppeybl4am48u" path="res://art/ui/interact-button-e.png" id="5_0g0qi"]
 [ext_resource type="FontFile" uid="uid://c0c1tspy4wjh1" path="res://art/fonts/ThaleahFat.ttf" id="5_l2mf0"]
+
+[sub_resource type="Gradient" id="Gradient_6j6n6"]
+colors = PackedColorArray(1, 1, 1, 1, 0, 0, 0, 1)
+
+[sub_resource type="GradientTexture2D" id="GradientTexture2D_0g0qi"]
+gradient = SubResource("Gradient_6j6n6")
+width = 960
+height = 960
+fill = 1
+fill_from = Vector2(0.5, 0.5)
+fill_to = Vector2(0.846154, 0.194444)
 
 [sub_resource type="Gradient" id="Gradient_vhsok"]
 offsets = PackedFloat32Array(0.0693069, 0.30099, 0.526733, 0.790099, 0.89703, 1)
@@ -76,7 +86,7 @@ script = ExtResource("2_iudvd")
 
 [node name="PointLight2D" type="PointLight2D" parent="."]
 energy = 0.5
-texture = ExtResource("2_k5uvh")
+texture = SubResource("GradientTexture2D_0g0qi")
 texture_scale = 13.0
 
 [node name="CampfireOverlay" type="Sprite2D" parent="."]

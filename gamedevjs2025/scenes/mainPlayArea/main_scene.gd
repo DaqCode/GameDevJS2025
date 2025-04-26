@@ -12,15 +12,20 @@ const MIN_TREE_SEPARATION := 60
 # - Never in the global position between: 631.0, 265.0    and 719.0 322.0
 # - Each of these trees need to be instantiated, and connected to a signal for the player to chop down.
 
+var minTrees = 50
+var maxTrees = 100
+
 func _ready() -> void:
 	Events.tree_chopped_down.connect(spawn_tree)
 	reset_game()
-	
 	$AshCountForLater.start()
-	for i in range(randi_range(3, 7)):
+	spawn_trees()
+	#Events.spawnTrees.connect(spawn_trees)
+
+func spawn_trees():
+	for i in range(randi_range(minTrees, maxTrees)):
 		spawn_tree()
 		# print("Tree %d at %s" % [i, tree.pos])
-
 
 func spawn_tree() -> void:
 	print("Another Tree Spawned")
@@ -35,9 +40,13 @@ func spawn_tree() -> void:
 
 
 	add_child(tree)
-
+	var imCrashingOUt = 1
 	while true:
-		var pos = Vector2(randf_range(428, 892), randf_range(156, 406))
+		var xRange = 892*imCrashingOUt
+		var yRange = 406*imCrashingOUt
+		var xOffset = randf_range(-xRange,xRange)
+		var yOffset = randf_range(-yRange,yRange)
+		var pos = Vector2(position.x + xOffset,position.y + yOffset)
 		if is_in_campfire_zone(pos):
 			continue
 
@@ -81,6 +90,6 @@ func reset_game() -> void:
 	
 
 # all this code is for debug only
-#func _process(delta: float) -> void:
-	#if Input.is_action_just_pressed("ashDebug"):
-		#GlobalPlayerScript.current_total_ashes += 500
+func _process(delta: float) -> void:
+	if Input.is_action_just_pressed("ashDebug"):
+		GlobalPlayerScript.current_total_ashes += 500

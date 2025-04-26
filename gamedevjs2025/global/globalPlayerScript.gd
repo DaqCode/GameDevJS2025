@@ -36,10 +36,12 @@ var fur_fire_upgrade : int = 0 :
 	set(val):
 		var fireMaxTimeBuffs = [60,105,135,150] # in seconds added to the fire_duration var in campfire]
 		var varfireRaduiusBuffs = [13,18,23,50]
+		var treeSpawnRadiuIncreases = [1,1.2,1.5,2]
 		fireMaxTimeBuff = fireMaxTimeBuffs[val]
-		fireRaduiusBuff = fireMaxTimeBuffs[val]
+		fireRaduiusBuff = varfireRaduiusBuffs[val]
 		fur_fire_upgrade = val
 		Events.upgradeBought.emit()
+		Events.spawnTrees.emit()
 # for light radious and burn time
 # Lvl 0: 1:00 death, scale = 9.0, Lvl 1: 1:45 death, scale = 14.0,
 #Lvl 2: 2:15 death, scale = 20.0, Lvl 3: 2:30 death, scale = 40.0
@@ -47,7 +49,6 @@ var fur_fire_upgrade : int = 0 :
 # for use in campfire script to change the death time and scale
 var fireMaxTimeBuff = 60
 var fireRaduiusBuff = 13
-
 
 var angry_mus_upgrade : int = 0 :
 	set(val):
@@ -82,7 +83,6 @@ var inventory = {
 	"type 1 acorn": 0,
 	"type 2 acorn": 0
 }
-
 
 @export var current_total_ashes: int = 0
 @export var total_ashes_throughout: int = 0

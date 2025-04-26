@@ -25,13 +25,14 @@ script = ExtResource("1_64uqr")
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
-offset_left = -166.0
-offset_top = -218.0
-offset_right = 1497.0
-offset_bottom = 813.0
+offset_left = -5879.0
+offset_top = -3828.0
+offset_right = 7906.0
+offset_bottom = 6177.0
 grow_horizontal = 2
 grow_vertical = 2
 texture = ExtResource("2_4jxuj")
+stretch_mode = 1
 
 [node name="Trees" type="Node" parent="."]
 
@@ -91,5 +92,10 @@ texture_progress = ExtResource("9_r7yxp")
 
 [node name="DirectionalLight2D" type="DirectionalLight2D" parent="."]
 blend_mode = 1
+
+[node name="StaticBody2D" type="StaticBody2D" parent="."]
+
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="StaticBody2D"]
+polygon = PackedVector2Array(-2037, -1496, -2055, 2237, 3228, 2285, 3232, -1463, -2029, -1499, -2101, -1998, 4297, -2047, 3929, 2536, -3585, 3176, -3027, -2339)
 
 [connection signal="timeout" from="AshCountForLater" to="." method="_on_ash_count_for_later_timeout"]
