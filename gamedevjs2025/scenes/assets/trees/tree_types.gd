@@ -45,7 +45,7 @@ var tree_data = {
 
 	TreeTypes.TREE_1: {
 		"tree_sprite": preload("res://art/tree/tree1/stage-1-tree.png"),
-		"seed_drops": [0.15,0.85],
+		"seed_drops": [0.85,0.15],
 		"seed_value": [0,1],
 		"plank_drops": [0.35,0.35,0.30],
 		"plank_value": [3,4,5],
@@ -55,10 +55,10 @@ var tree_data = {
 
 	TreeTypes.TREE_2: {
 		"tree_sprite": preload("res://art/tree/tree2/stage-2-tree.png"),
-		"seed_drops": [0.10,0.90],
+		"seed_drops": [0.9,0.10],
 		"seed_value": [1,2],
 		"plank_drops": [0.40, 0.50,0.10],
-		"plank_value": [3,5,8],
+		"plank_value": [3,5,6],
 		"regrow_min": 20,
 		"regrow_max": 30
 
@@ -66,10 +66,10 @@ var tree_data = {
 
 	TreeTypes.TREE_3: {
 		"tree_sprite": preload("res://art/tree/tree3/stage-3-tree.png"),
-		"seed_drops": [0.50, 0.35, 0.15],
+		"seed_drops": [0.15,0.35, 0.50, ],
 		"seed_value": [3, 2, 1],
 		"plank_drops": [1.0],
-		"plank_value": [7],
+		"plank_value": [6],
 		"regrow_min": 30,
 		"regrow_max": 60
 	},
@@ -140,12 +140,12 @@ func get_tree_name(tree_enum: int) -> String:
 
 func chop_tree() -> void:
 	if tree_already_chopped or not can_be_chopped:
-		audio.stream = axe_sfx[randi_range(0,2)]
-		audio.play()
 		return
 		
 	if tree_health > 1:
 		tree_health -= 1
+		audio.stream = axe_sfx[randi_range(0,2)]
+		audio.play()
 		_update_health_bar()
 		return
 		
@@ -188,6 +188,9 @@ func chop_tree() -> void:
 	can_be_chopped = false
 	tree_already_chopped = true
 	tree_texture.region_rect = tree_sprite_offset["chopped"]
+	 
+	await get_tree().create_timer(5.0).timeout
+	queue_free()
 
 
 func _update_health_bar() -> void:
@@ -234,6 +237,7 @@ func _on_regrow_time_timeout() -> void:
 	
 	if current_stage == 4:
 		can_be_chopped = true
+
 	
 	tree_texture.region_rect = tree_sprite_offset["stage_%s" % current_stage]
 

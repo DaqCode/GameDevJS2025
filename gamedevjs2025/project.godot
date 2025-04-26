@@ -13,7 +13,7 @@ config_version=5
 config/name="GameDevJS2025"
 run/main_scene="uid://d3objfw2to154"
 config/features=PackedStringArray("4.4", "Forward Plus")
-config/icon="res://icon.svg"
+config/icon="uid://jmhcst8okpsj"
 
 [audio]
 

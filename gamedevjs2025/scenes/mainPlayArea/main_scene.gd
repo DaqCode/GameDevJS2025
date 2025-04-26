@@ -87,4 +87,3 @@ func reset_game() -> void:
 	GlobalEnemySpawnerTimer.peace_duration = 240.0
 	GlobalEnemySpawnerTimer.enemy_duration = 60.0
 	GlobalEnemySpawnerTimer._ready()
-	
