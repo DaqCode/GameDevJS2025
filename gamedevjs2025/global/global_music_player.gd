@@ -24,7 +24,7 @@ func _ready() -> void:
 		
 		music_player.bus = "Music"
 		music_player.stream = music_play[0]
-		music_player.volume_db = -20
+		music_player.volume_db = -30
 
 	# Try to play if the current scene is valid
 	call_deferred("_on_scene_changed")

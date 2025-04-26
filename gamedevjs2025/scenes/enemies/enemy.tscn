@@ -37,7 +37,6 @@ y_sort_enabled = true
 script = ExtResource("1_8e3ao")
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
-modulate = Color(0.0196078, 0.0196078, 0.0196078, 1)
 texture_filter = 1
 texture_repeat = 1
 material = SubResource("CanvasItemMaterial_8e3ao")
@@ -54,7 +53,7 @@ shape = SubResource("CapsuleShape2D_8e3ao")
 
 [node name="Audio" type="AudioStreamPlayer2D" parent="."]
 stream = ExtResource("3_38ino")
-volume_db = -10.0
+volume_db = -25.0
 pitch_scale = 1.5
 max_distance = 500.0
 bus = &"SFX"

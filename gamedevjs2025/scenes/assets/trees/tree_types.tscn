@@ -18,7 +18,6 @@ height = 26.0
 size = Vector2(43, 51)
 
 [node name="TreeTypes" type="StaticBody2D" groups=["Tree"]]
-y_sort_enabled = true
 script = ExtResource("1_6j25m")
 
 [node name="TreeTexture" type="Sprite2D" parent="."]
@@ -73,6 +72,7 @@ texture_under = ExtResource("4_3hn1c")
 texture_progress = ExtResource("5_5kvdk")
 
 [node name="Audio" type="AudioStreamPlayer2D" parent="."]
+volume_db = -30.0
 bus = &"SFX"
 
 [connection signal="area_entered" from="TreeInteraction" to="." method="_on_tree_interaction_area_entered"]

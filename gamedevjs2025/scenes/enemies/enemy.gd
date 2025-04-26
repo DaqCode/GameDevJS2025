@@ -28,7 +28,6 @@ var zombie_idle_sfx = [
 var music_player: AudioStreamPlayer
 
 func _ready():
-	music_player.bus = "SFX"
 	updateHp()
 	timer.wait_time = randf_range(7, 16)
 	timer.start()

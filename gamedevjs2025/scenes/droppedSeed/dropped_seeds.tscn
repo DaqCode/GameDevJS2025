@@ -21,7 +21,6 @@ offset_bottom = 1.0
 color = Color(0.367685, 0.109984, 0.209708, 1)
 
 [node name="SeedSprite" type="Sprite2D" parent="."]
-modulate = Color(0.0901961, 0.0901961, 0.0901961, 1)
 scale = Vector2(0.15, 0.15)
 texture = ExtResource("2_pt5w7")
 
