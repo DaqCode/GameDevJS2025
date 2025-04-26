@@ -57,15 +57,15 @@ func _process(_delta: float) -> void:
 func _on_upgrade_pressed(button: Button) -> void:
 	match button:
 		upgrade_1:
-			_handle_upgrade_press("lumb_mus_upgrade", %Upgrade1)
+			_handle_upgrade_press("upgrade_1", %Upgrade1)
 		upgrade_2:
-			_handle_upgrade_press("loc_eco_upgrade", %Upgrade2)
+			_handle_upgrade_press("upgrade_2", %Upgrade2)
 		upgrade_3:
-			_handle_upgrade_press("angry_mus_upgrade", %Upgrade3)
+			_handle_upgrade_press("upgrade_3", %Upgrade3)
 		upgrade_4:
-			_handle_upgrade_press("speed_leg_upgrade", %Upgrade4)
+			_handle_upgrade_press("upgrade_4", %Upgrade4)
 		upgrade_5:
-			_handle_upgrade_press("fur_fire_upgrade", %Upgrade5)
+			_handle_upgrade_press("upgrade_5", %Upgrade5)
 
 func _on_upgrade_mouse_entered(button: Button) -> void:
 	is_checking_stats = true
@@ -185,24 +185,27 @@ func check_affordability() -> void:
 			var next_cost = get_upgrade_cost(upgrade_id, current_level)
 			button.disabled = next_cost == -1 or current_ash < next_cost
 
-
-
 func get_player_upgrade_level(upgrade_id: String) -> int:
 	if upgrade_id in upgrade_var_map:
 		var var_name = upgrade_var_map[upgrade_id]
 		return GlobalPlayerScript.get(var_name)
 	return -1
 
-func _handle_upgrade_press(upgrade_var_name: String, button: Button) -> void:
+func _handle_upgrade_press(upgrade_id: String, button: Button) -> void:
+	# this is to apply to upgrade and remove the cost form the ash count
+	var upgrade_var_name = upgrade_var_map[upgrade_id]
 	if GlobalPlayerScript.get(upgrade_var_name) < 3:
-		GlobalPlayerScript.current_total_ashes -= get_upgrade_cost(upgrade_var_name, GlobalPlayerScript.get(upgrade_var_name))
-		Events.update_ash_count.emit()
+		# get the cost
+		var cost = get_upgrade_cost("upgrade_1", GlobalPlayerScript.get(upgrade_var_name))
+		GlobalPlayerScript.current_total_ashes -= cost
+		# apply the upgrade
 		GlobalPlayerScript.set(upgrade_var_name, GlobalPlayerScript.get(upgrade_var_name)+1)
+		#updates for the buttons
 		_on_upgrade_mouse_entered(button)
-
-		check_affordability()	
+		check_affordability()
 
 func print_upgrade_for_debug() -> void:
+	return 
 	for upgrades in upgrade_cost_dict:
 		var current_upgrade = get_player_upgrade_level(upgrades)
 		print ("--------------------------------")

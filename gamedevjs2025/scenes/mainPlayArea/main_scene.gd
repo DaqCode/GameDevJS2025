@@ -51,7 +51,8 @@ func is_in_campfire_zone(pos: Vector2) -> bool:
 
 func _on_ash_count_for_later_timeout() -> void:
 	GlobalPlayerScript.total_ashes_throughout += 1
-	$AshCountForLater.start()
+	GlobalPlayerScript.current_total_ashes += 1
+
 
 func reset_game() -> void:
 	GlobalPlayerScript.lumb_mus_upgrade = 0
