@@ -1,7 +1,7 @@
 extends CharacterBody2D
 
-@export var speed := 200
-var default_speed := 200
+@export var default_speed := 60 # dropped this for balence - Ford
+var speed = default_speed
 
 @onready var animated_sprite_2d: AnimatedSprite2D = $AnimatedSprite2D
 @onready var axe_damage_area: Area2D = %AxeDamageArea
@@ -24,6 +24,12 @@ var facing_right = true
 
 func _ready() -> void:
 	Events.connect("open_upgrade", Callable(self, "_open_upgrade_menu"))
+	
+	Events.upgradeBought.connect(updateSpeed)
+
+func updateSpeed():
+	print("=========================================================")
+	speed = default_speed + GlobalPlayerScript.speedBuff
 
 func _input(input: InputEvent) -> void:
 	if input.is_action_pressed("interact"):

@@ -2,9 +2,11 @@ extends Node2D
 
 
 # Health needs to be updated depending on the muscles upgrade for the 
+# you got it bro!
 # Player
 
-@export var health := 3
+@export var default_health = 4
+var health = default_health
 @export var speed := 15.0 # Pixels per second
 @onready var sprite: AnimatedSprite2D = $AnimatedSprite2D 
 @onready var audio : AudioStreamPlayer2D = $Audio
@@ -25,13 +27,17 @@ var zombie_idle_sfx = [
 ]
 
 func _ready():
-
+	updateHp()
 	timer.wait_time = randf_range(7, 16)
 	timer.start()
 	player = get_tree().get_first_node_in_group("player")
 	if not player:
 		printerr("Enemy cannot find player node!")
+	
+	Events.upgradeBought.connect(updateHp)
 
+func updateHp():
+	health = default_health - GlobalPlayerScript.enemyHpDebuff
 
 func _process(delta):
 	# Path finding
@@ -64,5 +70,3 @@ func _on_zombie_sound_cooldown_timeout() -> void:
 	audio.play()
 	timer.wait_time = randf_range(7, 16)
 	timer.start()
-
-

@@ -36,7 +36,8 @@ var can_be_chopped := false
 var tree_already_chopped := false
 
 var current_stage := 1
-var tree_health := 3
+var dfault_tree_health := 3
+var tree_health := dfault_tree_health
 
 var drop_range = 5
 
@@ -82,8 +83,15 @@ var tree_sprite_offset := {
 	"chopped": Rect2(256, 0, 64, 64)
 }
 
+# made this vars to cahnge it easiyer
+#effected by upgrades
+var minGrowTime = 1
+var maxGrowTime = 5
+# hard limit after upgrades
+var hardMinGrowTime = 0.1
+
 func _ready() -> void:	
-	regrow_time.wait_time = randf_range(1.0, 5.0)
+	regrow_time.wait_time = get_grow_time()
 	regrow_time.start()
 	rng.randomize()
 	var roll = rng.randf()
@@ -96,10 +104,23 @@ func _ready() -> void:
 		tree_type = TreeTypes.TREE_3
 	
 	_update_health_bar()
-
+	
+	tree_health -= GlobalPlayerScript.treeHpDebuff
+	
 	# Set the modulated crops.
 	tree_texture.texture = tree_data[tree_type]["tree_sprite"]
 	tree_texture.region_rect = tree_sprite_offset["stage_1"]
+	
+	Events.upgradeBought.connect(updateStats)
+
+# for when a tree upgrade is bought and we need to apply it to all living trees
+# this is done beacuse if you buy the upgrade, without this, it would only apply to new trees
+func updateStats():
+	tree_health = dfault_tree_health - GlobalPlayerScript.treeHpDebuff
+	regrow_time.wait_time = get_grow_time()
+
+func get_grow_time():
+	return max(randf_range(minGrowTime, maxGrowTime) - GlobalPlayerScript.treeGrowBonus, hardMinGrowTime)
 
 func get_tree_name(tree_enum: int) -> String:
 	match tree_enum:
@@ -152,7 +173,7 @@ func chop_tree() -> void:
 	print("Dropped Seeds: %d, Planks: %d" % [seed_value, plank_value])
 	
 	# loop to spawn in the dropped planksas
-	dropItems(dropped_plank_preload,plank_value,"plank")
+	dropItems(dropped_plank_preload,plank_value+GlobalPlayerScript.plankBonus,"plank")
 	dropItems(dropped_seed_preload,seed_value,"seed")
 
 	emit_signal("begin_waiting_until_chop")

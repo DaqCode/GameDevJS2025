@@ -7,7 +7,7 @@ extends StaticBody2D
 @onready var label := %LiveTimer
 @onready var timer:= $CampfireDeathTimer/FireburnTimer
 
-var fire_duration : float = 60.0
+var fire_duration : float = 60.0 # this is effected by upgrades
 var fire_remaining : float = 60.0
 
 var can_interact : bool = false
@@ -20,8 +20,16 @@ var plankBurnTimes = { # plank type : burn time (seconds)
 }
 
 func _ready() -> void:
+	fire_duration = GlobalPlayerScript.fireMaxTimeBuff
 	progress_bar.max_value = fire_duration
 	timer.start()
+	
+	# to update values when an upgrade is bought. 
+	Events.upgradeBought.connect(updateAfterUpgrade) 
+
+func updateAfterUpgrade():
+	fire_duration = GlobalPlayerScript.fireMaxTimeBuff
+	progress_bar.max_value = fire_duration
 
 func _process(_delta) -> void:
 	# The middle is 25

@@ -234,7 +234,6 @@ texture_filter = 1
 texture_repeat = 1
 scale = Vector2(0.35, 0.35)
 script = ExtResource("1_mtsbh")
-speed = 75
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
 scale = Vector2(2.5, 2.5)
