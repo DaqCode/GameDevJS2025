@@ -82,7 +82,7 @@ var tree_sprite_offset := {
 	"stage_4": Rect2(192, 0, 64, 64),
 	"chopped": Rect2(256, 0, 64, 64)
 }
-
+var music_player: AudioStreamPlayer
 # made this vars to cahnge it easiyer
 #effected by upgrades
 var minGrowTime = 1
@@ -91,7 +91,6 @@ var maxGrowTime = 5
 var hardMinGrowTime = 0.1
 
 func _ready() -> void:	
-	self.bus = "SFX"
 	regrow_time.wait_time = get_grow_time()
 	regrow_time.start()
 	rng.randomize()
