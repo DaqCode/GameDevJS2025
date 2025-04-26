@@ -14,9 +14,9 @@ var can_interact : bool = false
 
 # might be better to do this system as an array but this works and its a jam
 var plankBurnTimes = { # plank type : burn time (seconds)
-	"type 0 plank": 5,
-	"type 2 plank": 7,
-	"type 1 plank": 9
+	"type 0 plank": 1,
+	"type 2 plank": 2,
+	"type 1 plank": 3
 }
 
 func _ready() -> void:
@@ -55,9 +55,9 @@ func _process(_delta) -> void:
 		tryAddPlnaks("type 2 plank")
 
 func tryAddPlnaks(type):
-	if GlobalPlayerScript.player_plank_counts[type] <= 0:
+	if GlobalPlayerScript.inventory[type] <= 0:
 		return 
-	GlobalPlayerScript.player_plank_counts[type] -= 1
+	GlobalPlayerScript.inventory[type] -= 1
 	fire_remaining += plankBurnTimes[type]
 	fire_remaining = min(fire_remaining,fire_duration)
 	$WoodBurn.emitting = true

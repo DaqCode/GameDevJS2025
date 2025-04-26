@@ -1,12 +1,20 @@
-[gd_scene load_steps=5 format=3 uid="uid://dac8aowpc3jge"]
+[gd_scene load_steps=12 format=3 uid="uid://dac8aowpc3jge"]
 
 [ext_resource type="Texture2D" uid="uid://dkl0ukn25e812" path="res://art/ui/inventoryScreen.png" id="1_246dg"]
+[ext_resource type="Script" uid="uid://diay5ght3utcs" path="res://scenes/UI/inventory_screen.gd" id="1_mpks3"]
 [ext_resource type="Texture2D" uid="uid://cmux3t1w3h8ny" path="res://art/ui/itemSlot.png" id="2_bt7as"]
 [ext_resource type="Texture2D" uid="uid://dxp2xf1n14rjm" path="res://art/weapons/axe.png" id="3_qji5t"]
+[ext_resource type="Texture2D" uid="uid://b4gpo7oeffiy0" path="res://art/tree/tree1/acorn.png" id="4_eeffx"]
+[ext_resource type="Texture2D" uid="uid://cbwrli1yl3nkf" path="res://art/tree/tree1/plank.png" id="5_80j00"]
+[ext_resource type="FontFile" uid="uid://c0c1tspy4wjh1" path="res://art/fonts/ThaleahFat.ttf" id="6_8dhe0"]
+[ext_resource type="Texture2D" uid="uid://1xaatqo8ulh4" path="res://art/tree/tree2/grey-acorn.png" id="6_80j00"]
+[ext_resource type="Texture2D" uid="uid://hiubxtkc5cj6" path="res://art/tree/tree3/blue-plank.png" id="7_p8u6e"]
+[ext_resource type="Texture2D" uid="uid://dxb4ivwdo87ni" path="res://art/tree/tree3/blue-acorn.png" id="8_mpks3"]
 
 [sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_bt7as"]
 
 [node name="InventoryScreen" type="CanvasLayer"]
+script = ExtResource("1_mpks3")
 
 [node name="InventoryBackground" type="Panel" parent="."]
 anchors_preset = 8
@@ -82,6 +90,51 @@ size_flags_horizontal = 3
 size_flags_vertical = 3
 expand_mode = 1
 
+[node name="Plank" type="Sprite2D" parent="InventoryBackground/InventorySlots/ItemSlot2/Item1"]
+position = Vector2(23.2504, 16.4241)
+rotation = -0.776671
+scale = Vector2(0.4, 0.4)
+texture = ExtResource("5_80j00")
+
+[node name="Tree1PlankAmount" type="Label" parent="InventoryBackground/InventorySlots/ItemSlot2/Item1/Plank"]
+unique_name_in_owner = true
+offset_left = 7.79502
+offset_top = -44.6277
+offset_right = 45.795
+offset_bottom = -14.6277
+rotation = 0.785398
+theme_override_colors/font_color = Color(1, 0, 0.0166664, 1)
+theme_override_fonts/font = ExtResource("6_8dhe0")
+theme_override_font_sizes/font_size = 32
+text = "0"
+vertical_alignment = 1
+metadata/_edit_use_anchors_ = true
+
+[node name="Split" type="Sprite2D" parent="InventoryBackground/InventorySlots/ItemSlot2/Item1"]
+modulate = Color(0, 0, 0, 1)
+position = Vector2(16.5631, 16.424)
+rotation = -0.785398
+scale = Vector2(0.0145512, 1)
+texture = ExtResource("5_80j00")
+
+[node name="Acorn" type="Sprite2D" parent="InventoryBackground/InventorySlots/ItemSlot2/Item1"]
+position = Vector2(9.07426, 17.1656)
+scale = Vector2(0.4, 0.4)
+texture = ExtResource("4_eeffx")
+
+[node name="Tree1AcornAmount" type="Label" parent="InventoryBackground/InventorySlots/ItemSlot2/Item1/Acorn"]
+unique_name_in_owner = true
+offset_left = 4.57617
+offset_top = 4.57611
+offset_right = 42.5762
+offset_bottom = 34.5761
+theme_override_colors/font_color = Color(1, 0, 0.0166664, 1)
+theme_override_fonts/font = ExtResource("6_8dhe0")
+theme_override_font_sizes/font_size = 32
+text = "0"
+vertical_alignment = 1
+metadata/_edit_use_anchors_ = true
+
 [node name="ItemSlot3" type="TextureRect" parent="InventoryBackground/InventorySlots"]
 layout_mode = 2
 size_flags_horizontal = 3
@@ -89,7 +142,7 @@ size_flags_vertical = 3
 texture = ExtResource("2_bt7as")
 expand_mode = 1
 
-[node name="Item1" type="TextureRect" parent="InventoryBackground/InventorySlots/ItemSlot3"]
+[node name="Item2" type="TextureRect" parent="InventoryBackground/InventorySlots/ItemSlot3"]
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
@@ -99,6 +152,51 @@ grow_vertical = 2
 size_flags_horizontal = 3
 size_flags_vertical = 3
 expand_mode = 1
+
+[node name="Plank" type="Sprite2D" parent="InventoryBackground/InventorySlots/ItemSlot3/Item2"]
+position = Vector2(23.2504, 16.4241)
+rotation = -0.776671
+scale = Vector2(0.4, 0.4)
+texture = ExtResource("5_80j00")
+
+[node name="Tree2PlankAmount" type="Label" parent="InventoryBackground/InventorySlots/ItemSlot3/Item2/Plank"]
+unique_name_in_owner = true
+offset_left = 7.79502
+offset_top = -44.6277
+offset_right = 45.795
+offset_bottom = -14.6277
+rotation = 0.785398
+theme_override_colors/font_color = Color(1, 0, 0.0166664, 1)
+theme_override_fonts/font = ExtResource("6_8dhe0")
+theme_override_font_sizes/font_size = 32
+text = "0"
+vertical_alignment = 1
+metadata/_edit_use_anchors_ = true
+
+[node name="Split" type="Sprite2D" parent="InventoryBackground/InventorySlots/ItemSlot3/Item2"]
+modulate = Color(0, 0, 0, 1)
+position = Vector2(16.5631, 16.424)
+rotation = -0.785398
+scale = Vector2(0.0145512, 1)
+texture = ExtResource("5_80j00")
+
+[node name="Acorn" type="Sprite2D" parent="InventoryBackground/InventorySlots/ItemSlot3/Item2"]
+position = Vector2(9.07426, 17.1656)
+scale = Vector2(0.4, 0.4)
+texture = ExtResource("6_80j00")
+
+[node name="Tree2AcornAmount" type="Label" parent="InventoryBackground/InventorySlots/ItemSlot3/Item2/Acorn"]
+unique_name_in_owner = true
+offset_left = 4.57617
+offset_top = 4.57611
+offset_right = 42.5762
+offset_bottom = 34.5761
+theme_override_colors/font_color = Color(1, 0, 0.0166664, 1)
+theme_override_fonts/font = ExtResource("6_8dhe0")
+theme_override_font_sizes/font_size = 32
+text = "0"
+vertical_alignment = 1
+metadata/_edit_use_anchors_ = true
 
 [node name="ItemSlot4" type="TextureRect" parent="InventoryBackground/InventorySlots"]
 layout_mode = 2
@@ -107,7 +205,7 @@ size_flags_vertical = 3
 texture = ExtResource("2_bt7as")
 expand_mode = 1
 
-[node name="Item1" type="TextureRect" parent="InventoryBackground/InventorySlots/ItemSlot4"]
+[node name="Tree3" type="TextureRect" parent="InventoryBackground/InventorySlots/ItemSlot4"]
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
@@ -117,3 +215,48 @@ grow_vertical = 2
 size_flags_horizontal = 3
 size_flags_vertical = 3
 expand_mode = 1
+
+[node name="Plank" type="Sprite2D" parent="InventoryBackground/InventorySlots/ItemSlot4/Tree3"]
+position = Vector2(23.2504, 16.4241)
+rotation = -0.776671
+scale = Vector2(0.4, 0.4)
+texture = ExtResource("7_p8u6e")
+
+[node name="Tree3PlankAmount" type="Label" parent="InventoryBackground/InventorySlots/ItemSlot4/Tree3/Plank"]
+unique_name_in_owner = true
+offset_left = 7.79502
+offset_top = -44.6277
+offset_right = 45.795
+offset_bottom = -14.6277
+rotation = 0.785398
+theme_override_colors/font_color = Color(1, 0, 0.0166664, 1)
+theme_override_fonts/font = ExtResource("6_8dhe0")
+theme_override_font_sizes/font_size = 32
+text = "0"
+vertical_alignment = 1
+metadata/_edit_use_anchors_ = true
+
+[node name="Split" type="Sprite2D" parent="InventoryBackground/InventorySlots/ItemSlot4/Tree3"]
+modulate = Color(0, 0, 0, 1)
+position = Vector2(16.5631, 16.424)
+rotation = -0.785398
+scale = Vector2(0.0145512, 1)
+texture = ExtResource("5_80j00")
+
+[node name="Acorn" type="Sprite2D" parent="InventoryBackground/InventorySlots/ItemSlot4/Tree3"]
+position = Vector2(9.07426, 17.1656)
+scale = Vector2(0.4, 0.4)
+texture = ExtResource("8_mpks3")
+
+[node name="Tree3AcornAmount" type="Label" parent="InventoryBackground/InventorySlots/ItemSlot4/Tree3/Acorn"]
+unique_name_in_owner = true
+offset_left = 4.57617
+offset_top = 4.57611
+offset_right = 42.5762
+offset_bottom = 34.5761
+theme_override_colors/font_color = Color(1, 0, 0.0166664, 1)
+theme_override_fonts/font = ExtResource("6_8dhe0")
+theme_override_font_sizes/font_size = 32
+text = "0"
+vertical_alignment = 1
+metadata/_edit_use_anchors_ = true

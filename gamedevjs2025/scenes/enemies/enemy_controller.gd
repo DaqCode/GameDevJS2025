@@ -2,7 +2,7 @@ extends Node2D
 
 
 @export var spawn_progress_bar: TextureProgressBar
-@export var peace_time := 10.0
+@export var peace_time := 20.0
 @export var num_enemies_to_spawn := randi_range(1,3)
 
 @onready var enemy := preload("res://scenes/enemies/enemy.tscn")

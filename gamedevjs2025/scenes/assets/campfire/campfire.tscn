@@ -78,7 +78,7 @@ script = ExtResource("2_iudvd")
 scale = Vector2(1, 0.755)
 energy = 25.0
 texture = ExtResource("2_k5uvh")
-texture_scale = 40.0
+texture_scale = 9.0
 
 [node name="CampfireOverlay" type="Sprite2D" parent="."]
 light_mask = 0

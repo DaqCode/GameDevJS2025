@@ -25,6 +25,15 @@ func _ready() -> void:
 func spawn_tree() -> void:
 	print("Another Tree Spawned")
 	var tree = TreeScene.instantiate()
+	
+	# ----------------------------------------------------------
+	# TODO 
+	# E 0:00:11:904   main_scene.gd:28 @ spawn_tree(): 
+	# Can't change this state while flushing queries. Use call_deferred() 
+	# or set_deferred() to change monitoring state instead.
+	# ----------------------------------------------------------
+
+
 	add_child(tree)
 
 	while true:
