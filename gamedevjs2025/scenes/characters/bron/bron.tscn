@@ -229,7 +229,6 @@ radius = 13.0
 height = 28.0
 
 [node name="Bron" type="CharacterBody2D" groups=["player"]]
-modulate = Color(0.0214346, 0.0214346, 0.0214346, 1)
 texture_filter = 1
 texture_repeat = 1
 scale = Vector2(0.35, 0.35)

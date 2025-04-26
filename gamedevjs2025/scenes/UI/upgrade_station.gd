@@ -205,7 +205,7 @@ func _handle_upgrade_press(upgrade_id: String, button: Button) -> void:
 		check_affordability()
 
 func print_upgrade_for_debug() -> void:
-	return 
+	return # because I dont need this for noww
 	for upgrades in upgrade_cost_dict:
 		var current_upgrade = get_player_upgrade_level(upgrades)
 		print ("--------------------------------")

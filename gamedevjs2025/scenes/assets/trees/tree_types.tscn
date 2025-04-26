@@ -18,7 +18,6 @@ height = 26.0
 size = Vector2(43, 51)
 
 [node name="TreeTypes" type="StaticBody2D" groups=["Tree"]]
-modulate = Color(0.0588235, 0.0588235, 0.0588235, 1)
 script = ExtResource("1_6j25m")
 
 [node name="TreeTexture" type="Sprite2D" parent="."]

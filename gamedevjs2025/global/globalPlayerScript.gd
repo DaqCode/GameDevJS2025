@@ -32,11 +32,12 @@ var loc_eco_upgrade : int = 0 :
 # used in tree_type script to modify grow speeds
 var treeGrowBonus = 0
 
-
 var fur_fire_upgrade : int = 0 : 
 	set(val):
-		var fireMaxTimeBuffs = [60,105,135,150] # in seconds added to the fire_duration var in campfire
+		var fireMaxTimeBuffs = [60,105,135,150] # in seconds added to the fire_duration var in campfire]
+		var varfireRaduiusBuffs = [13,18,23,50]
 		fireMaxTimeBuff = fireMaxTimeBuffs[val]
+		fireRaduiusBuff = fireMaxTimeBuffs[val]
 		fur_fire_upgrade = val
 		Events.upgradeBought.emit()
 # for light radious and burn time
@@ -45,7 +46,7 @@ var fur_fire_upgrade : int = 0 :
 
 # for use in campfire script to change the death time and scale
 var fireMaxTimeBuff = 60
-var fireRaduiusBonus = 0
+var fireRaduiusBuff = 13
 
 
 var angry_mus_upgrade : int = 0 :

@@ -81,6 +81,6 @@ func reset_game() -> void:
 	
 
 # all this code is for debug only
-func _process(delta: float) -> void:
-	if Input.is_action_just_pressed("ashDebug"):
-		GlobalPlayerScript.current_total_ashes += 500
+#func _process(delta: float) -> void:
+	#if Input.is_action_just_pressed("ashDebug"):
+		#GlobalPlayerScript.current_total_ashes += 500

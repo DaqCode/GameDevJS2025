@@ -22,7 +22,6 @@ shadow_size = 0
 script = ExtResource("1_64uqr")
 
 [node name="TextureRect" type="TextureRect" parent="."]
-modulate = Color(0.0338533, 0.0338533, 0.0338533, 1)
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
@@ -89,5 +88,8 @@ value = 50.0
 nine_patch_stretch = true
 texture_under = ExtResource("8_igrk7")
 texture_progress = ExtResource("9_r7yxp")
+
+[node name="DirectionalLight2D" type="DirectionalLight2D" parent="."]
+blend_mode = 1
 
 [connection signal="timeout" from="AshCountForLater" to="." method="_on_ash_count_for_later_timeout"]
