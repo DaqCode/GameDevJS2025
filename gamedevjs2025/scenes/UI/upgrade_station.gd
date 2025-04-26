@@ -105,13 +105,13 @@ func _on_upgrade_mouse_entered(button: Button) -> void:
 			upgrade_description.text = "Become stronger against enemies that disturb your fire."
 			match GlobalPlayerScript.angry_mus_upgrade:
 				0:
-					upgrade_stat_upgrade.text = "6 Hits to Kill -> 5 Hits to Kill"
+					upgrade_stat_upgrade.text = "4 Hits to kill -> 3 Hits to kill"
 					ash_cost.text =  "Ash cost: 45"
 				1:
-					upgrade_stat_upgrade.text = "5 Hits to Kill -> 3 Hits to Kill"
+					upgrade_stat_upgrade.text = "3 Hits to Kill -> 2 Hits to kill"
 					ash_cost.text = "Ash cost: 90"
 				2:
-					upgrade_stat_upgrade.text = "3 Hits to Kill -> 2 Hits to Kill"
+					upgrade_stat_upgrade.text = "2 Hits to Kill -> 1 Hit to kill"
 					ash_cost.text = "Ash cost: 165"
 				_:
 					upgrade_stat_upgrade.text = "MAX"
