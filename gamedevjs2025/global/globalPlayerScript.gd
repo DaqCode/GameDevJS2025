@@ -33,6 +33,21 @@ var speed_leg_upgrade : int = 0
 # Lvl 2: 109 speed
 # Lvl 3: 131 speed
 
-
+# could change this later to also inclde seeds?
+var player_plank_counts = {
+	"type 0 plank": 0,
+	"type 1 plank": 0,
+	"type 2 plank": 0,
+}
 @export var current_total_ashes: int = 0
 @export var total_ashes_throughout: int = 0
+
+func _ready() -> void:
+	Events.add_inventory_item.connect(addInventoryItem)
+
+# connected to drop item signal emited by the dropped item scene 
+func addInventoryItem(name):
+	# if items not a type in the invetory dict return
+	if !player_plank_counts.keys().has(name):
+		return
+	player_plank_counts[name] += 1

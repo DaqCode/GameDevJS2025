@@ -12,10 +12,16 @@ var fire_remaining : float = 60.0
 
 var can_interact : bool = false
 
+# might be better to do this system as an array but this works and its a jam
+var plankBurnTimes = { # plank type : burn time (seconds)
+	"type 0 plank": 5,
+	"type 2 plank": 7,
+	"type 1 plank": 9
+}
+
 func _ready() -> void:
 	progress_bar.max_value = fire_duration
 	timer.start()
-
 
 func _process(_delta) -> void:
 	# The middle is 25
@@ -39,8 +45,22 @@ func _process(_delta) -> void:
 		int(fire_duration) / 60,
 		int(fire_duration) % 60
 	]
+	
+	# adding planks
+	if can_interact and Input.is_action_just_pressed("equip_inventory_item_2"):
+		tryAddPlnaks("type 0 plank")
+	elif can_interact and Input.is_action_just_pressed("equip_inventory_item_3"):
+		tryAddPlnaks("type 1 plank")
+	elif can_interact and Input.is_action_just_pressed("equip_inventory_item_4"):
+		tryAddPlnaks("type 2 plank")
 
-
+func tryAddPlnaks(type):
+	if GlobalPlayerScript.player_plank_counts[type] <= 0:
+		return 
+	GlobalPlayerScript.player_plank_counts[type] -= 1
+	fire_remaining += plankBurnTimes[type]
+	fire_remaining = min(fire_remaining,fire_duration)
+	$WoodBurn.emitting = true
 
 func _on_campfire_interract_body_entered(body:Node2D) -> void:
 	if body.is_in_group("player"):

@@ -1,4 +1,4 @@
-[gd_scene load_steps=11 format=3 uid="uid://v4rjai458d82"]
+[gd_scene load_steps=16 format=3 uid="uid://v4rjai458d82"]
 
 [ext_resource type="Texture2D" uid="uid://bbaymxyveihos" path="res://art/campfire/testCampfire.png" id="1_vhsok"]
 [ext_resource type="Script" uid="uid://dfn21imcakt7m" path="res://scenes/assets/campfire/campfire.gd" id="2_iudvd"]
@@ -28,6 +28,39 @@ scale_max = 4.0
 scale_over_velocity_max = 221.25
 color_ramp = SubResource("GradientTexture1D_0g0qi")
 
+[sub_resource type="Gradient" id="Gradient_0g0qi"]
+offsets = PackedFloat32Array(0.472727, 0.786364, 0.89703, 1)
+colors = PackedColorArray(1, 0, 0, 1, 0.206882, 0.0943454, 0.00224914, 1, 0.160784, 0.152941, 0, 0.584314, 1, 1, 1, 0)
+
+[sub_resource type="GradientTexture1D" id="GradientTexture1D_l2mf0"]
+gradient = SubResource("Gradient_0g0qi")
+
+[sub_resource type="Curve" id="Curve_4s4xl"]
+_data = [Vector2(0, 1), 0.0, 0.0, 0, 0, Vector2(1, 0), 0.0, 0.0, 0, 0]
+point_count = 2
+
+[sub_resource type="CurveTexture" id="CurveTexture_av5vg"]
+curve = SubResource("Curve_4s4xl")
+
+[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_xt5g2"]
+particle_flag_disable_z = true
+emission_shape_scale = Vector3(4, 4, 1)
+emission_shape = 3
+emission_box_extents = Vector3(50, 50, 0)
+inherit_velocity_ratio = 0.5
+direction = Vector3(0, -1, 0)
+spread = 180.0
+initial_velocity_min = 300.0
+initial_velocity_max = 581.75
+gravity = Vector3(0, -5, 0)
+radial_accel_min = 10.0
+radial_accel_max = 50.0
+radial_accel_curve = SubResource("CurveTexture_av5vg")
+scale_min = 5.0
+scale_max = 10.0
+scale_over_velocity_max = 221.25
+color_ramp = SubResource("GradientTexture1D_l2mf0")
+
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_6j6n6"]
 radius = 425.0
 height = 1250.0
@@ -53,6 +86,7 @@ position = Vector2(-17, -92)
 texture = ExtResource("1_vhsok")
 
 [node name="CampfireAshes" type="GPUParticles2D" parent="."]
+visible = false
 light_mask = 0
 position = Vector2(-17, -342)
 scale = Vector2(2, 2)
@@ -60,6 +94,17 @@ amount = 150
 lifetime = 1.5
 randomness = 0.4
 process_material = SubResource("ParticleProcessMaterial_vhsok")
+
+[node name="WoodBurn" type="GPUParticles2D" parent="."]
+light_mask = 0
+position = Vector2(-17, -342)
+scale = Vector2(2, 2)
+emitting = false
+amount = 150
+lifetime = 0.5
+one_shot = true
+randomness = 0.4
+process_material = SubResource("ParticleProcessMaterial_xt5g2")
 
 [node name="CampfireCollisionShape" type="CollisionShape2D" parent="."]
 position = Vector2(0, 75)

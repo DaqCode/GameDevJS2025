@@ -20,7 +20,6 @@ func _ready() -> void:
 	# this is for if the player is already in the area, where body_entered wont work
 	sprite = get_node(spritePath)
 	sprite.texture = treeTypeTextures[tree_type]
-	print(tree_type)
 	for bod in get_overlapping_bodies():
 		checkBodys(bod)
 
@@ -37,9 +36,7 @@ func checkBodys(body: Node2D):
 		
 		# THIS IS TEMP DM ME WHEN WRITING INVENTORY CODE AND WE CAN TALK
 		# this is kinda bad code below
-		var itemName = item_type
-		if item_type == "seed": # this is to give the item the right name
-			itemName = "type " + str(tree_type) + " " + item_type
+		var itemName = "type " + str(tree_type) + " " + item_type
 		Events.add_inventory_item.emit(itemName) #this will be somthing like: "type 1 planks"EASE_IN
-		print("picked up " + itemName)
+		#print("picked up " + itemName)
 		queue_free()
