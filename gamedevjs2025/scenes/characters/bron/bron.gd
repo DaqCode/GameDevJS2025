@@ -21,8 +21,9 @@ var walk_sfx = [
 var near_tree: Node = null
 var chopping := false
 var facing_right = true
-
+var music_player: AudioStreamPlayer
 func _ready() -> void:
+	music_player.bus = "SFX"
 	Events.connect("open_upgrade", Callable(self, "_open_upgrade_menu"))
 	
 	Events.upgradeBought.connect(updateSpeed)

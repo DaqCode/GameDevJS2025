@@ -15,11 +15,16 @@ run/main_scene="uid://d3objfw2to154"
 config/features=PackedStringArray("4.4", "Forward Plus")
 config/icon="res://icon.svg"
 
+[audio]
+
+buses/default_bus_layout="uid://dgce6m3yqiseq"
+
 [autoload]
 
 GlobalPlayerScript="*res://global/globalPlayerScript.gd"
 GlobalEnemySpawnerTimer="*res://global/global_enemy_spawner_timer.gd"
 Events="*res://events/events.gd"
+GlobalMusicPlayer="*res://global/global_music_player.gd"
 
 [display]
 

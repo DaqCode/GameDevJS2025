@@ -291,6 +291,7 @@ stream = ExtResource("5_4uy21")
 volume_db = -17.5
 pitch_scale = 0.9
 max_distance = 500.0
+bus = &"SFX"
 
 [connection signal="area_entered" from="BronArea" to="." method="_on_bron_area_area_entered"]
 [connection signal="area_exited" from="BronArea" to="." method="_on_bron_area_area_exited"]

@@ -25,8 +25,10 @@ var zombie_idle_sfx = [
 	preload("res://sounds/sfx/zombie_sound_2.mp3"),
 	preload("res://sounds/sfx/zombie_sound_3.mp3")
 ]
+var music_player: AudioStreamPlayer
 
 func _ready():
+	music_player.bus = "SFX"
 	updateHp()
 	timer.wait_time = randf_range(7, 16)
 	timer.start()

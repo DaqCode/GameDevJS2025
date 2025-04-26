@@ -8,6 +8,7 @@ extends Control
 
 var is_setting_open : bool = false
 
+
 func _ready() -> void:
 	for i in button_cont.get_children():
 		if i is Button:
@@ -38,10 +39,20 @@ func on_button_entered(button: Button) -> void:
 
 
 func on_button_exited(button: Button) -> void:
-	button.pivot_offset = Vector2(194, 32)
 	var tween = create_tween()
 	tween.tween_property(button, "scale", Vector2(1.0, 1.0), 0.1).set_trans(Tween.TRANS_QUART).set_ease(Tween.EASE_OUT)
-	
 
-#328, 64
-# haalf is 194, 32
+func _on_master_slider_value_changed(value:float) -> void:
+	if(value == -25):
+		AudioServer.set_bus_volume_db(0, -200)
+	AudioServer.set_bus_volume_db(0, value)
+
+func _on_music_slider_value_changed(value:float) -> void:
+	if(value == -25):
+		AudioServer.set_bus_volume_db(0, -200)
+	AudioServer.set_bus_volume_db(1, value)
+
+func _on_sfx_slider_value_changed(value:float) -> void:
+	if(value == -25):
+		AudioServer.set_bus_volume_db(0, -200)
+	AudioServer.set_bus_volume_db(2, value)

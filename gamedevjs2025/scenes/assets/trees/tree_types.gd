@@ -91,6 +91,7 @@ var maxGrowTime = 5
 var hardMinGrowTime = 0.1
 
 func _ready() -> void:	
+	self.bus = "SFX"
 	regrow_time.wait_time = get_grow_time()
 	regrow_time.start()
 	rng.randomize()

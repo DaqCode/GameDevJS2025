@@ -57,6 +57,7 @@ stream = ExtResource("3_38ino")
 volume_db = -10.0
 pitch_scale = 1.5
 max_distance = 500.0
+bus = &"SFX"
 
 [node name="ZombieSoundCooldown" type="Timer" parent="."]
 

@@ -72,6 +72,7 @@ texture_under = ExtResource("4_3hn1c")
 texture_progress = ExtResource("5_5kvdk")
 
 [node name="Audio" type="AudioStreamPlayer2D" parent="."]
+bus = &"SFX"
 
 [connection signal="area_entered" from="TreeInteraction" to="." method="_on_tree_interaction_area_entered"]
 [connection signal="body_entered" from="TreeInteraction" to="." method="_on_tree_interaction_body_entered"]

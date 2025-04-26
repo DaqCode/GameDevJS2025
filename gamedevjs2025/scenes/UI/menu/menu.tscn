@@ -338,10 +338,10 @@ anchor_left = 0.5
 anchor_top = 0.5
 anchor_right = 0.5
 anchor_bottom = 0.5
-offset_left = 375.0
-offset_top = -174.0
-offset_right = 703.0
-offset_bottom = -42.0
+offset_left = -201.0
+offset_top = -261.0
+offset_right = 127.0
+offset_bottom = -129.0
 grow_horizontal = 2
 grow_vertical = 2
 pivot_offset = Vector2(174, 60)
@@ -366,12 +366,6 @@ theme = ExtResource("3_3gbhm")
 icon = ExtResource("4_3gbhm")
 icon_alignment = 1
 expand_icon = true
-
-[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
-libraries = {
-&"": SubResource("AnimationLibrary_b5shq")
-}
-autoplay = "IntroSequence"
 
 [node name="Settings" type="Control" parent="."]
 layout_mode = 1
@@ -417,7 +411,8 @@ pivot_offset = Vector2(168.928, 141.428)
 layout_mode = 2
 size_flags_horizontal = 3
 size_flags_vertical = 2
-value = 100.0
+min_value = -25.0
+max_value = 0.0
 
 [node name="Master" type="Label" parent="Settings/SettingPanel/SettingContainer/MasterSlider"]
 layout_mode = 0
@@ -431,7 +426,8 @@ text = "Master"
 layout_mode = 2
 size_flags_horizontal = 3
 size_flags_vertical = 2
-value = 100.0
+min_value = -25.0
+max_value = 0.0
 
 [node name="Music" type="Label" parent="Settings/SettingPanel/SettingContainer/MusicSlider"]
 layout_mode = 0
@@ -445,7 +441,8 @@ text = "Music"
 layout_mode = 2
 size_flags_horizontal = 3
 size_flags_vertical = 2
-value = 100.0
+min_value = -25.0
+max_value = 0.0
 
 [node name="SFX" type="Label" parent="Settings/SettingPanel/SettingContainer/SFXSlider"]
 layout_mode = 0
@@ -466,3 +463,13 @@ offset_right = 85.5
 offset_bottom = 65.0
 grow_horizontal = 2
 text = "Settings"
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+libraries = {
+&"": SubResource("AnimationLibrary_b5shq")
+}
+autoplay = "IntroSequence"
+
+[connection signal="value_changed" from="Settings/SettingPanel/SettingContainer/MasterSlider" to="." method="_on_master_slider_value_changed"]
+[connection signal="value_changed" from="Settings/SettingPanel/SettingContainer/MusicSlider" to="." method="_on_music_slider_value_changed"]
+[connection signal="value_changed" from="Settings/SettingPanel/SettingContainer/SFXSlider" to="." method="_on_sfx_slider_value_changed"]
